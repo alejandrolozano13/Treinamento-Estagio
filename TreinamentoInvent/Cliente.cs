@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TreinamentoInvent
 {
-    public class Class1
+    public class Cliente
     {
         public int Id { get; set; }
 
