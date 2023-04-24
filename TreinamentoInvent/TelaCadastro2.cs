@@ -14,11 +14,31 @@ namespace TreinamentoInvent
     {
 
         private BindingList<Cliente> _clientes;
+        private int idAtual;
+        private bool _eClienteParaEdicao = false;
 
-        public TelaCadastro2(BindingList<Cliente>clientes)
+        public TelaCadastro2(BindingList<Cliente>clientes, bool eClienteParaEdicao, int id)
         {
             InitializeComponent();
             _clientes= clientes;
+            idAtual = id;
+
+            if (eClienteParaEdicao)
+            {
+                foreach(Cliente cliente in _clientes)
+                {
+                    if (id == cliente.Id)
+                    {
+                        idAtual = cliente.Id;
+                        txtNome.Text = cliente.Nome;
+                        txtCpf.Text = cliente.Cpf;
+                        txtTelefone.Text = cliente.Telefone;
+                        txtEmail.Text = cliente.Email;
+                        txtData.Value = cliente.Data;
+                    }
+                }
+            }
+            _eClienteParaEdicao = eClienteParaEdicao;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -42,15 +62,34 @@ namespace TreinamentoInvent
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente();
-            TelaCadastro1 t1 = new TelaCadastro1();
-            cliente.Nome = txtNome.Text;
-            cliente.Cpf = txtCpf.Text;
-            cliente.Email = txtEmail.Text;
-            cliente.Data = txtData.Value;
-            cliente.Id = t1.GeraId();
-            _clientes.Add(cliente);
-            Close();
+            if (!_eClienteParaEdicao)
+            {
+                Cliente cliente = new Cliente();
+                TelaCadastro1 t1 = new TelaCadastro1();
+                cliente.Nome = txtNome.Text;
+                cliente.Cpf = txtCpf.Text;
+                cliente.Email = txtEmail.Text;
+                cliente.Data = txtData.Value;
+                cliente.Id = t1.GeraId();
+                _clientes.Add(cliente);
+                Close();
+            }
+            else
+            {
+                foreach(Cliente cliente in _clientes)
+                {
+                    if (cliente.Id == idAtual)
+                    {
+                        cliente.Nome = txtNome.Text;
+                        cliente.Cpf = txtCpf.Text;
+                        cliente.Email = txtEmail.Text;
+                        cliente.Data = txtData.Value;
+                        cliente.Telefone= txtTelefone.Text;
+                        cliente.Id = idAtual;
+                    }
+                }
+                Close();
+            }
         }
     }
 }
