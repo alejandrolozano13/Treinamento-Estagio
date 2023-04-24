@@ -46,5 +46,25 @@ namespace TreinamentoInvent
                 MessageBox.Show("NENHUM CLIENTE SELECIONADO", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            if (DataGridView.SelectedRows.Count == 1)
+            {
+                var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
+
+                foreach (Cliente cliente in clientes.ToList())
+                {
+                    if (cliente.Id == clienteSelecionado.Id)
+                    {
+                        clientes.Remove(cliente);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("NENHUM CLIENTE SELECIONADO", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

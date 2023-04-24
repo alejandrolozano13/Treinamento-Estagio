@@ -32,7 +32,7 @@
             this.DataGridView = new System.Windows.Forms.DataGridView();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnRemover = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,21 +77,22 @@
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_click);
             // 
-            // button3
+            // btnRemover
             // 
-            this.button3.Location = new System.Drawing.Point(1006, 647);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(159, 75);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Remover";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnRemover.Location = new System.Drawing.Point(1006, 647);
+            this.btnRemover.Name = "btnRemover";
+            this.btnRemover.Size = new System.Drawing.Size(159, 75);
+            this.btnRemover.TabIndex = 4;
+            this.btnRemover.Text = "Remover";
+            this.btnRemover.UseVisualStyleBackColor = true;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // TelaCadastro1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 774);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.DataGridView);
@@ -110,6 +111,6 @@
         private DataGridView DataGridView;
         private Button btnAdicionar;
         private Button btnEditar;
-        private Button button3;
+        private Button btnRemover;
     }
 }
