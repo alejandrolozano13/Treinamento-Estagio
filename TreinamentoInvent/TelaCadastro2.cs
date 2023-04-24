@@ -14,18 +14,18 @@ namespace TreinamentoInvent
     {
 
         private BindingList<Cliente> _clientes;
-        private int idAtual;
+        private int idAtual, contador;
         private bool _eClienteParaEdicao = false;
-
-        public TelaCadastro2(BindingList<Cliente>clientes, bool eClienteParaEdicao, int id)
+        private DateTime DataZerada;
+        public TelaCadastro2(BindingList<Cliente> clientes, bool eClienteParaEdicao, int id)
         {
             InitializeComponent();
-            _clientes= clientes;
+            _clientes = clientes;
             idAtual = id;
 
             if (eClienteParaEdicao)
             {
-                foreach(Cliente cliente in _clientes)
+                foreach (Cliente cliente in _clientes)
                 {
                     if (id == cliente.Id)
                     {
@@ -62,34 +62,54 @@ namespace TreinamentoInvent
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            /*if (string.IsNullOrEmpty(txtNome.Text) || string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtData.Text) ||
+                string.IsNullOrEmpty(txtCpf.Text) || string.IsNullOrEmpty(txtTelefone.Text))
+            {
+                MessageBox.Show("Preencha todos os campos.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {*/
             if (!_eClienteParaEdicao)
             {
                 Cliente cliente = new Cliente();
                 TelaCadastro1 t1 = new TelaCadastro1();
+                Validacoes validacoes = new Validacoes();
+
                 cliente.Nome = txtNome.Text;
-                cliente.Cpf = txtCpf.Text;
                 cliente.Email = txtEmail.Text;
                 cliente.Data = txtData.Value;
-                cliente.Id = t1.GeraId();
-                _clientes.Add(cliente);
-                Close();
+                cliente.Telefone = txtTelefone.Text;
+                cliente.Cpf = txtCpf.Text;
+
+                try
+                {
+
+                    validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, _clientes, cliente.Cpf, cliente.Data);
+                    cliente.Id = t1.GeraId();
+                    _clientes.Add(cliente);
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "\n", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                foreach(Cliente cliente in _clientes)
+                foreach (Cliente cliente in _clientes)
                 {
                     if (cliente.Id == idAtual)
                     {
                         cliente.Nome = txtNome.Text;
                         cliente.Cpf = txtCpf.Text;
                         cliente.Email = txtEmail.Text;
+                        cliente.Telefone = txtTelefone.Text;
                         cliente.Data = txtData.Value;
-                        cliente.Telefone= txtTelefone.Text;
                         cliente.Id = idAtual;
                     }
                 }
                 Close();
             }
         }
-    }
+    }    
 }
