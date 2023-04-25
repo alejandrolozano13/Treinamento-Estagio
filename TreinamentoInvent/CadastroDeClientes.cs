@@ -38,11 +38,6 @@ namespace TreinamentoInvent
             _eClienteParaEdicao = eClienteParaEdicao;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void EntradaDeLetrasParaNome(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar))
@@ -61,6 +56,7 @@ namespace TreinamentoInvent
         {
             if (!_eClienteParaEdicao)
             {
+                Repositorio repositorio= new Repositorio();
                 Cliente cliente = new Cliente();
                 Validacoes validacoes = new Validacoes();
 
@@ -75,7 +71,7 @@ namespace TreinamentoInvent
 
                     validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, SingletonCliente.Lista(), cliente.Cpf, cliente.Data);
                     cliente.Id = SingletonCliente.GeraId();
-                    SingletonCliente.Lista().Add(cliente);
+                    repositorio.Criar(cliente);
                     Close();
                 }
                 catch (Exception ex)

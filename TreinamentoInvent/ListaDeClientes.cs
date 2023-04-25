@@ -13,11 +13,12 @@ namespace TreinamentoInvent
         int id = 0;
         private void AoClicarEmAdicionar(object sender, EventArgs e)
         {
+            var repositorio = new Repositorio();
             var eClienteParaEdicao = false;
             var telaDeCadastro = new CadastroDeClientes(eClienteParaEdicao, id);
             telaDeCadastro.ShowDialog();
             DataGridView.DataSource = null;
-            DataGridView.DataSource = SingletonCliente.Lista();
+            DataGridView.DataSource = repositorio.ObterTodos();
         }
 
         private void AoClicarEmEditar(object sender, EventArgs e)

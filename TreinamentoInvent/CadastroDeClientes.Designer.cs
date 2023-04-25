@@ -112,7 +112,6 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(456, 27);
             this.txtNome.TabIndex = 7;
-            this.txtNome.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaDeLetrasParaNome);
             // 
             // txtEmail
@@ -158,7 +157,7 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.AoClicarEmCancelar);
             // 
-            // TelaCadastro2
+            // CadastroDeClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -176,7 +175,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "TelaCadastro2";
+            this.Name = "CadastroDeClientes";
             this.Text = "Form2";
             this.ResumeLayout(false);
             this.PerformLayout();
