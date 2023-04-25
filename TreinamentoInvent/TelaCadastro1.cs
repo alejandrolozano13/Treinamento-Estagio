@@ -4,29 +4,19 @@ namespace TreinamentoInvent
 {
     public partial class TelaCadastro1 : Form
     {
-
-        BindingList<Cliente> clientes = new BindingList<Cliente>();
-
         public TelaCadastro1()
         {
             InitializeComponent();
         }
 
-        static int id = 0;
-
-        public int GeraId()
-        {
-            id++;
-            return id;
-        }
-
+        int id = 0;
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             bool eClienteParaEdicao = false;
-            TelaCadastro2 t2 = new TelaCadastro2(clientes,eClienteParaEdicao, id);
+            TelaCadastro2 t2 = new TelaCadastro2(SingletonCliente.Lista(),eClienteParaEdicao, id);
             t2.ShowDialog();
             DataGridView.DataSource = null;
-            DataGridView.DataSource = clientes;
+            DataGridView.DataSource = SingletonCliente.Lista();
         }
 
         private void btnEditar_click(object sender, EventArgs e)
@@ -36,10 +26,10 @@ namespace TreinamentoInvent
             if (DataGridView.SelectedRows.Count == 1)
             {
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
-                TelaCadastro2 t2 = new TelaCadastro2(clientes, eClienteParaEdicao, clienteSelecionado.Id);
+                TelaCadastro2 t2 = new TelaCadastro2(SingletonCliente.Lista(), eClienteParaEdicao, clienteSelecionado.Id);
                 t2.ShowDialog();
                 DataGridView.DataSource = null;
-                DataGridView.DataSource = clientes;
+                DataGridView.DataSource = SingletonCliente.Lista();
             }
             else
             {
@@ -53,11 +43,11 @@ namespace TreinamentoInvent
             {
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
 
-                foreach (Cliente cliente in clientes.ToList())
+                foreach (Cliente cliente in SingletonCliente.Lista().ToList())
                 {
                     if (cliente.Id == clienteSelecionado.Id)
                     {
-                        clientes.Remove(cliente);
+                        SingletonCliente.Lista().Remove(cliente);
                     }
                 }
             }

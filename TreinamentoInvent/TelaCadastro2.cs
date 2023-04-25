@@ -12,20 +12,17 @@ namespace TreinamentoInvent
 {
     public partial class TelaCadastro2 : Form
     {
-
-        private BindingList<Cliente> _clientes;
         private int idAtual, contador;
         private bool _eClienteParaEdicao = false;
         private DateTime DataZerada;
         public TelaCadastro2(BindingList<Cliente> clientes, bool eClienteParaEdicao, int id)
         {
             InitializeComponent();
-            _clientes = clientes;
             idAtual = id;
 
             if (eClienteParaEdicao)
             {
-                foreach (Cliente cliente in _clientes)
+                foreach (Cliente cliente in clientes)
                 {
                     if (id == cliente.Id)
                     {
@@ -62,13 +59,6 @@ namespace TreinamentoInvent
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            /*if (string.IsNullOrEmpty(txtNome.Text) || string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtData.Text) ||
-                string.IsNullOrEmpty(txtCpf.Text) || string.IsNullOrEmpty(txtTelefone.Text))
-            {
-                MessageBox.Show("Preencha todos os campos.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {*/
             if (!_eClienteParaEdicao)
             {
                 Cliente cliente = new Cliente();
@@ -84,9 +74,9 @@ namespace TreinamentoInvent
                 try
                 {
 
-                    validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, _clientes, cliente.Cpf, cliente.Data);
-                    cliente.Id = t1.GeraId();
-                    _clientes.Add(cliente);
+                    validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, SingletonCliente.Lista(), cliente.Cpf, cliente.Data);
+                    cliente.Id = SingletonCliente.GeraId();
+                    SingletonCliente.Lista().Add(cliente);
                     Close();
                 }
                 catch (Exception ex)
@@ -96,7 +86,7 @@ namespace TreinamentoInvent
             }
             else
             {
-                foreach (Cliente cliente in _clientes)
+                foreach (Cliente cliente in SingletonCliente.Lista().ToList())
                 {
                     if (cliente.Id == idAtual)
                     {
