@@ -42,7 +42,7 @@ namespace TreinamentoInvent
         {
             if (char.IsDigit(e.KeyChar))
             {
-                e.Handled = true; // cancela o evento
+                e.Handled = true;
             }
         }
 
@@ -68,7 +68,6 @@ namespace TreinamentoInvent
 
                 try
                 {
-
                     validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, SingletonCliente.Lista(), cliente.Cpf, cliente.Data);
                     cliente.Id = SingletonCliente.GeraId();
                     repositorio.Criar(cliente);
@@ -81,18 +80,16 @@ namespace TreinamentoInvent
             }
             else
             {
-                foreach (Cliente cliente in SingletonCliente.Lista().ToList())
-                {
-                    if (cliente.Id == idAtual)
-                    {
-                        cliente.Nome = txtNome.Text;
-                        cliente.Cpf = txtCpf.Text;
-                        cliente.Email = txtEmail.Text;
-                        cliente.Telefone = txtTelefone.Text;
-                        cliente.Data = txtData.Value;
-                        cliente.Id = idAtual;
-                    }
-                }
+                Repositorio repositorio = new Repositorio();
+                Cliente cliente = new Cliente();
+                cliente.Nome = txtNome.Text;
+                cliente.Email = txtEmail.Text;
+                cliente.Data = txtData.Value;
+                cliente.Telefone = txtTelefone.Text;
+                cliente.Cpf = txtCpf.Text;
+                cliente.Id = idAtual;
+
+                repositorio.Atualizar(idAtual, cliente);
                 Close();
             }
         }

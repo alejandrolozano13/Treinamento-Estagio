@@ -27,11 +27,12 @@ namespace TreinamentoInvent
 
             if (DataGridView.SelectedRows.Count == 1)
             {
+                var repositorio = new Repositorio();
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
                 var telaDeCadastro = new CadastroDeClientes( eClienteParaEdicao, clienteSelecionado.Id);
                 telaDeCadastro.ShowDialog();
                 DataGridView.DataSource = null;
-                DataGridView.DataSource = SingletonCliente.Lista();
+                DataGridView.DataSource = repositorio.ObterTodos();
             }
             else
             {
@@ -45,13 +46,8 @@ namespace TreinamentoInvent
             {
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
 
-                foreach (Cliente cliente in SingletonCliente.Lista().ToList())
-                {
-                    if (cliente.Id == clienteSelecionado.Id)
-                    {
-                        SingletonCliente.Lista().Remove(cliente);
-                    }
-                }
+                var repositorio = new Repositorio();
+                repositorio.Remover(clienteSelecionado.Id);
             }
             else
             {

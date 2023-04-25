@@ -13,7 +13,7 @@ namespace TreinamentoInvent
 
         public void Criar(Cliente novoCliente);
 
-        public void Atualizar(int id);
+        public void Atualizar(int id, Cliente cliente);
 
         public void Remover(int id);
 

@@ -11,11 +11,18 @@ namespace TreinamentoInvent
     {
         public void Atualizar(int id, Cliente cliente)
         {
-            foreach(Cliente c in SingletonCliente.Lista().ToList())
+            foreach (Cliente c in SingletonCliente.Lista().ToList())
             {
                 if (c.Id == id)
                 {
-                    c = cliente;
+                    c.Id = cliente.Id;
+                    c.Email = cliente.Email;
+                    c.Telefone = cliente.Telefone;
+                    c.Cpf = cliente.Cpf;
+                    c.Data= cliente.Data;
+                    c.Nome= cliente.Nome;
+
+                    cliente = c;
                 }
             }
         }
