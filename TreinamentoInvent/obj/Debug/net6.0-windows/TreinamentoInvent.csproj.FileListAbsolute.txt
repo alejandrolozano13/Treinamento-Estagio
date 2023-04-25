@@ -4,8 +4,6 @@ C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\TreinamentoInvent.dll
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\TreinamentoInvent.pdb
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.csproj.AssemblyReference.cache
-C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.TelaCadastro1.resources
-C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.TelaCadastro2.resources
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.csproj.GenerateResource.cache
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.AssemblyInfoInputs.cache
@@ -16,3 +14,5 @@ C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.pdb
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.genruntimeconfig.cache
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\ref\TreinamentoInvent.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.CadastroDeClientes.resources
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.ListaDeClientes.resources

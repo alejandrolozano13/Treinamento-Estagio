@@ -2,32 +2,33 @@ using System.ComponentModel;
 
 namespace TreinamentoInvent
 {
-    public partial class TelaCadastro1 : Form
+    public partial class ListaDeClientes : Form
     {
-        public TelaCadastro1()
+        public ListaDeClientes()
         {
             InitializeComponent();
+            SingletonCliente.CriarLista();
         }
 
         int id = 0;
-        private void btnAdicionar_Click(object sender, EventArgs e)
+        private void AoClicarEmAdicionar(object sender, EventArgs e)
         {
-            bool eClienteParaEdicao = false;
-            TelaCadastro2 t2 = new TelaCadastro2(SingletonCliente.Lista(),eClienteParaEdicao, id);
-            t2.ShowDialog();
+            var eClienteParaEdicao = false;
+            var telaDeCadastro = new CadastroDeClientes(eClienteParaEdicao, id);
+            telaDeCadastro.ShowDialog();
             DataGridView.DataSource = null;
             DataGridView.DataSource = SingletonCliente.Lista();
         }
 
-        private void btnEditar_click(object sender, EventArgs e)
+        private void AoClicarEmEditar(object sender, EventArgs e)
         {
-            bool eClienteParaEdicao = true;
+            var eClienteParaEdicao = true;
 
             if (DataGridView.SelectedRows.Count == 1)
             {
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
-                TelaCadastro2 t2 = new TelaCadastro2(SingletonCliente.Lista(), eClienteParaEdicao, clienteSelecionado.Id);
-                t2.ShowDialog();
+                var telaDeCadastro = new CadastroDeClientes( eClienteParaEdicao, clienteSelecionado.Id);
+                telaDeCadastro.ShowDialog();
                 DataGridView.DataSource = null;
                 DataGridView.DataSource = SingletonCliente.Lista();
             }
@@ -37,7 +38,7 @@ namespace TreinamentoInvent
             }
         }
 
-        private void btnRemover_Click(object sender, EventArgs e)
+        private void AoClicarEmRemover(object sender, EventArgs e)
         {
             if (DataGridView.SelectedRows.Count == 1)
             {

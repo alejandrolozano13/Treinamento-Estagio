@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace TreinamentoInvent
 {
-    public partial class TelaCadastro2 : Form
+    public partial class CadastroDeClientes : Form
     {
-        private int idAtual, contador;
+        private int idAtual;
         private bool _eClienteParaEdicao = false;
-        private DateTime DataZerada;
-        public TelaCadastro2(BindingList<Cliente> clientes, bool eClienteParaEdicao, int id)
+
+        public CadastroDeClientes(bool eClienteParaEdicao, int id)
         {
             InitializeComponent();
             idAtual = id;
 
             if (eClienteParaEdicao)
             {
-                foreach (Cliente cliente in clientes)
+                foreach (Cliente cliente in SingletonCliente.Lista())
                 {
                     if (id == cliente.Id)
                     {
@@ -43,7 +43,7 @@ namespace TreinamentoInvent
 
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void EntradaDeLetrasParaNome(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar))
             {
@@ -52,17 +52,16 @@ namespace TreinamentoInvent
         }
 
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void AoClicarEmCancelar(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void AoClicarEmSalvar(object sender, EventArgs e)
         {
             if (!_eClienteParaEdicao)
             {
                 Cliente cliente = new Cliente();
-                TelaCadastro1 t1 = new TelaCadastro1();
                 Validacoes validacoes = new Validacoes();
 
                 cliente.Nome = txtNome.Text;

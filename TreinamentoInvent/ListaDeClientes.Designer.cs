@@ -1,6 +1,6 @@
 ﻿namespace TreinamentoInvent
 {
-    partial class TelaCadastro1
+    partial class ListaDeClientes
     {
         /// <summary>
         ///  Required designer variable.
@@ -65,7 +65,7 @@
             this.btnAdicionar.TabIndex = 2;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
-            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            this.btnAdicionar.Click += new System.EventHandler(this.AoClicarEmAdicionar);
             // 
             // btnEditar
             // 
@@ -75,7 +75,7 @@
             this.btnEditar.TabIndex = 3;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_click);
+            this.btnEditar.Click += new System.EventHandler(this.AoClicarEmEditar);
             // 
             // btnRemover
             // 
@@ -85,7 +85,7 @@
             this.btnRemover.TabIndex = 4;
             this.btnRemover.Text = "Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
-            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
+            this.btnRemover.Click += new System.EventHandler(this.AoClicarEmRemover);
             // 
             // TelaCadastro1
             // 

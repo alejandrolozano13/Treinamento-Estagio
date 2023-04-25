@@ -15,12 +15,16 @@ namespace TreinamentoInvent
         
         private SingletonCliente() { }
 
-        public static BindingList<Cliente> Lista()
+        public static void CriarLista()
         {
             if (lista == null)
             {
                 lista = new BindingList<Cliente>();
             }
+        }
+
+        public static BindingList<Cliente> Lista()
+        {
             return lista;
         }
 

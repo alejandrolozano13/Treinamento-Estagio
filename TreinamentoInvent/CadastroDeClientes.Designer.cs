@@ -1,6 +1,6 @@
 ﻿namespace TreinamentoInvent
 {
-    partial class TelaCadastro2
+    partial class CadastroDeClientes
     {
         /// <summary>
         /// Required designer variable.
@@ -113,7 +113,7 @@
             this.txtNome.Size = new System.Drawing.Size(456, 27);
             this.txtNome.TabIndex = 7;
             this.txtNome.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaDeLetrasParaNome);
             // 
             // txtEmail
             // 
@@ -146,7 +146,7 @@
             this.btnSalvar.TabIndex = 11;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.AoClicarEmSalvar);
             // 
             // btnCancelar
             // 
@@ -156,7 +156,7 @@
             this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.AoClicarEmCancelar);
             // 
             // TelaCadastro2
             // 
