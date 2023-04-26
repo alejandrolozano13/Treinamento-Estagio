@@ -1,17 +1,45 @@
+using System;
+using System.Linq;
+using FluentMigrator.Runner;
+using FluentMigrator.Runner.Initialization;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace TreinamentoInvent
 {
-    internal static class Program
-    {
+     class Program
+     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            using (var serviceProvider = CreateServices())
+                using (var scope = serviceProvider.CreateScope())
+            {
+                UpdateDatabase(scope.ServiceProvider);
+            }
             ApplicationConfiguration.Initialize();
             Application.Run(new ListaDeClientes());
         }
-    }
+
+        private static void UpdateDatabase(IServiceProvider serviceProvider)
+        {
+            var runner = serviceProvider.GetRequiredService
+            <IMigrationRunner>();
+
+            runner.MigrateUp();
+        }
+        private static ServiceProvider CreateServices()
+        {
+            return new ServiceCollection()
+                .AddFluentMigratorCore()
+                .ConfigureRunner(rb => rb
+                .AddSQLite()
+                .WithGlobalConnectionString("Data Source = ClientesBancoConexao")
+                .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
+                .AddLogging(lb => lb.AddFluentMigratorConsole())
+                .BuildServiceProvider(false);
+        }
+     }
 }
