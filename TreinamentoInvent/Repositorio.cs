@@ -9,20 +9,20 @@ namespace TreinamentoInvent
 {
     public class Repositorio : IRepositorio
     {
-        public void Atualizar(int id, Cliente cliente)
+        public void Atualizar(int id, Cliente ClienteAntigo)
         {
-            foreach (Cliente c in SingletonCliente.Lista().ToList())
+            foreach (Cliente clienteNovo in SingletonCliente.Lista().ToList())
             {
-                if (c.Id == id)
+                if (clienteNovo.Id == id)
                 {
-                    c.Id = cliente.Id;
-                    c.Email = cliente.Email;
-                    c.Telefone = cliente.Telefone;
-                    c.Cpf = cliente.Cpf;
-                    c.Data= cliente.Data;
-                    c.Nome= cliente.Nome;
+                    clienteNovo.Id = ClienteAntigo.Id;
+                    clienteNovo.Email = ClienteAntigo.Email;
+                    clienteNovo.Telefone = ClienteAntigo.Telefone;
+                    clienteNovo.Cpf = ClienteAntigo.Cpf;
+                    clienteNovo.Data= ClienteAntigo.Data;
+                    clienteNovo.Nome= ClienteAntigo.Nome;
 
-                    cliente = c;
+                    ClienteAntigo = clienteNovo;
                 }
             }
         }

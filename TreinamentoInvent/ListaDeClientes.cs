@@ -6,19 +6,19 @@ namespace TreinamentoInvent
     {
         public ListaDeClientes()
         {
+            var repositorio = new RepositorioBancoDeDados();
             InitializeComponent();
             SingletonCliente.CriarLista();
+            DataGridView.DataSource = repositorio.ObterTodos();
         }
 
         int id = 0;
         private void AoClicarEmAdicionar(object sender, EventArgs e)
         {
-            var repositorio = new Repositorio();
+            var repositorio = new RepositorioBancoDeDados();
             var eClienteParaEdicao = false;
             var telaDeCadastro = new CadastroDeClientes(eClienteParaEdicao, id);
             telaDeCadastro.ShowDialog();
-            DataGridView.DataSource = null;
-            DataGridView.DataSource = repositorio.ObterTodos();
         }
 
         private void AoClicarEmEditar(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace TreinamentoInvent
 
             if (DataGridView.SelectedRows.Count == 1)
             {
-                var repositorio = new Repositorio();
+                var repositorio = new RepositorioBancoDeDados();
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
                 var telaDeCadastro = new CadastroDeClientes( eClienteParaEdicao, clienteSelecionado.Id);
                 telaDeCadastro.ShowDialog();
@@ -46,7 +46,7 @@ namespace TreinamentoInvent
             {
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
 
-                var repositorio = new Repositorio();
+                var repositorio = new RepositorioBancoDeDados();
                 repositorio.Remover(clienteSelecionado.Id);
             }
             else

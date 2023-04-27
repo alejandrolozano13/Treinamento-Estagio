@@ -70,7 +70,9 @@ namespace TreinamentoInvent
                 {
                     validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, SingletonCliente.Lista(), cliente.Cpf, cliente.Data);
                     cliente.Id = SingletonCliente.GeraId();
-                    repositorio.Criar(cliente);
+                    //repositorio.Criar(cliente);
+                    var repositorioBancoDeDados = new RepositorioBancoDeDados();
+                    repositorioBancoDeDados.Criar(cliente);
                     Close();
                 }
                 catch (Exception ex)
