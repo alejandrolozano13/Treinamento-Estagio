@@ -73,6 +73,7 @@ namespace TreinamentoInvent
                     //repositorio.Criar(cliente);
                     var repositorioBancoDeDados = new RepositorioBancoDeDados();
                     repositorioBancoDeDados.Criar(cliente);
+                    
                     Close();
                 }
                 catch (Exception ex)

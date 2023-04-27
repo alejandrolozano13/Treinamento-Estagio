@@ -18,7 +18,8 @@ namespace TreinamentoInvent
 
         string sqlExcluir = "DELETE FROM CadastroCliente where @id = id";
 
-        static int identidade;
+        string sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, EMAIL = @EMAIL," +
+            "";
 
         public void Atualizar(int id, Cliente cliente)
         {
@@ -35,12 +36,6 @@ namespace TreinamentoInvent
             comando.Parameters.Add(new SqlParameter("@Data_Nascimento", novoCliente.Data));
 
             conexao.Open();
-
-            identidade++;
-
-            novoCliente.Id = identidade;
-
-            SingletonCliente.Lista().Add(novoCliente);
 
             comando.ExecuteNonQuery();
 
@@ -63,8 +58,9 @@ namespace TreinamentoInvent
             var dadosDoBanco = new DataTable();
 
             SqlDataReader leitor = comando.ExecuteReader();
+            SingletonCliente.Lista().Clear();
 
-            while(leitor.Read())
+            while (leitor.Read())
             {
                 Cliente cliente = new Cliente()
                 {
@@ -76,9 +72,9 @@ namespace TreinamentoInvent
                     Data = leitor.GetDateTime(5)
             };
                 SingletonCliente.Lista().Add(cliente);
-                identidade = cliente.Id;
             }
             conexao.Close();
+            
             return SingletonCliente.Lista();
         }
 
@@ -87,10 +83,6 @@ namespace TreinamentoInvent
             conexao.Open();
             SqlCommand comando = new SqlCommand(sqlExcluir, conexao);
             comando.Parameters.AddWithValue("@id", id);
-
-            var ClienteRemover = ObterPorId(id);
-            SingletonCliente.Lista().Remove(ClienteRemover);
-
             comando.ExecuteNonQuery();
             conexao.Close();
         }

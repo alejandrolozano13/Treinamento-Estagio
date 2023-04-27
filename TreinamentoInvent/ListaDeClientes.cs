@@ -19,6 +19,7 @@ namespace TreinamentoInvent
             var eClienteParaEdicao = false;
             var telaDeCadastro = new CadastroDeClientes(eClienteParaEdicao, id);
             telaDeCadastro.ShowDialog();
+            repositorio.ObterTodos();
         }
 
         private void AoClicarEmEditar(object sender, EventArgs e)
@@ -48,6 +49,7 @@ namespace TreinamentoInvent
 
                 var repositorio = new RepositorioBancoDeDados();
                 repositorio.Remover(clienteSelecionado.Id);
+                repositorio.ObterTodos();
             }
             else
             {
