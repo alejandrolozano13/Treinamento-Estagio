@@ -18,12 +18,39 @@ namespace TreinamentoInvent
 
         string sqlExcluir = "DELETE FROM CadastroCliente where @id = id";
 
-        string sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, EMAIL = @EMAIL," +
-            "";
+        string sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, TELEFONE = @Telefone, EMAIL = @Email, DATA_NASCIMENTO = @Data_Nascimento WHERE ID = @Id";
 
-        public void Atualizar(int id, Cliente cliente)
+        public void Atualizar(int id, Cliente clienteAntigo)
         {
-            throw new NotImplementedException();
+
+            foreach (Cliente clienteNovo in SingletonCliente.Lista().ToList())
+            {
+                if (clienteNovo.Id == id)
+                {
+                    clienteNovo.Id = clienteAntigo.Id;
+                    clienteNovo.Email = clienteAntigo.Email;
+                    clienteNovo.Telefone = clienteAntigo.Telefone;
+                    clienteNovo.Cpf = clienteAntigo.Cpf;
+                    clienteNovo.Data = clienteAntigo.Data;
+                    clienteNovo.Nome = clienteAntigo.Nome;
+
+                    clienteAntigo = clienteNovo;
+                }
+            }
+
+            SqlCommand comando = new SqlCommand(sqlEditar, conexao);
+            comando.Parameters.AddWithValue("@Id", id);
+            comando.Parameters.AddWithValue("@Nome", clienteAntigo.Nome);
+            comando.Parameters.AddWithValue("@CPF", clienteAntigo.Cpf);
+            comando.Parameters.AddWithValue("@Telefone", clienteAntigo.Telefone);
+            comando.Parameters.AddWithValue("@Email", clienteAntigo.Email);
+            comando.Parameters.AddWithValue("@Data_Nascimento", clienteAntigo.Data);
+
+            conexao.Open();
+
+            comando.ExecuteNonQuery();
+
+            conexao.Close();
         }
 
         public void Criar(Cliente novoCliente)

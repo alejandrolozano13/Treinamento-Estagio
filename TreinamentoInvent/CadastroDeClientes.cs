@@ -83,7 +83,7 @@ namespace TreinamentoInvent
             }
             else
             {
-                Repositorio repositorio = new Repositorio();
+                var repositorio = new RepositorioBancoDeDados();
                 Cliente cliente = new Cliente();
                 cliente.Nome = txtNome.Text;
                 cliente.Email = txtEmail.Text;

@@ -32,8 +32,7 @@ namespace TreinamentoInvent
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
                 var telaDeCadastro = new CadastroDeClientes( eClienteParaEdicao, clienteSelecionado.Id);
                 telaDeCadastro.ShowDialog();
-                DataGridView.DataSource = null;
-                DataGridView.DataSource = repositorio.ObterTodos();
+                repositorio.ObterTodos();
             }
             else
             {
