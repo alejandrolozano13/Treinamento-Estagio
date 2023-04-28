@@ -4,9 +4,11 @@ namespace TreinamentoInvent
 {
     public partial class ListaDeClientes : Form
     {
-        public ListaDeClientes()
+        private readonly IRepositorio _repositorio;
+        public ListaDeClientes(IRepositorio repositorio)
         {
-            var repositorio = new RepositorioBancoDeDados();
+            //var repositorio = new RepositorioBancoDeDados();
+            _repositorio = repositorio;
             InitializeComponent();
             SingletonCliente.CriarLista();
             DataGridView.DataSource = repositorio.ObterTodos();
@@ -15,11 +17,10 @@ namespace TreinamentoInvent
         int id = 0;
         private void AoClicarEmAdicionar(object sender, EventArgs e)
         {
-            var repositorio = new RepositorioBancoDeDados();
             var eClienteParaEdicao = false;
-            var telaDeCadastro = new CadastroDeClientes(eClienteParaEdicao, id);
+            var telaDeCadastro = new CadastroDeClientes(eClienteParaEdicao, id, _repositorio);
             telaDeCadastro.ShowDialog();
-            repositorio.ObterTodos();
+            _repositorio.ObterTodos();
         }
 
         private void AoClicarEmEditar(object sender, EventArgs e)
@@ -28,11 +29,10 @@ namespace TreinamentoInvent
 
             if (DataGridView.SelectedRows.Count == 1)
             {
-                var repositorio = new RepositorioBancoDeDados();
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
-                var telaDeCadastro = new CadastroDeClientes( eClienteParaEdicao, clienteSelecionado.Id);
+                var telaDeCadastro = new CadastroDeClientes( eClienteParaEdicao, clienteSelecionado.Id, _repositorio);
                 telaDeCadastro.ShowDialog();
-                repositorio.ObterTodos();
+                _repositorio.ObterTodos();
             }
             else
             {
@@ -46,9 +46,8 @@ namespace TreinamentoInvent
             {
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
 
-                var repositorio = new RepositorioBancoDeDados();
-                repositorio.Remover(clienteSelecionado.Id);
-                repositorio.ObterTodos();
+                _repositorio.Remover(clienteSelecionado.Id);
+                _repositorio.ObterTodos();
             }
             else
             {

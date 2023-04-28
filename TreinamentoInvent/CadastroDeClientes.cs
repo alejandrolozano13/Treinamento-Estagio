@@ -15,7 +15,8 @@ namespace TreinamentoInvent
         private int idAtual;
         private bool _eClienteParaEdicao = false;
 
-        public CadastroDeClientes(bool eClienteParaEdicao, int id)
+        private readonly IRepositorio _repositorio;
+        public CadastroDeClientes(bool eClienteParaEdicao, int id, IRepositorio repositorio)
         {
             InitializeComponent();
             idAtual = id;
@@ -36,6 +37,7 @@ namespace TreinamentoInvent
                 }
             }
             _eClienteParaEdicao = eClienteParaEdicao;
+            _repositorio = repositorio;
         }
 
         private void EntradaDeLetrasParaNome(object sender, KeyPressEventArgs e)
@@ -56,7 +58,6 @@ namespace TreinamentoInvent
         {
             if (!_eClienteParaEdicao)
             {
-                Repositorio repositorio= new Repositorio();
                 Cliente cliente = new Cliente();
                 Validacoes validacoes = new Validacoes();
 
@@ -70,9 +71,7 @@ namespace TreinamentoInvent
                 {
                     validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, SingletonCliente.Lista(), cliente.Cpf, cliente.Data);
                     cliente.Id = SingletonCliente.GeraId();
-                    //repositorio.Criar(cliente);
-                    var repositorioBancoDeDados = new RepositorioBancoDeDados();
-                    repositorioBancoDeDados.Criar(cliente);
+                    _repositorio.Criar(cliente);
                     
                     Close();
                 }
@@ -83,7 +82,6 @@ namespace TreinamentoInvent
             }
             else
             {
-                var repositorio = new RepositorioBancoDeDados();
                 Cliente cliente = new Cliente();
                 cliente.Nome = txtNome.Text;
                 cliente.Email = txtEmail.Text;
@@ -92,7 +90,7 @@ namespace TreinamentoInvent
                 cliente.Cpf = txtCpf.Text;
                 cliente.Id = idAtual;
 
-                repositorio.Atualizar(idAtual, cliente);
+                _repositorio.Atualizar(idAtual, cliente);
                 Close();
             }
         }

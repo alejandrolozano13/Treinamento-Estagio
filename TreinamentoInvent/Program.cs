@@ -1,10 +1,6 @@
-using System;
-using System.Linq;
 using FluentMigrator.Runner;
-using FluentMigrator.Runner.Initialization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace TreinamentoInvent
 {
@@ -22,7 +18,12 @@ namespace TreinamentoInvent
                 UpdateDatabase(scope.ServiceProvider);
             }
             ApplicationConfiguration.Initialize();
-            Application.Run(new ListaDeClientes());
+
+            var builderBanco = criaHostBuilderBanco();
+            var servicesProvider = builderBanco.Build().Services;
+            var repositorio = servicesProvider.GetService<IRepositorio>();
+
+            Application.Run(new ListaDeClientes(repositorio));
         }
 
         private static void UpdateDatabase(IServiceProvider serviceProvider)
@@ -41,6 +42,24 @@ namespace TreinamentoInvent
                 .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 .BuildServiceProvider(false);
+        }
+
+        static IHostBuilder criaHostBuilderBanco()
+        {
+            return Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddScoped<IRepositorio, RepositorioBancoDeDados>();
+                });
+        }
+
+        static IHostBuilder criaHostBuilderSingleton()
+        {
+            return Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddScoped<IRepositorio, Repositorio>();
+                });
         }
     }
 }

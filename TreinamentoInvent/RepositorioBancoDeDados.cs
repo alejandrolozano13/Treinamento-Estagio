@@ -1,18 +1,14 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.Data.SqlClient;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Windows.Forms.VisualStyles;
 
 namespace TreinamentoInvent
 {
     public class RepositorioBancoDeDados : IRepositorio
     {
         SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
-        
-        string sqlInsere = "INSERT INTO CadastroCliente(Nome, CPF, Telefone, EMail, Data_Nascimento)" +
-                " VALUES (@Nome, @CPF, @Telefone, @Email, @Data_Nascimento)";
+
+        string sqlInsere = "INSERT INTO CadastroCliente(Nome, CPF, Telefone, EMail, Data_Nascimento) VALUES (@Nome, @CPF, @Telefone, @Email, @Data_Nascimento)";
 
         string sqlMostrarTodos = "SELECT * FROM CadastroCliente";
 
