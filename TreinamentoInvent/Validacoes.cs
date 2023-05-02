@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Common;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -12,10 +14,17 @@ namespace TreinamentoInvent
     public class Validacoes
     {
         BindingList<string> mensagem = new BindingList<string>();
-        public void ValidarCliente(string nome, string email, string telefone, BindingList<Cliente>clientes, string cpf, DateTime data)
-        {
-            Validacoes validacoes= new Validacoes();
+        private readonly IRepositorio _repositorio;
 
+        public Validacoes(IRepositorio repositorio)
+        {
+            _repositorio= repositorio;
+        }
+
+        SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
+
+        public void ValidarCliente(string nome, string email, string telefone, BindingList<Cliente> clientes, string cpf, DateTime data)
+        {
             if (string.IsNullOrWhiteSpace(nome))
             {
                 mensagem.Add("O nome do cliente é obrigatório");
@@ -42,26 +51,9 @@ namespace TreinamentoInvent
                 mensagem.Add("O Telefone é inválido");
             }
 
-            int contador = 0;
-
-            foreach(Cliente cliente in clientes)
+            if (cpf.Length < 14)
             {
-                if (cliente.Cpf.Equals(cpf))
-                {
-                    contador++;
-                }
-            }
-
-            if (contador != 0)
-            {
-                mensagem.Add("CPF já existe!");
-            }
-            else
-            {
-                if (cpf.Length < 14)
-                {
-                    mensagem.Add("CPF inválido");
-                }
+                mensagem.Add("CPF inválido");
             }
 
             DateTime dataSelecionada = data;
@@ -73,6 +65,20 @@ namespace TreinamentoInvent
                 mensagem.Add("Precisa ter mais de 18 anos.");
             }
 
+            string query = "SELECT * FROM CadastroCliente WHERE @CPF = Cpf";
+            SqlCommand comandoSql = new SqlCommand(query, conexao);
+            comandoSql.Parameters.AddWithValue("@CPF", cpf);
+            conexao.Open();
+
+            var dataReader = comandoSql.ExecuteReader();
+            var existe = dataReader.Cast<DbDataRecord>().Any();
+            dataReader.Close();
+
+            if (existe)
+            {
+                mensagem.Add("CPF JÁ EXISTE!");
+            }
+            
             if (mensagem.Count > 0)
             {
                 var erro = string.Join(Environment.NewLine, mensagem);

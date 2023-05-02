@@ -11,7 +11,7 @@ namespace TreinamentoInvent
             _repositorio = repositorio;
             InitializeComponent();
             SingletonCliente.CriarLista();
-            DataGridView.DataSource = repositorio.ObterTodos();
+            DataGridView.DataSource = _repositorio.ObterTodos();
         }
 
         int id = 0;

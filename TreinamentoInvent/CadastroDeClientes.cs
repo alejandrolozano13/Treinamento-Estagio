@@ -59,7 +59,7 @@ namespace TreinamentoInvent
             if (!_eClienteParaEdicao)
             {
                 Cliente cliente = new Cliente();
-                Validacoes validacoes = new Validacoes();
+                Validacoes validacoes = new Validacoes(_repositorio);
 
                 cliente.Nome = txtNome.Text;
                 cliente.Email = txtEmail.Text;
@@ -70,7 +70,6 @@ namespace TreinamentoInvent
                 try
                 {
                     validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, SingletonCliente.Lista(), cliente.Cpf, cliente.Data);
-                    cliente.Id = SingletonCliente.GeraId();
                     _repositorio.Criar(cliente);
                     
                     Close();

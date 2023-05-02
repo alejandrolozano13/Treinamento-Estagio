@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic;
 using System.ComponentModel;
 using System.Data;
 
@@ -8,16 +9,9 @@ namespace TreinamentoInvent
     {
         SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
 
-        string sqlInsere = "INSERT INTO CadastroCliente(Nome, CPF, Telefone, EMail, Data_Nascimento) VALUES (@Nome, @CPF, @Telefone, @Email, @Data_Nascimento)";
-
-        string sqlMostrarTodos = "SELECT * FROM CadastroCliente";
-
-        string sqlExcluir = "DELETE FROM CadastroCliente where @id = id";
-
-        string sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, TELEFONE = @Telefone, EMAIL = @Email, DATA_NASCIMENTO = @Data_Nascimento WHERE ID = @Id";
-
         public void Atualizar(int id, Cliente clienteAntigo)
         {
+            string sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, TELEFONE = @Telefone, EMAIL = @Email, DATA_NASCIMENTO = @Data_Nascimento WHERE ID = @Id";
 
             foreach (Cliente clienteNovo in SingletonCliente.Lista().ToList())
             {
@@ -51,6 +45,7 @@ namespace TreinamentoInvent
 
         public void Criar(Cliente novoCliente)
         {
+            string sqlInsere = "INSERT INTO CadastroCliente(Nome, CPF, Telefone, EMail, Data_Nascimento) VALUES (@Nome, @CPF, @Telefone, @Email, @Data_Nascimento)";
             SqlCommand comando = new SqlCommand(sqlInsere, conexao);
             comando.Parameters.Add(new SqlParameter("@Nome", novoCliente.Nome));
             comando.Parameters.Add(new SqlParameter("@CPF", novoCliente.Cpf));
@@ -67,18 +62,15 @@ namespace TreinamentoInvent
 
         public Cliente ObterPorId(int id)
         {
-            return SingletonCliente
-                .Lista()
-                .ToList()
-                .Find(cliente => cliente.Id == id);
+            // aqui no repositorio do Banco de dados não precisamos pois com DELETE * WHERE já pegamos o cliente a ser removido pelo id diretamente
+            return null;
         }
 
         public BindingList<Cliente> ObterTodos()
         {
+            string sqlMostrarTodos = "SELECT * FROM CadastroCliente";
             conexao.Open();
             SqlCommand comando = new SqlCommand(sqlMostrarTodos, conexao);
-            var adaptadorSql = new SqlDataAdapter(comando);
-            var dadosDoBanco = new DataTable();
 
             SqlDataReader leitor = comando.ExecuteReader();
             SingletonCliente.Lista().Clear();
@@ -103,6 +95,7 @@ namespace TreinamentoInvent
 
         public void Remover(int id)
         {
+            string sqlExcluir = "DELETE FROM CadastroCliente where @id = id";
             conexao.Open();
             SqlCommand comando = new SqlCommand(sqlExcluir, conexao);
             comando.Parameters.AddWithValue("@id", id);
