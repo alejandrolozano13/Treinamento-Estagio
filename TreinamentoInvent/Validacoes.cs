@@ -23,14 +23,14 @@ namespace TreinamentoInvent
 
         SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
 
-        public void ValidarCliente(string nome, string email, string telefone, BindingList<Cliente> clientes, string cpf, DateTime data)
+        public void ValidarCliente(Cliente cliente, bool E_ClienteEdicao)
         {
-            if (string.IsNullOrWhiteSpace(nome))
+            if (string.IsNullOrWhiteSpace(cliente.Nome))
             {
                 mensagem.Add("O nome do cliente é obrigatório");
             }
 
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(cliente.Email))
             {
                 mensagem.Add("O E-Mail do cliente é obrigatório");
             }
@@ -38,7 +38,7 @@ namespace TreinamentoInvent
             {
                 try
                 {
-                    var mailAddres = new System.Net.Mail.MailAddress(email);
+                    var mailAddres = new System.Net.Mail.MailAddress(cliente.Email);
                 }
                 catch (FormatException)
                 {
@@ -46,17 +46,17 @@ namespace TreinamentoInvent
                 }
             }
 
-            if (telefone.Length < 14 || !telefone[3].Equals('9'))
+            if (cliente.Telefone.Length < 14 || !cliente.Telefone[3].Equals('9'))
             {
                 mensagem.Add("O Telefone é inválido");
             }
 
-            if (cpf.Length < 14)
+            if (cliente.Cpf.Length < 14)
             {
                 mensagem.Add("CPF inválido");
             }
 
-            DateTime dataSelecionada = data;
+            DateTime dataSelecionada = cliente.Data ;
             DateTime dataAtual = DateTime.Now;
             TimeSpan periodo = dataAtual - dataSelecionada;
 
@@ -65,18 +65,12 @@ namespace TreinamentoInvent
                 mensagem.Add("Precisa ter mais de 18 anos.");
             }
 
-            string query = "SELECT * FROM CadastroCliente WHERE @CPF = Cpf";
-            SqlCommand comandoSql = new SqlCommand(query, conexao);
-            comandoSql.Parameters.AddWithValue("@CPF", cpf);
-            conexao.Open();
-
-            var dataReader = comandoSql.ExecuteReader();
-            var existe = dataReader.Cast<DbDataRecord>().Any();
-            dataReader.Close();
-
-            if (existe)
+            if (!E_ClienteEdicao)
             {
-                mensagem.Add("CPF JÁ EXISTE!");
+                if (_repositorio.ValidaCPF(cliente.Cpf))
+                {
+                    mensagem.Add("CPF já existe!");
+                }
             }
             
             if (mensagem.Count > 0)

@@ -1,32 +1,21 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Windows.Forms;
 
 namespace TreinamentoInvent
 {
     public class RepositorioBancoDeDados : IRepositorio
     {
-        SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
+        
 
         public void Atualizar(int id, Cliente clienteAntigo)
         {
+            SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
             string sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, TELEFONE = @Telefone, EMAIL = @Email, DATA_NASCIMENTO = @Data_Nascimento WHERE ID = @Id";
-
-            foreach (Cliente clienteNovo in SingletonCliente.Lista().ToList())
-            {
-                if (clienteNovo.Id == id)
-                {
-                    clienteNovo.Id = clienteAntigo.Id;
-                    clienteNovo.Email = clienteAntigo.Email;
-                    clienteNovo.Telefone = clienteAntigo.Telefone;
-                    clienteNovo.Cpf = clienteAntigo.Cpf;
-                    clienteNovo.Data = clienteAntigo.Data;
-                    clienteNovo.Nome = clienteAntigo.Nome;
-
-                    clienteAntigo = clienteNovo;
-                }
-            }
 
             SqlCommand comando = new SqlCommand(sqlEditar, conexao);
             comando.Parameters.AddWithValue("@Id", id);
@@ -36,15 +25,18 @@ namespace TreinamentoInvent
             comando.Parameters.AddWithValue("@Email", clienteAntigo.Email);
             comando.Parameters.AddWithValue("@Data_Nascimento", clienteAntigo.Data);
 
+
             conexao.Open();
 
             comando.ExecuteNonQuery();
 
             conexao.Close();
+
         }
 
         public void Criar(Cliente novoCliente)
         {
+            SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
             string sqlInsere = "INSERT INTO CadastroCliente(Nome, CPF, Telefone, EMail, Data_Nascimento) VALUES (@Nome, @CPF, @Telefone, @Email, @Data_Nascimento)";
             SqlCommand comando = new SqlCommand(sqlInsere, conexao);
             comando.Parameters.Add(new SqlParameter("@Nome", novoCliente.Nome));
@@ -68,6 +60,7 @@ namespace TreinamentoInvent
 
         public BindingList<Cliente> ObterTodos()
         {
+            SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
             string sqlMostrarTodos = "SELECT * FROM CadastroCliente";
             conexao.Open();
             SqlCommand comando = new SqlCommand(sqlMostrarTodos, conexao);
@@ -95,12 +88,30 @@ namespace TreinamentoInvent
 
         public void Remover(int id)
         {
+            SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
+
             string sqlExcluir = "DELETE FROM CadastroCliente where @id = id";
             conexao.Open();
             SqlCommand comando = new SqlCommand(sqlExcluir, conexao);
             comando.Parameters.AddWithValue("@id", id);
             comando.ExecuteNonQuery();
             conexao.Close();
+        }
+
+        public bool ValidaCPF(string cpf)
+        {
+            SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
+
+            string query = "SELECT * FROM CadastroCliente WHERE @CPF = Cpf";
+            SqlCommand comandoSql = new SqlCommand(query, conexao);
+            comandoSql.Parameters.AddWithValue("@CPF", cpf);
+            conexao.Open();
+
+            var dataReader = comandoSql.ExecuteReader();
+            var existe = dataReader.Cast<DbDataRecord>().Any();
+            dataReader.Close();
+
+            return existe;
         }
     }
 }

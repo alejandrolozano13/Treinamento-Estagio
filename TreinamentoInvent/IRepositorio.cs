@@ -18,5 +18,7 @@ namespace TreinamentoInvent
         public void Remover(int id);
 
         public Cliente ObterPorId(int id);
+
+        public bool ValidaCPF(string cpf);
     }
 }

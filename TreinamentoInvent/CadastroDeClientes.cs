@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,7 +36,10 @@ namespace TreinamentoInvent
                         txtData.Value = cliente.Data;
                     }
                 }
+                txtCpf.Enabled = false;
+                this.Text = "ATUALIZAR";
             }
+            
             _eClienteParaEdicao = eClienteParaEdicao;
             _repositorio = repositorio;
         }
@@ -58,6 +62,7 @@ namespace TreinamentoInvent
         {
             if (!_eClienteParaEdicao)
             {
+                bool edita = false;
                 Cliente cliente = new Cliente();
                 Validacoes validacoes = new Validacoes(_repositorio);
 
@@ -69,7 +74,7 @@ namespace TreinamentoInvent
 
                 try
                 {
-                    validacoes.ValidarCliente(cliente.Nome, cliente.Email, txtTelefone.Text, SingletonCliente.Lista(), cliente.Cpf, cliente.Data);
+                    validacoes.ValidarCliente(cliente, edita);
                     _repositorio.Criar(cliente);
                     
                     Close();
@@ -89,8 +94,19 @@ namespace TreinamentoInvent
                 cliente.Cpf = txtCpf.Text;
                 cliente.Id = idAtual;
 
-                _repositorio.Atualizar(idAtual, cliente);
-                Close();
+                try
+                {
+
+                    bool edita = true;
+                    Validacoes validacoes = new Validacoes(_repositorio);
+                    validacoes.ValidarCliente(cliente, edita);
+                    _repositorio.Atualizar(idAtual, cliente);
+                    Close();
+                } catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "\n", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
     }    

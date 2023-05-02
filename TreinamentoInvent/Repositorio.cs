@@ -50,5 +50,10 @@ namespace TreinamentoInvent
             var ClienteRemover = ObterPorId(id);
             SingletonCliente.Lista().Remove(ClienteRemover);
         }
+
+        public bool ValidaCPF(string cpf)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
