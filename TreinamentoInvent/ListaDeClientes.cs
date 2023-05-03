@@ -47,7 +47,8 @@ namespace TreinamentoInvent
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
 
                 _repositorio.Remover(clienteSelecionado.Id);
-                _repositorio.ObterTodos();
+                DataGridView.DataSource = null;
+                DataGridView.DataSource = _repositorio.ObterTodos();
             }
             else
             {

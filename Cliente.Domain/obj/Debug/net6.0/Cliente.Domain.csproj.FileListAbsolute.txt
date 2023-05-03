@@ -10,3 +10,4 @@ C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Domain\obj\Debug\net6.0\Cl
 C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Domain\obj\Debug\net6.0\refint\Cliente.Domain.dll
 C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Domain\obj\Debug\net6.0\Cliente.Domain.pdb
 C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Domain\obj\Debug\net6.0\ref\Cliente.Domain.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Domain\bin\Debug\net6.0\Cliente.Domain.dll.config

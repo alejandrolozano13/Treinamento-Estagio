@@ -16,7 +16,6 @@ C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\ref\TreinamentoInvent.dll
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.CadastroDeClientes.resources
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\obj\Debug\net6.0-windows\TreinamentoInvent.ListaDeClientes.resources
-C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\TreinamentoInvent.dll.config
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\FluentMigrator.dll
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\FluentMigrator.Abstractions.dll
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\FluentMigrator.Extensions.Oracle.dll
@@ -134,3 +133,4 @@ C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Cliente.Infra.Data.dll
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Cliente.Domain.pdb
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Cliente.Infra.Data.pdb
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Cliente.Domain.dll.config

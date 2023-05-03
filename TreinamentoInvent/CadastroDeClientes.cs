@@ -91,7 +91,6 @@ namespace TreinamentoInvent
 
                 try
                 {
-
                     bool edita = true;
                     Validacoes validacoes = new Validacoes(_repositorio);
                     validacoes.ValidarCliente(cliente, edita);
