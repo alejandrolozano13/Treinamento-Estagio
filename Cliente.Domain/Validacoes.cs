@@ -1,13 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.Common;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Net.Mail;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace TreinamentoInvent
 {
@@ -20,8 +12,6 @@ namespace TreinamentoInvent
         {
             _repositorio = repositorio;
         }
-
-        SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
 
         public void ValidarCliente(Cliente cliente, bool E_ClienteEdicao)
         {

@@ -1,0 +1,15 @@
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\Cliente.Infra.Data.csproj.AssemblyReference.cache
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\Cliente.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\Cliente.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\Cliente.Infra.Data.AssemblyInfo.cs
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\Cliente.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\bin\Debug\net6.0\Cliente.Infra.Data.deps.json
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\bin\Debug\net6.0\Cliente.Infra.Data.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\bin\Debug\net6.0\Cliente.Infra.Data.pdb
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\bin\Debug\net6.0\Cliente.Domain.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\bin\Debug\net6.0\Cliente.Domain.pdb
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\Cliente.Infra.Data.csproj.CopyComplete
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\Cliente.Infra.Data.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\refint\Cliente.Infra.Data.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\Cliente.Infra.Data.pdb
+C:\Users\aleja\source\repos\TreinamentoInvent\Cliente.Infra.Data\obj\Debug\net6.0\ref\Cliente.Infra.Data.dll

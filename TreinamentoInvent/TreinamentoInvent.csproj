@@ -20,4 +20,9 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Cliente.Domain\Cliente.Domain.csproj" />
+    <ProjectReference Include="..\Cliente.Infra.Data\Cliente.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>

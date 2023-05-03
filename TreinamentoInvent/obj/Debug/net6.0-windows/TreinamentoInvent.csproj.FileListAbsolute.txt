@@ -123,3 +123,14 @@ C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\System.Diagnostics.EventLog.dll
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll
 C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\NuGet.Common.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\NuGet.Configuration.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\NuGet.Frameworks.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\NuGet.Packaging.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\NuGet.Protocol.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\NuGet.Versioning.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Cliente.Domain.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Cliente.Infra.Data.dll
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Cliente.Domain.pdb
+C:\Users\aleja\source\repos\TreinamentoInvent\TreinamentoInvent\bin\Debug\net6.0-windows\Cliente.Infra.Data.pdb
