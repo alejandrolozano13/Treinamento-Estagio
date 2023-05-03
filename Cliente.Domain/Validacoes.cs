@@ -18,7 +18,7 @@ namespace TreinamentoInvent
 
         public Validacoes(IRepositorio repositorio)
         {
-            _repositorio= repositorio;
+            _repositorio = repositorio;
         }
 
         SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
@@ -38,7 +38,7 @@ namespace TreinamentoInvent
             {
                 try
                 {
-                    var mailAddres = new System.Net.Mail.MailAddress(cliente.Email);
+                    var mailAddres = new MailAddress(cliente.Email);
                 }
                 catch (FormatException)
                 {
@@ -56,11 +56,11 @@ namespace TreinamentoInvent
                 mensagem.Add("CPF inválido");
             }
 
-            DateTime dataSelecionada = cliente.Data ;
+            DateTime dataSelecionada = cliente.Data;
             DateTime dataAtual = DateTime.Now;
             TimeSpan periodo = dataAtual - dataSelecionada;
 
-            if (periodo.TotalDays < (18 * 365))
+            if (periodo.TotalDays < 18 * 365)
             {
                 mensagem.Add("Precisa ter mais de 18 anos.");
             }
@@ -72,7 +72,7 @@ namespace TreinamentoInvent
                     mensagem.Add("CPF já existe!");
                 }
             }
-            
+
             if (mensagem.Count > 0)
             {
                 var erro = string.Join(Environment.NewLine, mensagem);
