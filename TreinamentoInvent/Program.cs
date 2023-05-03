@@ -19,7 +19,7 @@ namespace TreinamentoInvent
             }
             ApplicationConfiguration.Initialize();
 
-            var builderBanco = criaHostBuilderBanco();
+            var builderBanco = criaHostBuilder();
             var servicesProvider = builderBanco.Build().Services;
             var repositorio = servicesProvider.GetService<IRepositorio>();
 
@@ -44,21 +44,12 @@ namespace TreinamentoInvent
                 .BuildServiceProvider(false);
         }
 
-        static IHostBuilder criaHostBuilderBanco()
+        static IHostBuilder criaHostBuilder()
         {
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
                     services.AddScoped<IRepositorio, RepositorioBancoDeDados>();
-                });
-        }
-
-        static IHostBuilder criaHostBuilderSingleton()
-        {
-            return Host.CreateDefaultBuilder()
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddScoped<IRepositorio, Repositorio>();
                 });
         }
     }

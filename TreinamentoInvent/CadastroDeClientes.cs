@@ -21,27 +21,22 @@ namespace TreinamentoInvent
         {
             InitializeComponent();
             idAtual = id;
-
+            _repositorio = repositorio;
             if (eClienteParaEdicao)
             {
-                foreach (Cliente cliente in SingletonCliente.Lista())
-                {
-                    if (id == cliente.Id)
-                    {
-                        idAtual = cliente.Id;
-                        txtNome.Text = cliente.Nome;
-                        txtCpf.Text = cliente.Cpf;
-                        txtTelefone.Text = cliente.Telefone;
-                        txtEmail.Text = cliente.Email;
-                        txtData.Value = cliente.Data;
-                    }
-                }
+                Cliente cliente = _repositorio.ObterPorId(id);
+
+                txtNome.Text = cliente.Nome;
+                txtCpf.Text = cliente.Cpf;
+                txtEmail.Text = cliente.Email;
+                txtTelefone.Text = cliente.Telefone;
+                txtData.Value = cliente.Data;
+
                 txtCpf.Enabled = false;
                 this.Text = "ATUALIZAR";
             }
             
             _eClienteParaEdicao = eClienteParaEdicao;
-            _repositorio = repositorio;
         }
 
         private void EntradaDeLetrasParaNome(object sender, KeyPressEventArgs e)
@@ -92,7 +87,7 @@ namespace TreinamentoInvent
                 cliente.Data = txtData.Value;
                 cliente.Telefone = txtTelefone.Text;
                 cliente.Cpf = txtCpf.Text;
-                cliente.Id = idAtual;
+                //cliente.Id = idAtual;
 
                 try
                 {

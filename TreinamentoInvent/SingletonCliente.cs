@@ -13,7 +13,10 @@ namespace TreinamentoInvent
 
         private static BindingList<Cliente> lista;
         
-        private SingletonCliente() { }
+        private SingletonCliente() 
+        {
+            CriarLista();
+        }
 
         public static void CriarLista()
         {

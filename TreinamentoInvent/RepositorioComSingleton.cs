@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace TreinamentoInvent
 {
-    public class Repositorio : IRepositorio
+    public class RepositorioComSingleton : IRepositorio
     {
         public void Atualizar(int id, Cliente ClienteAntigo)
         {

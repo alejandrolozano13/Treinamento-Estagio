@@ -7,10 +7,8 @@ namespace TreinamentoInvent
         private readonly IRepositorio _repositorio;
         public ListaDeClientes(IRepositorio repositorio)
         {
-            //var repositorio = new RepositorioBancoDeDados();
-            _repositorio = repositorio;
             InitializeComponent();
-            SingletonCliente.CriarLista();
+            _repositorio = repositorio;
             DataGridView.DataSource = _repositorio.ObterTodos();
         }
 
@@ -20,7 +18,8 @@ namespace TreinamentoInvent
             var eClienteParaEdicao = false;
             var telaDeCadastro = new CadastroDeClientes(eClienteParaEdicao, id, _repositorio);
             telaDeCadastro.ShowDialog();
-            _repositorio.ObterTodos();
+            DataGridView.DataSource = null;
+            DataGridView.DataSource = _repositorio.ObterTodos();
         }
 
         private void AoClicarEmEditar(object sender, EventArgs e)
@@ -32,7 +31,8 @@ namespace TreinamentoInvent
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
                 var telaDeCadastro = new CadastroDeClientes( eClienteParaEdicao, clienteSelecionado.Id, _repositorio);
                 telaDeCadastro.ShowDialog();
-                _repositorio.ObterTodos();
+                DataGridView.DataSource = null;
+                DataGridView.DataSource = _repositorio.ObterTodos();
             }
             else
             {

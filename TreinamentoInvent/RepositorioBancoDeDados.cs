@@ -1,10 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
-using System.Windows.Forms;
 
 namespace TreinamentoInvent
 {
@@ -54,19 +51,40 @@ namespace TreinamentoInvent
 
         public Cliente ObterPorId(int id)
         {
-            // aqui no repositorio do Banco de dados não precisamos pois com DELETE * WHERE já pegamos o cliente a ser removido pelo id diretamente
-            return null;
+            SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
+            string sqlObterPorId = "SELECT * FROM CadastroCliente WHERE @ID = Id";
+            conexao.Open();
+            SqlCommand sqlComando = new SqlCommand(sqlObterPorId, conexao);
+            sqlComando.Parameters.AddWithValue("@id", id);
+
+            SqlDataReader leitor = sqlComando.ExecuteReader();
+            Cliente clienteId = new Cliente();
+            while (leitor.Read())
+            {
+                Cliente cliente = new Cliente()
+                {
+                    Id = (int)leitor.GetInt64(0),
+                    Nome = leitor.GetString(1),
+                    Cpf = leitor.GetString(2),
+                    Telefone = leitor.GetString(3),
+                    Email = leitor.GetString(4),
+                    Data = leitor.GetDateTime(5)
+                };
+                clienteId = cliente;
+            }
+            conexao.Close();
+            return clienteId;
         }
 
         public BindingList<Cliente> ObterTodos()
         {
+            var listaDeClientes = new BindingList<Cliente>();
             SqlConnection conexao = new SqlConnection("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;User ID=sa;Password=Sap@123");
             string sqlMostrarTodos = "SELECT * FROM CadastroCliente";
             conexao.Open();
             SqlCommand comando = new SqlCommand(sqlMostrarTodos, conexao);
 
             SqlDataReader leitor = comando.ExecuteReader();
-            SingletonCliente.Lista().Clear();
 
             while (leitor.Read())
             {
@@ -79,11 +97,11 @@ namespace TreinamentoInvent
                     Email = leitor.GetString(4),
                     Data = leitor.GetDateTime(5)
             };
-                SingletonCliente.Lista().Add(cliente);
+                listaDeClientes.Add(cliente);
             }
             conexao.Close();
-            
-            return SingletonCliente.Lista();
+
+            return listaDeClientes;
         }
 
         public void Remover(int id)
