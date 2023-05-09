@@ -24,7 +24,6 @@ namespace Infra.Repositorio
             comando.Parameters.AddWithValue("@Email", clienteAntigo.Email);
             comando.Parameters.AddWithValue("@Data_Nascimento", clienteAntigo.Data);
 
-
             conexao.Open();
 
             comando.ExecuteNonQuery();
