@@ -15,6 +15,28 @@ namespace Domain.Validacao
             _repositorio = repositorio;
         }
 
+        public Validacoes() { }
+
+        public bool IsCpf(string cpf)
+        {
+            cpf = cpf.Trim().Replace(",", "").Replace("-", "");
+            if (cpf.Length != 11) return false;
+            int[] somar = new int[2] { 0, 0 };
+            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            string digito;
+            for (int i = 0; i < 10; i++)
+            {
+                if (i < 9) somar[0] += int.Parse(cpf[i].ToString()) * multiplicador1[i];
+                somar[1] += int.Parse(cpf[i].ToString()) * multiplicador2[i];
+            }
+            digito = ((somar[0] % 11) < 2 ? 0 : 11 - somar[0] % 11).ToString();
+            digito += ((somar[1] % 11) < 2 ? 0 : 11 - somar[1] % 11).ToString();
+            return cpf.EndsWith(digito);
+        }
+
+
+
         public void ValidarCliente(Cliente cliente, bool E_ClienteEdicao)
         {
             if (string.IsNullOrWhiteSpace(cliente.Nome))
@@ -43,7 +65,9 @@ namespace Domain.Validacao
                 mensagem.Add("O Telefone é inválido");
             }
 
-            if (cliente.Cpf.Length < 14)
+            var v = new Validacoes();
+
+            if (!v.IsCpf(cliente.Cpf))
             {
                 mensagem.Add("CPF inválido");
             }

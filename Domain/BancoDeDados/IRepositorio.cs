@@ -1,6 +1,5 @@
 ﻿using Domain.Modelo;
 using System.ComponentModel;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Domain.BancoDeDados
 {

@@ -1,11 +1,5 @@
 using Domain.BancoDeDados;
 using Domain.Modelo;
-using LinqToDB.Data;
-using System.ComponentModel;
-
-
-
-
 
 namespace TreinamentoInvent
 {
@@ -27,7 +21,6 @@ namespace TreinamentoInvent
             telaDeCadastro.ShowDialog();
             DataGridView.DataSource = null;
             DataGridView.DataSource = _repositorio.ObterTodos();
-            //DataGridView.DataBindingComplete();
         }
 
         private void AoClicarEmEditar(object sender, EventArgs e)

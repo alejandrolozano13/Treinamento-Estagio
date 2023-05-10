@@ -1,16 +1,6 @@
 ﻿using Domain.BancoDeDados;
 using Domain.Modelo;
 using Domain.Validacao;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace TreinamentoInvent
 {
@@ -25,6 +15,7 @@ namespace TreinamentoInvent
             InitializeComponent();
             idAtual = id;
             _repositorio = repositorio;
+
             if (eClienteParaEdicao)
             {
                 Cliente cliente = _repositorio.ObterPorId(id);
@@ -42,6 +33,8 @@ namespace TreinamentoInvent
             _eClienteParaEdicao = eClienteParaEdicao;
         }
 
+        public CadastroDeClientes() { }
+
         private void EntradaDeLetrasParaNome(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar))
@@ -50,25 +43,35 @@ namespace TreinamentoInvent
             }
         }
 
-
         private void AoClicarEmCancelar(object sender, EventArgs e)
         {
             Close();
         }
 
+        public Cliente PreencherDadosCliente(string nome, string cpf, string email, string telefone, DateTime data)
+        {
+            Cliente cliente = new Cliente();
+
+            cliente.Nome = nome;
+            cliente.Cpf = cpf;
+            cliente.Email = email;
+            cliente.Telefone = telefone;
+            cliente.Data = data;
+
+            return cliente;
+        }
+
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
+            Cliente cliente = new Cliente();
+            var cadastroClientes = new CadastroDeClientes();
+            Validacoes validacoes = new Validacoes(_repositorio);
+
             if (!_eClienteParaEdicao)
             {
                 bool edita = false;
-                Cliente cliente = new Cliente();
-                Validacoes validacoes = new Validacoes(_repositorio);
 
-                cliente.Nome = txtNome.Text;
-                cliente.Email = txtEmail.Text;
-                cliente.Data = txtData.Value;
-                cliente.Telefone = txtTelefone.Text;
-                cliente.Cpf = txtCpf.Text;
+                cliente = cadastroClientes.PreencherDadosCliente(txtNome.Text, txtCpf.Text, txtEmail.Text, txtTelefone.Text, txtData.Value);
 
                 try
                 {
@@ -84,26 +87,21 @@ namespace TreinamentoInvent
             }
             else
             {
-                Cliente cliente = new Cliente();
-                cliente.Nome = txtNome.Text;
-                cliente.Email = txtEmail.Text;
-                cliente.Data = txtData.Value;
-                cliente.Telefone = txtTelefone.Text;
-                cliente.Cpf = txtCpf.Text;
+                bool edita = true;
+
+                cliente = cadastroClientes.PreencherDadosCliente(txtNome.Text, txtCpf.Text, txtEmail.Text, txtTelefone.Text, txtData.Value);
                 cliente.Id = idAtual;
 
                 try
                 {
-                    bool edita = true;
-                    Validacoes validacoes = new Validacoes(_repositorio);
                     validacoes.ValidarCliente(cliente, edita);
                     _repositorio.Atualizar(idAtual, cliente);
+
                     Close();
                 } catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message + "\n", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
             }
         }
     }    

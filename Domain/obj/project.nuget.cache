@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yS6wKtNqmM5lKoeNSkefa/vcGR3J965+kpeXDW/G1mE3sneTgst3fe1Pm9jSXGgCfzGNQPnrpBR05R5XOz7ZYQ==",
+  "dgSpecHash": "OMd6MKwZz+2SPwT5OYSvCTCEw1JN881ffaffTlpd8ul9QDXe9Kgc1SqjC2ldY+66gxlUHyndlOjseuy/2kUf6w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\projeto_vai_da_certo\\WinFormsApp1\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleja\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\aleja\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

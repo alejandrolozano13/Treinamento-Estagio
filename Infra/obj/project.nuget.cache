@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nmO6L08wbSFtjVrepzswao/cPbGSML69K51wyDa9NXrOvZ755UjJOF8aigHe4wqgyaLrRrTS28bi6FH5rujjzQ==",
+  "dgSpecHash": "hEPyXiIx3L9UJ0gWSI36OEUfdkvdd/6PodUqtdDZ1dTRPGGYSd2HyMDkd4+sGKNikuHlvNPnhydNrj/4/Bx/dQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\projeto_vai_da_certo\\WinFormsApp1\\Infra\\Infra.csproj",
+  "projectFilePath": "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleja\\.nuget\\packages\\aspose.cells\\23.4.0\\aspose.cells.23.4.0.nupkg.sha512",
     "C:\\Users\\aleja\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",

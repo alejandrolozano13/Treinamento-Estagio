@@ -35,6 +35,7 @@ namespace TreinamentoInvent
 
             runner.MigrateUp();
         }
+
         private static ServiceProvider CreateServices()
         {
             return new ServiceCollection()
