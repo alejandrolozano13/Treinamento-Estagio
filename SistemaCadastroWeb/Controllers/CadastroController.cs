@@ -1,12 +1,14 @@
 ﻿using Domain.BancoDeDados;
 using Domain.Modelo;
 using Domain.Validacao;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
+using System.Net;
 
 namespace SistemaCadastroWeb.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Cadastro")]
     [ApiController]
     public class CadastroController : ControllerBase
     {
@@ -23,34 +25,36 @@ namespace SistemaCadastroWeb.Controllers
         public IActionResult OberTodos()
         {
             try
-            {   
+            {
                 BindingList<Cliente> clientes = _repostorio.ObterTodos();
                 return Ok(clientes);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public IActionResult ObterPorId(int id)
         {
             try
             {
-                Cliente cliente = _repostorio.ObterPorId(id);
+                var cliente = _repostorio.ObterPorId(id);
+
                 return Ok(cliente);
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message + "," + ex.InnerException);
             }
-            
         }
 
         [HttpPost]
         public IActionResult Criar([FromBody] Cliente cliente)
         {
+            if (cliente == null) { return BadRequest(); }
             try
             {
                 _validacoes.ValidarCliente(cliente, false);
@@ -60,7 +64,7 @@ namespace SistemaCadastroWeb.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -73,9 +77,10 @@ namespace SistemaCadastroWeb.Controllers
                 _validacoes.ValidarCliente(cliente, true);
                 _repostorio.Atualizar(id, cliente);
                 return Ok();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -87,9 +92,9 @@ namespace SistemaCadastroWeb.Controllers
                 _repostorio.Remover(id);
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
     }
