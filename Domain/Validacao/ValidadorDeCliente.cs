@@ -5,17 +5,17 @@ using Domain.Modelo;
 
 namespace Domain.Validacao
 {
-    public class Validacoes
+    public class ValidadorDeCliente
     {
         BindingList<string> mensagem = new BindingList<string>();
         private readonly IRepositorio _repositorio;
 
-        public Validacoes(IRepositorio repositorio)
+        public ValidadorDeCliente(IRepositorio repositorio)
         {
             _repositorio = repositorio;
         }
 
-        public Validacoes() { }
+        public ValidadorDeCliente() { }
 
         public bool IsCpf(string cpf)
         {
@@ -37,7 +37,7 @@ namespace Domain.Validacao
 
 
 
-        public void ValidarCliente(Cliente cliente, bool E_ClienteEdicao)
+        public void Validar(Cliente cliente, bool E_ClienteEdicao)
         {
             if (string.IsNullOrWhiteSpace(cliente.Nome))
             {
@@ -65,7 +65,7 @@ namespace Domain.Validacao
                 mensagem.Add("O Telefone é inválido");
             }
 
-            var v = new Validacoes();
+            var v = new ValidadorDeCliente();
 
             if (!v.IsCpf(cliente.Cpf))
             {

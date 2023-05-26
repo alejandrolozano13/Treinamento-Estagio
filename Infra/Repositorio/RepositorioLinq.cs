@@ -47,19 +47,17 @@ namespace Infra.Repositorio
 
         public void Remover(int id)
         {
-            try
-            {
-                var bd = new ConexaoBD();
+            var bd = new ConexaoBD();
 
-                Cliente identidade = ObterPorId(id);
+            Cliente clienteComIdentidade = ObterPorId(id);
 
-                using var conexaoLinqDb = bd.MinhaConexao();
-                    conexaoLinqDb.Delete(identidade);
-            }
-            catch (Exception ex)
+            if (clienteComIdentidade == null)
             {
-                throw new Exception("Erro ao deletar", ex);
+                throw new Exception("Erro ao deletar, cliente não existe");
             }
+
+            using var conexaoLinqDb = bd.MinhaConexao();
+            conexaoLinqDb.Delete(clienteComIdentidade);
         }
 
         public bool ValidaCPF(string cpf)

@@ -3,22 +3,20 @@ using Domain.Modelo;
 using Domain.Validacao;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
-using System.Net;
 
 namespace SistemaCadastroWeb.Controllers
 {
-    [Route("api/Cadastro")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class CadastroController : ControllerBase
+    public class ClienteController : ControllerBase
     {
         private readonly IRepositorio _repostorio;
-        private readonly Validacoes _validacoes;
+        private readonly ValidadorDeCliente ValidadorDeCliente;
 
-        public CadastroController(IRepositorio repositorio, Validacoes validacoes)
+        public ClienteController(IRepositorio repositorio, ValidadorDeCliente validacoes)
         {
             _repostorio = repositorio;
-            _validacoes = validacoes;
+            ValidadorDeCliente = validacoes;
         }
 
         [HttpGet]
@@ -26,7 +24,7 @@ namespace SistemaCadastroWeb.Controllers
         {
             try
             {
-                BindingList<Cliente> clientes = _repostorio.ObterTodos();
+                List<Cliente> clientes = _repostorio.ObterTodos().ToList();
                 return Ok(clientes);
             }
             catch (Exception ex)
@@ -57,7 +55,7 @@ namespace SistemaCadastroWeb.Controllers
             if (cliente == null) { return BadRequest(); }
             try
             {
-                _validacoes.ValidarCliente(cliente, false);
+                ValidadorDeCliente.Validar(cliente, false);
                 _repostorio.Criar(cliente);
 
                 return Ok();
@@ -73,7 +71,7 @@ namespace SistemaCadastroWeb.Controllers
         {
             try
             {
-                _validacoes.ValidarCliente(cliente, true);
+                ValidadorDeCliente.Validar(cliente, true);
                 _repostorio.Atualizar(cliente);
                 return Ok();
             }
