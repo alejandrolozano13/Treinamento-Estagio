@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Domain.BancoDeDados;
+﻿using Domain.BancoDeDados;
 using Domain.Modelo;
 using Infra.BancoDeDados;
 
@@ -38,7 +37,7 @@ namespace Infra.Repositorio
                 .Find(cliente => cliente.Id == id);
         }
 
-        public BindingList<Cliente> ObterTodos()
+        public List<Cliente> ObterTodos()
         {
             return SingletonCliente.Lista();
         }

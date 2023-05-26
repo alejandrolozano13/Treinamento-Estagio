@@ -1,7 +1,6 @@
 ﻿using Domain.BancoDeDados;
 using Domain.Modelo;
 using Microsoft.Data.SqlClient;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 
@@ -11,10 +10,10 @@ namespace Infra.Repositorio
     {
         public void Atualizar(Cliente clienteAntigo)
         {
-            SqlConnection conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
+            var conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
             ["CinemaConexao"].ToString());
 
-            string sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, TELEFONE = @Telefone, EMAIL = @Email, DATA_NASCIMENTO = @Data_Nascimento WHERE ID = @Id";
+            var sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, TELEFONE = @Telefone, EMAIL = @Email, DATA_NASCIMENTO = @Data_Nascimento WHERE ID = @Id";
 
             SqlCommand comando = new SqlCommand(sqlEditar, conexao);
             comando.Parameters.AddWithValue("@Id", clienteAntigo.Id);
@@ -32,12 +31,12 @@ namespace Infra.Repositorio
 
         public void Criar(Cliente novoCliente)
         {
-            SqlConnection conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
+            var conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
             ["CinemaConexao"].ToString());
 
-            string sqlInsere = "INSERT INTO CadastroCliente(Nome, CPF, Telefone, EMail, Data_Nascimento) VALUES (@Nome, @CPF, @Telefone, @Email, @Data_Nascimento)";
+            var sqlInsere = "INSERT INTO CadastroCliente(Nome, CPF, Telefone, EMail, Data_Nascimento) VALUES (@Nome, @CPF, @Telefone, @Email, @Data_Nascimento)";
 
-            SqlCommand comando = new SqlCommand(sqlInsere, conexao);
+            var comando = new SqlCommand(sqlInsere, conexao);
             comando.Parameters.Add(new SqlParameter("@Nome", novoCliente.Nome));
             comando.Parameters.Add(new SqlParameter("@CPF", novoCliente.Cpf));
             comando.Parameters.Add(new SqlParameter("@Telefone", novoCliente.Telefone));
@@ -51,17 +50,18 @@ namespace Infra.Repositorio
 
         public Cliente ObterPorId(int id)
         {
-            SqlConnection conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
+            var conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
             ["CinemaConexao"].ToString());
 
-            string sqlObterPorId = "SELECT * FROM CadastroCliente WHERE @ID = Id";
+            var sqlObterPorId = "SELECT * FROM CadastroCliente WHERE @ID = Id";
 
-            SqlCommand sqlComando = new SqlCommand(sqlObterPorId, conexao);
+            var sqlComando = new SqlCommand(sqlObterPorId, conexao);
             sqlComando.Parameters.AddWithValue("@id", id);
 
             conexao.Open();
-            SqlDataReader leitor = sqlComando.ExecuteReader();
-            Cliente clienteId = new Cliente();
+            var leitor = sqlComando.ExecuteReader();
+            var clienteId = new Cliente();
+
             while (leitor.Read())
             {
                 Cliente cliente = new Cliente()
@@ -79,17 +79,17 @@ namespace Infra.Repositorio
             return clienteId;
         }
 
-        public BindingList<Cliente> ObterTodos()
+        public List<Cliente> ObterTodos()
         {
-            SqlConnection conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
+            var conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
             ["CinemaConexao"].ToString());
 
-            var listaDeClientes = new BindingList<Cliente>();
-            string sqlMostrarTodos = "SELECT * FROM CadastroCliente";
+            var listaDeClientes = new List<Cliente>();
+            var sqlMostrarTodos = "SELECT * FROM CadastroCliente";
 
             conexao.Open();
-            SqlCommand comando = new SqlCommand(sqlMostrarTodos, conexao);
-            SqlDataReader leitor = comando.ExecuteReader();
+            var comando = new SqlCommand(sqlMostrarTodos, conexao);
+            var leitor = comando.ExecuteReader();
 
             while (leitor.Read())
             {
@@ -111,13 +111,13 @@ namespace Infra.Repositorio
 
         public void Remover(int id)
         {
-            SqlConnection conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
+            var conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
             ["CinemaConexao"].ToString());
 
-            string sqlExcluir = "DELETE FROM CadastroCliente where @id = id";
+            var sqlExcluir = "DELETE FROM CadastroCliente where @id = id";
 
             conexao.Open();
-            SqlCommand comando = new SqlCommand(sqlExcluir, conexao);
+            var comando = new SqlCommand(sqlExcluir, conexao);
             comando.Parameters.AddWithValue("@id", id);
             comando.ExecuteNonQuery();
             conexao.Close();
@@ -125,12 +125,12 @@ namespace Infra.Repositorio
 
         public bool ValidaCPF(string cpf)
         {
-            SqlConnection conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
+            var conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
             ["CinemaConexao"].ToString());
 
-            string query = "SELECT * FROM CadastroCliente WHERE @CPF = Cpf";
+            var query = "SELECT * FROM CadastroCliente WHERE @CPF = Cpf";
 
-            SqlCommand comandoSql = new SqlCommand(query, conexao);
+            var comandoSql = new SqlCommand(query, conexao);
             comandoSql.Parameters.AddWithValue("@CPF", cpf);
             
             conexao.Open();

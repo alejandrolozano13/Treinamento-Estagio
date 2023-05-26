@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using Domain.BancoDeDados;
 using Domain.Modelo;
 
@@ -7,7 +6,7 @@ namespace Domain.Validacao
 {
     public class ValidadorDeCliente
     {
-        BindingList<string> mensagem = new BindingList<string>();
+        List<string> mensagem = new List<string>();
         private readonly IRepositorio _repositorio;
 
         public ValidadorDeCliente(IRepositorio repositorio)

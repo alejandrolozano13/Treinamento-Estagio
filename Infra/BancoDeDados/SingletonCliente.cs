@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Domain.Modelo;
+﻿using Domain.Modelo;
 
 namespace Infra.BancoDeDados
 {
@@ -7,7 +6,7 @@ namespace Infra.BancoDeDados
     {
         static int id = 0;
 
-        private static BindingList<Cliente> lista;
+        private static List<Cliente> lista;
 
         private SingletonCliente()
         {
@@ -18,11 +17,11 @@ namespace Infra.BancoDeDados
         {
             if (lista == null)
             {
-                lista = new BindingList<Cliente>();
+                lista = new List<Cliente>();
             }
         }
 
-        public static BindingList<Cliente> Lista()
+        public static List<Cliente> Lista()
         {
             return lista;
         }

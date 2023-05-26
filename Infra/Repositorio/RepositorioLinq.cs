@@ -2,7 +2,6 @@
 using Domain.Modelo;
 using Infra.BancoDeDados;
 using LinqToDB;
-using System.ComponentModel;
 
 namespace Infra.Repositorio
 {
@@ -35,14 +34,14 @@ namespace Infra.Repositorio
                 ?? throw new Exception($"Cliente não encontrado no banco: [{id}]");
         }
 
-        public BindingList<Cliente> ObterTodos()
+        public List<Cliente> ObterTodos()
         {
             var bd = new ConexaoBD();
             var conexaoLinq2Db = bd.MinhaConexao();
 
-            var query = conexaoLinq2Db.GetTable<Cliente>();
+            var query = conexaoLinq2Db.GetTable<Cliente>().ToList();
 
-            return new BindingList<Cliente>(query.ToList());
+            return query;
         }
 
         public void Remover(int id)
