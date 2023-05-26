@@ -9,7 +9,7 @@ namespace Domain.BancoDeDados
 
         public void Criar(Cliente novoCliente);
 
-        public void Atualizar(int id, Cliente cliente);
+        public void Atualizar(Cliente cliente);
 
         public void Remover(int id);
 

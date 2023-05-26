@@ -69,13 +69,12 @@ namespace SistemaCadastroWeb.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar([FromBody] Cliente cliente, int id)
+        public IActionResult Atualizar([FromBody] Cliente cliente)
         {
             try
             {
-                cliente.Id = id;
                 _validacoes.ValidarCliente(cliente, true);
-                _repostorio.Atualizar(id, cliente);
+                _repostorio.Atualizar(cliente);
                 return Ok();
             }
             catch (Exception ex)

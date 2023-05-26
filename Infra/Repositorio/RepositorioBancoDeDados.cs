@@ -9,7 +9,7 @@ namespace Infra.Repositorio
 {
     public class RepositorioBancoDeDados : IRepositorio
     {
-        public void Atualizar(int id, Cliente clienteAntigo)
+        public void Atualizar(Cliente clienteAntigo)
         {
             SqlConnection conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
             ["CinemaConexao"].ToString());
@@ -17,7 +17,7 @@ namespace Infra.Repositorio
             string sqlEditar = "UPDATE CadastroCliente SET NOME = @Nome, CPF = @CPF, TELEFONE = @Telefone, EMAIL = @Email, DATA_NASCIMENTO = @Data_Nascimento WHERE ID = @Id";
 
             SqlCommand comando = new SqlCommand(sqlEditar, conexao);
-            comando.Parameters.AddWithValue("@Id", id);
+            comando.Parameters.AddWithValue("@Id", clienteAntigo.Id);
             comando.Parameters.AddWithValue("@Nome", clienteAntigo.Nome);
             comando.Parameters.AddWithValue("@CPF", clienteAntigo.Cpf);
             comando.Parameters.AddWithValue("@Telefone", clienteAntigo.Telefone);

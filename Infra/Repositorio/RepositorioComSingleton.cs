@@ -7,11 +7,11 @@ namespace Infra.Repositorio
 {
     public class RepositorioComSingleton : IRepositorio
     {
-        public void Atualizar(int id, Cliente ClienteAntigo)
+        public void Atualizar(Cliente ClienteAntigo)
         {
             foreach (Cliente clienteNovo in SingletonCliente.Lista().ToList())
             {
-                if (clienteNovo.Id == id)
+                if (clienteNovo.Id == ClienteAntigo.Id)
                 {
                     clienteNovo.Id = ClienteAntigo.Id;
                     clienteNovo.Email = ClienteAntigo.Email;
