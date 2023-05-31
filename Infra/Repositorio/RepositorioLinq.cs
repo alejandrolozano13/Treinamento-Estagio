@@ -2,84 +2,69 @@
 using Domain.Modelo;
 using Infra.BancoDeDados;
 using LinqToDB;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infra.Repositorio
 {
     public class RepositorioLinq : IRepositorio
     {
-        public void Atualizar(int id, Cliente cliente)
+        public void Atualizar(Cliente cliente)
         {
-            ConexaoBD bd = new ConexaoBD();
+            var bd = new ConexaoBD();
 
-            using (var conexaoLinq2Db = bd.MinhaConexao())
-            {
+            using var conexaoLinq2Db = bd.MinhaConexao();
                 conexaoLinq2Db.Update(cliente);
-            }
         }
 
         public void Criar(Cliente novoCliente)
         {
-            ConexaoBD bd = new ConexaoBD();
+            var bd = new ConexaoBD();
 
-            using (var conexaoLinq2Db = bd.MinhaConexao())
-            {
+            using var conexaoLinq2Db = bd.MinhaConexao();
                 conexaoLinq2Db.Insert(novoCliente);
-            }
         }
+
 
 
         public Cliente ObterPorId(int id)
         {
-            ConexaoBD bd = new ConexaoBD();
-
+            var bd = new ConexaoBD();
             var conexaoLinq2Db = bd.MinhaConexao();
 
-            return conexaoLinq2Db.GetTable<Cliente>().FirstOrDefault(c => c.Id == id);
+            return conexaoLinq2Db.GetTable<Cliente>().FirstOrDefault(c => c.Id == id)
+                ?? throw new Exception($"Cliente não encontrado no banco: [{id}]");
         }
 
-        public BindingList<Cliente> ObterTodos()
+        public List<Cliente> ObterTodos()
         {
-            ConexaoBD bd = new ConexaoBD();
+            var bd = new ConexaoBD();
             var conexaoLinq2Db = bd.MinhaConexao();
 
-            var query = from c in conexaoLinq2Db.GetTable<Cliente>()
-                        select c;
+            var query = conexaoLinq2Db.GetTable<Cliente>().ToList();
 
-            var listaDeClientes = new BindingList<Cliente>(query.ToList());
-            return listaDeClientes;
+            return query;
         }
 
         public void Remover(int id)
         {
-            ConexaoBD bd = new ConexaoBD();
+            var bd = new ConexaoBD();
 
-            using (var conexaoLinq2Db = bd.MinhaConexao())
+            Cliente clienteComIdentidade = ObterPorId(id);
+
+            if (clienteComIdentidade == null)
             {
-                conexaoLinq2Db.GetTable<Cliente>().Delete(c => c.Id == id);
+                throw new Exception("Erro ao deletar, cliente não existe");
             }
+
+            using var conexaoLinqDb = bd.MinhaConexao();
+            conexaoLinqDb.Delete(clienteComIdentidade);
         }
 
         public bool ValidaCPF(string cpf)
         {
-            ConexaoBD bd = new ConexaoBD();
-            bool existe = false;
+            var bd = new ConexaoBD();
 
-            using (var conexaoLinq2Db = bd.MinhaConexao())
-            {
-                if (conexaoLinq2Db.GetTable<Cliente>().Count((c) => c.Cpf.Equals(cpf)) > 0)
-                {
-                    existe = true;
-                }
-            }
-
-            return existe;
+            using var conexaoLinq2Db = bd.MinhaConexao();
+                return conexaoLinq2Db.GetTable<Cliente>().Any(c => c.Cpf == cpf);
         }
     }
 }

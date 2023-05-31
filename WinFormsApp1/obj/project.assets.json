@@ -16131,11 +16131,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\WinFormsApp1\\ViewForms.csproj",
+      "projectUniqueName": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\WinFormsApp1\\ViewForms.csproj",
       "projectName": "ViewForms",
-      "projectPath": "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\WinFormsApp1\\ViewForms.csproj",
+      "projectPath": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\WinFormsApp1\\ViewForms.csproj",
       "packagesPath": "C:\\Users\\aleja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\WinFormsApp1\\obj\\",
+      "outputPath": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\WinFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\aleja\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -16152,11 +16152,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\Domain\\Domain.csproj"
+            "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\Infra\\Infra.csproj": {
-              "projectPath": "C:\\Users\\aleja\\OneDrive\\Documentos\\Projetos\\Treinamento-Estagio\\Infra\\Infra.csproj"
+            "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\Infra\\Infra.csproj": {
+              "projectPath": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\Infra\\Infra.csproj"
             }
           }
         }

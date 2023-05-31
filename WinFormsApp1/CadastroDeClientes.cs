@@ -65,7 +65,7 @@ namespace TreinamentoInvent
         {
             Cliente cliente = new Cliente();
             var cadastroClientes = new CadastroDeClientes();
-            Validacoes validacoes = new Validacoes(_repositorio);
+            ValidadorDeCliente validacoes = new ValidadorDeCliente(_repositorio);
 
             if (!_eClienteParaEdicao)
             {
@@ -75,7 +75,7 @@ namespace TreinamentoInvent
 
                 try
                 {
-                    validacoes.ValidarCliente(cliente, edita);
+                    validacoes.Validar(cliente, edita);
                     _repositorio.Criar(cliente);
                     
                     Close();
@@ -94,8 +94,8 @@ namespace TreinamentoInvent
 
                 try
                 {
-                    validacoes.ValidarCliente(cliente, edita);
-                    _repositorio.Atualizar(idAtual, cliente);
+                    validacoes.Validar(cliente, edita);
+                    _repositorio.Atualizar(cliente);
 
                     Close();
                 } catch(Exception ex)

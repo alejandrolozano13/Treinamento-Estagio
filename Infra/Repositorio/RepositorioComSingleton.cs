@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Domain.BancoDeDados;
+﻿using Domain.BancoDeDados;
 using Domain.Modelo;
 using Infra.BancoDeDados;
 
@@ -7,11 +6,11 @@ namespace Infra.Repositorio
 {
     public class RepositorioComSingleton : IRepositorio
     {
-        public void Atualizar(int id, Cliente ClienteAntigo)
+        public void Atualizar(Cliente ClienteAntigo)
         {
             foreach (Cliente clienteNovo in SingletonCliente.Lista().ToList())
             {
-                if (clienteNovo.Id == id)
+                if (clienteNovo.Id == ClienteAntigo.Id)
                 {
                     clienteNovo.Id = ClienteAntigo.Id;
                     clienteNovo.Email = ClienteAntigo.Email;
@@ -38,7 +37,7 @@ namespace Infra.Repositorio
                 .Find(cliente => cliente.Id == id);
         }
 
-        public BindingList<Cliente> ObterTodos()
+        public List<Cliente> ObterTodos()
         {
             return SingletonCliente.Lista();
         }
