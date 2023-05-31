@@ -426,6 +426,7 @@ C:\Users\aleja\OneDrive\Documentos\Projetos\Treinamento-Estagio\SistemaCadastroW
 C:\Users\aleja\OneDrive\Documentos\Projetos\Treinamento-Estagio\SistemaCadastroWeb\obj\Debug\net7.0\ref\SistemaCadastroWeb.dll
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\appsettings.json
+C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\SistemaCadastroWeb.staticwebassets.runtime.json
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\ikvm\win7-x64\bin\ikvm.properties
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\ikvm\win7-x64\lib\calendars.properties
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\ikvm\win7-x64\lib\cmm\CIEXYZ.pf
@@ -644,7 +645,6 @@ C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\ikvm\linux-arm64\THIRD_PARTY_README
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\ikvm\linux-arm64\TRADEMARK
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\ikvm.properties
-C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\SistemaCadastroWeb.staticwebassets.runtime.json
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\SistemaCadastroWeb.exe
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\SistemaCadastroWeb.deps.json
 C:\Users\aleja\OneDrive\Área de Trabalho\Sap-Ui5-Treinamento\SistemaCadastroWeb\bin\Debug\net7.0\SistemaCadastroWeb.runtimeconfig.json

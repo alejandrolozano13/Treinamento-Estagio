@@ -1,28 +1,21 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/model/resource/ResourceModel"
-], function(Controller, MessageToast, JSONModel, ResourceModel) {
-    'use strict';
+    "sap/ui/model/json/JSONModel"
+], function (Controller, JSONModel) {
+    "use strict";
     return Controller.extend("sap.ui.demo.cadastro.controller.App", {
-        onInit : function(){
-            var oData = {
-                recipient : {
-                    name : ""
-                }
-            };
-            var oModel = new JSONModel(oData);
-            this.getView().setModel(oModel);
-
-            var i18nModel = new ResourceModel({
-                bundleName: "sap.ui.demo.cadastro.i18n.i18n"
-            });
-            this.getView().setModel(i18nModel, "i18n");
-        },
-
-        AoEntrar : function(){
-            MessageToast.show("Bem vindo ao ManitoMark");
-        },
+        onInit: function () {
+            let tela = this.getView();
+            fetch("https://localhost:7035/api/Cliente")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    tela.setModel(new JSONModel(data), "clientes")
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        }
     });
 });

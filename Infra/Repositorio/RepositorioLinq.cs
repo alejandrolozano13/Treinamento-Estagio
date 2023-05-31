@@ -11,6 +11,10 @@ namespace Infra.Repositorio
         {
             var bd = new ConexaoBD();
 
+            var cli = ObterPorId(cliente.Id);
+
+            if (cli == null) { throw new Exception("Erro ao atualizar, cliente não existe"); }
+
             using var conexaoLinq2Db = bd.MinhaConexao();
                 conexaoLinq2Db.Update(cliente);
         }
@@ -48,7 +52,7 @@ namespace Infra.Repositorio
         {
             var bd = new ConexaoBD();
 
-            Cliente clienteComIdentidade = ObterPorId(id);
+            var clienteComIdentidade = ObterPorId(id);
 
             if (clienteComIdentidade == null)
             {

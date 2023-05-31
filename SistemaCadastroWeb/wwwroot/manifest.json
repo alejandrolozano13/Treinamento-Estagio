@@ -1,45 +1,29 @@
 {
-    "_version": "1.12.0",
-    "sap.app": {
-      "id": "sap.ui.demo.cadastro",
-      "type": "application",
-      "i18n": "i18n/i18n.properties",
-      "title": "{{appTitle}}",
-      "description": "{{appDescription}}",
-      "applicationVersion": {
-        "version": "1.0.0"
-      }
-    },
-    "sap.ui": {
-      "technology": "UI5",
-      "deviceTypes": {
-          "desktop": true,
-          "tablet": true,
-          "phone": true
-      }
-    },
-    "sap.ui5": {
-      "rootView": {
-          "viewName": "sap.ui.demo.cadastro.view.App",
-          "type": "XML",
-          "id": "app"
-      },
-      "dependencies": {
-        "minUI5Version": "1.93",
-        "libs": {
-          "sap.ui.core": {},
-          "sap.m": {}
-        }
-      },
-      "models": {
-        "i18n": {
-          "type": "sap.ui.model.resource.ResourceModel",
-          "settings": {
-            "bundleName": "sap.ui.demo.cadastro.i18n.i18n",
-            "supportedLocales": [""],
-            "fallbackLocale": ""
-          }
-        }
-      }
-    }
-  }
+	"sap.app": {
+		"id": "sap.ui.demo.cadastro",
+		"applicationVersion": {
+			"version": "1.12.0"
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "sap.ui.demo.cadastro.App",
+			"type": "XML",
+			"async": true
+		},
+		"dependencies": {
+			"libs": {
+				"sap.ui.layout": {}
+			}
+		},
+		"config": {
+			"sample": {
+				"files": [
+					"App.view.xml",
+					"App.controller.js",
+					"manifest.json"
+				]
+			}
+		}
+	}
+}

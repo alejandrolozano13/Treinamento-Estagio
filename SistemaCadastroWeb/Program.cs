@@ -2,6 +2,7 @@
 using Domain.BancoDeDados;
 using Domain.Validacao;
 using Infra.Repositorio;
+using Microsoft.Azure.Management.Storage.Fluent.Models;
 
 namespace SistemaCadastroWeb
 {
@@ -30,10 +31,20 @@ namespace SistemaCadastroWeb
                 app.UseSwaggerUI();
             }
 
+            
+
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+            app.UseFileServer();
             app.UseHttpsRedirection();
-
+            app.UseRouting();
             app.UseAuthorization();
-
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
 
             app.MapControllers();
 

@@ -1,22 +1,39 @@
-<mvc:View xmlns:core="sap.ui.core"
-    controllerName= "sap.ui.demo.cadastro.controller.App"
-    xmlns="sap.m"
+<mvc:View
+    controllerName="sap.ui.demo.cadastro.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true">
-    <App>
-        <pages>            
-            <Page title="{i18n>helloPanelTitle}">
-            <content>
-                <Button 
-                    text="{i18n>ButaoTexto}"
-                    press = ".AoDigitar"
-                    icon = "sap-icon://search"
-                    class = "sapUiSmallMarginEnd"/>
-                <Input
-                    value = "{/recipient/name}"
-                    width="60%"/>
-            </content>
-            </Page>
-        </pages>
-    </App>
+    xmlns="sap.m">
+   <Table id="listId" headerText="Clientes ManitoMark" items="{path: 'clientes>/', templateShareable: false}">
+    <columns>
+        <Column>
+            <Text text="ID"/>
+        </Column>
+        <Column>
+            <Text text="CPF"/>
+        </Column>
+        <Column>
+            <Text text="Nome"/>
+        </Column>
+        <Column>
+            <Text text="Email"/>
+        </Column>
+        <Column>
+            <Text text="Telefone"/>
+        </Column>
+        <Column>
+            <Text text="Data"/>
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{clientes>id}"/>
+                <Text text="{clientes>cpf}"/>
+                <Text text="{clientes>nome}"/>
+                <Text text="{clientes>email}"/>
+                <Text text="{clientes>telefone}"/>
+                <Text text="{clientes>data}"/>
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
 </mvc:View>

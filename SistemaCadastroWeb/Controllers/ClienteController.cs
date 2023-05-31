@@ -11,12 +11,12 @@ namespace SistemaCadastroWeb.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly IRepositorio _repostorio;
-        private readonly ValidadorDeCliente _Validador;
+        private readonly ValidadorDeCliente _validadorDeCliente;
 
         public ClienteController(IRepositorio repositorio, ValidadorDeCliente validacoes)
         {
             _repostorio = repositorio;
-            _Validador = validacoes;
+            _validadorDeCliente = validacoes;
         }
 
         [HttpGet]
@@ -55,7 +55,7 @@ namespace SistemaCadastroWeb.Controllers
             if (cliente == null) { return BadRequest(); }
             try
             {
-                _Validador.Validar(cliente, false);
+                _validadorDeCliente.Validar(cliente, false);
                 _repostorio.Criar(cliente);
 
                 return Ok();
@@ -71,7 +71,7 @@ namespace SistemaCadastroWeb.Controllers
         {
             try
             {
-                _Validador.Validar(cliente, true);
+                _validadorDeCliente.Validar(cliente, true);
                 _repostorio.Atualizar(cliente);
                 return Ok();
             }
