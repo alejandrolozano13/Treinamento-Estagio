@@ -2,25 +2,26 @@
     controllerName="sap.ui.demo.cadastro.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-   <Table id="listId" headerText="Clientes ManitoMark" items="{path: 'clientes>/', templateShareable: false}">
+    <App>
+        <Table id="listId" headerText="{i18n>TitleTable}" items="{path: 'clientes>/', templateShareable: false}">
     <columns>
         <Column>
-            <Text text="ID"/>
+            <Text text="{i18n>id}"/>
         </Column>
         <Column>
-            <Text text="CPF"/>
+            <Text text="{i18n>cpf}"/>
         </Column>
         <Column>
-            <Text text="Nome"/>
+            <Text text="{i18n>nome}"/>
         </Column>
         <Column>
-            <Text text="Email"/>
+            <Text text="{i18n>email}"/>
         </Column>
         <Column>
-            <Text text="Telefone"/>
+            <Text text="{i18n>telefone}"/>
         </Column>
         <Column>
-            <Text text="Data"/>
+            <Text text="{i18n>data}"/>
         </Column>
     </columns>
     <items>
@@ -31,9 +32,14 @@
                 <Text text="{clientes>nome}"/>
                 <Text text="{clientes>email}"/>
                 <Text text="{clientes>telefone}"/>
-                <Text text="{clientes>data}"/>
+                <Text text="{
+                    path: 'clientes>data',
+                    type: 'sap.ui.model.type.Date',
+                    formatOptions: {style : 'long', 
+                    source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}"/>
             </cells>
         </ColumnListItem>
     </items>
 </Table>
+    </App>
 </mvc:View>

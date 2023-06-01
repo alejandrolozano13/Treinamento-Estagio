@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\component.js",
-      "PackagePath": "staticwebassets\\component.js"
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Component.js",
+      "PackagePath": "staticwebassets\\Component.js"
     },
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\controller\\App.controller.js",
@@ -15,10 +15,6 @@
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
-    },
-    {
-      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\index.js",
-      "PackagePath": "staticwebassets\\index.js"
     },
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\manifest.json",

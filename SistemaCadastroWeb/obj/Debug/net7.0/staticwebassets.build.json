@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "i874irxndgeJIwgWKqOjy9JBxz5ekB4V+DWS8ZO+FJc=",
+  "Hash": "4KCTc7TTDhtAnZQC/VcX+WQe687s8vbohCG14vAEiCQ=",
   "Source": "SistemaCadastroWeb",
   "BasePath": "_content/SistemaCadastroWeb",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\component.js",
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Component.js",
       "SourceId": "SistemaCadastroWeb",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
       "BasePath": "_content/SistemaCadastroWeb",
-      "RelativePath": "component.js",
+      "RelativePath": "Component.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -31,7 +31,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\component.js"
+      "OriginalItemSpec": "wwwroot\\Component.js"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\controller\\App.controller.js",
@@ -83,23 +83,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
-    },
-    {
-      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\index.js",
-      "SourceId": "SistemaCadastroWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
-      "BasePath": "_content/SistemaCadastroWeb",
-      "RelativePath": "index.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\index.js"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\manifest.json",
