@@ -5,7 +5,7 @@ namespace Domain.BancoDeDados
 {
     public interface IRepositorio
     {
-        public List<Cliente> ObterTodos();
+        public List<Cliente> ObterTodos(string? nome);
 
         public void Criar(Cliente novoCliente);
 
@@ -16,5 +16,6 @@ namespace Domain.BancoDeDados
         public Cliente ObterPorId(int id);
 
         public bool ValidaCPF(string cpf);
+
     }
 }

@@ -2,6 +2,7 @@
 using Domain.BancoDeDados;
 using Domain.Validacao;
 using Infra.Repositorio;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Azure.Management.Storage.Fluent.Models;
 using Microsoft.Extensions.FileProviders;

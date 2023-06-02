@@ -79,7 +79,7 @@ namespace Infra.Repositorio
             return clienteId;
         }
 
-        public List<Cliente> ObterTodos()
+        public List<Cliente> ObterTodos(string? nome)
         {
             var conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings
             ["CinemaConexao"].ToString());

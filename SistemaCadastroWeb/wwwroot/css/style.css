@@ -1,0 +1,9 @@
+.myAppDemoWT .myCustomText {
+	display: inline-block;
+	font-weight: bold;
+    text-align: center;
+}
+
+.TextoTitulo {
+    font-style: italic;
+}

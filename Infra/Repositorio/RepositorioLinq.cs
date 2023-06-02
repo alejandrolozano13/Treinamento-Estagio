@@ -1,7 +1,9 @@
-﻿using Domain.BancoDeDados;
+﻿using com.sun.security.ntlm;
+using Domain.BancoDeDados;
 using Domain.Modelo;
 using Infra.BancoDeDados;
 using LinqToDB;
+using Microsoft.Graph;
 
 namespace Infra.Repositorio
 {
@@ -27,8 +29,6 @@ namespace Infra.Repositorio
                 conexaoLinq2Db.Insert(novoCliente);
         }
 
-
-
         public Cliente ObterPorId(int id)
         {
             var bd = new ConexaoBD();
@@ -38,14 +38,24 @@ namespace Infra.Repositorio
                 ?? throw new Exception($"Cliente não encontrado no banco: [{id}]");
         }
 
-        public List<Cliente> ObterTodos()
+        public List<Cliente> ObterTodos(string nome = null)
         {
+            var clientes = new List<Cliente>();
             var bd = new ConexaoBD();
             var conexaoLinq2Db = bd.MinhaConexao();
 
-            var query = conexaoLinq2Db.GetTable<Cliente>().ToList();
+            var query = from cliente in conexaoLinq2Db.GetTable<Cliente>()
+                        select cliente;
 
-            return query;
+
+            if (!string.IsNullOrWhiteSpace(nome))
+            {
+                query = query.Where(x => x.Nome.StartsWith(nome));
+            }
+
+            clientes = query.ToList();
+
+            return clientes;
         }
 
         public void Remover(int id)

@@ -20,11 +20,12 @@ namespace SistemaCadastroWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult OberTodos()
+        public IActionResult OberTodos([FromQuery] string? nome)
         {
             try
             {
-                List<Cliente> clientes = _repostorio.ObterTodos().ToList();
+                var clientes = _repostorio.ObterTodos(nome);
+
                 return Ok(clientes);
             }
             catch (Exception ex)
@@ -32,9 +33,10 @@ namespace SistemaCadastroWeb.Controllers
                 return BadRequest(ex);
             }
         }
+        
 
-        [HttpGet("{id}")]
-        [AllowAnonymous]
+        [HttpGet("obter/{id}")]
+        //[Route("api/Cliente/{id}")]
         public IActionResult ObterPorId(int id)
         {
             try

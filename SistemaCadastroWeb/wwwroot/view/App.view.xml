@@ -1,45 +1,16 @@
 <mvc:View
-    controllerName="sap.ui.demo.cadastro.controller.App"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <App>
-        <Table id="listId" headerText="{i18n>TitleTable}" items="{path: 'clientes>/', templateShareable: false}">
-    <columns>
-        <Column>
-            <Text text="{i18n>id}"/>
-        </Column>
-        <Column>
-            <Text text="{i18n>cpf}"/>
-        </Column>
-        <Column>
-            <Text text="{i18n>nome}"/>
-        </Column>
-        <Column>
-            <Text text="{i18n>email}"/>
-        </Column>
-        <Column>
-            <Text text="{i18n>telefone}"/>
-        </Column>
-        <Column>
-            <Text text="{i18n>data}"/>
-        </Column>
-    </columns>
-    <items>
-        <ColumnListItem>
-            <cells>
-                <Text text="{clientes>id}"/>
-                <Text text="{clientes>cpf}"/>
-                <Text text="{clientes>nome}"/>
-                <Text text="{clientes>email}"/>
-                <Text text="{clientes>telefone}"/>
-                <Text text="{
-                    path: 'clientes>data',
-                    type: 'sap.ui.model.type.Date',
-                    formatOptions: {style : 'long', 
-                    source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}"/>
-            </cells>
-        </ColumnListItem>
-    </items>
-</Table>
-    </App>
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true">
+	<Shell>
+		<App class="myAppDemoWT">
+			<pages>
+				<Page title="{i18n>TituloPagina}">
+					<content>
+						<mvc:XMLView viewName="sap.ui.demo.cadastro.view.List"/>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
 </mvc:View>
