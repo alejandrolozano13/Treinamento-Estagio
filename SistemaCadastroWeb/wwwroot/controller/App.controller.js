@@ -8,7 +8,7 @@ sap.ui.define([
     return Controller.extend("sap.ui.demo.cadastro.controller.App", {
         onInit: function () {
             let tela = this.getView();
-            fetch("https://localhost:7035/api/Cliente")
+            fetch("api/Cliente")
                 .then(function (response) {
                     return response.json();
                 })
@@ -22,8 +22,8 @@ sap.ui.define([
         aoPesquisarClientes : function(oEvent){
             var aFiltro = [];
             var sQuery = oEvent.getParameter("query");
-            
-            fetch("https://localhost:7035/api/Cliente")
+            let tela = this.getView();
+            fetch(`api/Cliente?nome=${sQuery}`)
                 .then(function (response) {
                     return response.json();
                 })

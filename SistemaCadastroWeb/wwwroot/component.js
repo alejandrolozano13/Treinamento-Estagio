@@ -16,6 +16,8 @@ sap.ui.define([
              bundleName: "sap.ui.demo.cadastro.i18n.i18n"
           });
           this.setModel(i18nModel, "i18n");
+
+          
        }
     });
  });

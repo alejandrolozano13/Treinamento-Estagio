@@ -3,6 +3,8 @@ using Domain.Modelo;
 using Domain.Validacao;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace SistemaCadastroWeb.Controllers
 {
@@ -35,8 +37,7 @@ namespace SistemaCadastroWeb.Controllers
         }
         
 
-        [HttpGet("obter/{id}")]
-        //[Route("api/Cliente/{id}")]
+        [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
             try
@@ -69,13 +70,15 @@ namespace SistemaCadastroWeb.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar([FromBody] Cliente cliente)
+        public IActionResult Atualizar([FromBody, Required()] Cliente cliente, int id)
         {
             try
             {
-                _validadorDeCliente.Validar(cliente, true);
+                cliente.Id = id;
                 _repostorio.Atualizar(cliente);
-                return Ok();
+                _validadorDeCliente.Validar(cliente, true);
+                
+                return Ok(cliente);
             }
             catch (Exception ex)
             {

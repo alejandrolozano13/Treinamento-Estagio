@@ -8,19 +8,15 @@
             <Toolbar>
                 <Button text="Adicionar Cliente" icon="sap-icon://add-employee" press=".aoAdicionarCliente"/>
                 <ToolbarSpacer/>
-                <SearchField width= "60%" search=".aoPesquisarClientes"/>
                 <ToolbarSpacer/>
+                <SearchField width= "60%" search=".aoPesquisarClientes"/>
             </Toolbar>
         </headerToolbar>
         <CustomListItem class="sapUiSmallMargin">
             <HBox>
                 <VBox class="sapUiSmallMargin">
                     <Link text="{clientes>nome}"/>
-                    <Label text="{
-                    path: 'clientes>data',
-                    type: 'sap.ui.model.type.Date',
-                    formatOptions: {style : 'full', 
-                    source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}"/>
+                    <Label text="{clientes>telefone}"/>
                 </VBox>
             </HBox>
         </CustomListItem>
