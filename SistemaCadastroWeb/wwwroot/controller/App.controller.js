@@ -20,8 +20,8 @@ sap.ui.define([
                 });
         },
         aoPesquisarClientes : function(oEvent){
-            var aFiltro = [];
-            var sQuery = oEvent.getParameter("query");
+            let aFiltro = [];
+            let sQuery = oEvent.getParameter("query");
             let tela = this.getView();
             fetch(`api/Cliente?nome=${sQuery}`)
                 .then(function (response) {
@@ -33,6 +33,18 @@ sap.ui.define([
                 .catch(function (error) {
                     console.error(error);
                 });
+        },
+
+        buscaDetalhes : function(oEvent){
+            let cliente = oEvent
+                .getSource()
+                .getBindingContext("clientes")
+                .getObject();
+
+            let oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("detail",{
+                id:cliente.id
+            });
         }
     });
 });

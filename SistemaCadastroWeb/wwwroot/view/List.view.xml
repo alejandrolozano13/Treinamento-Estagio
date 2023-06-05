@@ -1,4 +1,4 @@
-<mvc:View xmlns:tnt="sap.tnt"
+<mvc:View 
     controllerName="sap.ui.demo.cadastro.controller.App"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
@@ -12,10 +12,10 @@
                 <SearchField width= "60%" search=".aoPesquisarClientes"/>
             </Toolbar>
         </headerToolbar>
-        <CustomListItem class="sapUiSmallMargin">
+        <CustomListItem class="sapUiSmallMargin" type="Navigation" press=".buscaDetalhes">
             <HBox>
                 <VBox class="sapUiSmallMargin">
-                    <Link text="{clientes>nome}"/>
+                    <Link text="{clientes>nome}" target="{Imagens/foto-messi.jpeg}"/>
                     <Label text="{clientes>telefone}"/>
                 </VBox>
             </HBox>

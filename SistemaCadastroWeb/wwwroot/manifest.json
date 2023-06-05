@@ -22,20 +22,45 @@
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
 					"bundleName": "sap.ui.demo.cadastro.i18n.i18n",
-					"supportedLocales": [""],
+					"supportedLocales": [
+						""
+					],
 					"fallbackLocale": ""
 				}
 			}
 		},
-		
-		"config": {
-			"sample": {
-				"files": [
-					"App.view.xml",
-					"App.controller.js",
-					"manifest.json"
-				]
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"type": "View",
+				"viewType": "XML",
+				"path": "sap.ui.demo.cadastro.view",
+				"controlId": "app",
+				"controlAggregation": "pages"
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "listaClientes",
+					"target": "ListaClientes"
+				},
+				{
+					"pattern": "detail/{id}",
+					"name": "detail",
+					"target": "detail"
+				}
+			],
+			"targets": {
+				"ListaClientes": {
+					"id": "ListaClientes",
+					"name": "List"
+				},
+				"detail": {
+					"id": "detail",
+					"name": "Detail"
+				}
 			}
 		}
+		
 	}
 }
