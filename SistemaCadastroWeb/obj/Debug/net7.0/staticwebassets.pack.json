@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Component.js"
     },
     {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Iniesta.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\Iniesta.jpg"
+    },
+    {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Killian.jpg",
       "PackagePath": "staticwebassets\\Imagens\\Killian.jpg"
     },
@@ -31,6 +35,10 @@
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\ney.jpg",
       "PackagePath": "staticwebassets\\Imagens\\ney.jpg"
+    },
+    {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\xavi.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\xavi.jpg"
     },
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\controller\\App.controller.js",

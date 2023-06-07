@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xiIarq9/6dYVtAqRTzTUpLy+xY+SrlqHWq8+K72Se9A=",
+  "Hash": "0mVGr9Mi786z5httIo24w8QFZI2oMHoYcw9mfwj1WW8=",
   "Source": "SistemaCadastroWeb",
   "BasePath": "_content/SistemaCadastroWeb",
   "Mode": "Default",
@@ -119,6 +119,23 @@
       "OriginalItemSpec": "wwwroot\\Imagens\\foto-messi.jpeg"
     },
     {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Iniesta.jpg",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/Iniesta.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\Iniesta.jpg"
+    },
+    {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Killian.jpg",
       "SourceId": "SistemaCadastroWeb",
       "SourceType": "Discovered",
@@ -219,6 +236,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\ney.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\xavi.jpg",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/xavi.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\xavi.jpg"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\index.html",

@@ -12,11 +12,11 @@
                 text="Remover Cliente"
                 icon="sap-icon://delete"/>
         </headerContent>
-        
+        <Image src="{clientes>imagemUsuarioTraduzido}" width="1600px" height="500px" />
         <ObjectHeader            
             icon="sap-icon://employee-lookup"
             title="{clientes>nome}"/>
-            <Image src="{clientes>imagemUsuarioTraduzido}" width="500px" alt="Example picture of spotlight"/>
+            
             <ObjectAttribute text="Telefone: {clientes>telefone}" class="sapUiLargeMargin sapUiLargeFont"/>
             <ObjectAttribute text="E-Mail: {clientes>email}" class="sapUiLargeMargin sapUiLargeFont"/>
             <ObjectAttribute text="CPF: {clientes>cpf}" class="sapUiLargeMargin sapUiLargeFont"/>
