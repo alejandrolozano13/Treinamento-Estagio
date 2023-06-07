@@ -22,5 +22,8 @@ namespace Domain.Modelo
 
         [Column("Data_Nascimento"), NotNull]
         public DateTime Data { get; set; }
+
+        [Column("Imagem_Usuario"), Nullable]
+        public string ImagemUsuario { get; set; }
     }
 }

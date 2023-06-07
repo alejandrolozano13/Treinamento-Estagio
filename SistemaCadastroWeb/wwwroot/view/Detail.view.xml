@@ -1,7 +1,26 @@
-<mvc:View
+<mvc:View xmlns:core="sap.ui.core"
+    controllerName="sap.ui.demo.cadastro.controller.Detail"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
-    <Page title="{i18n>TituloDetalhes}">
-        <ObjectHeader title="{i18n>Detalhes}"/>
+    <Page title="{i18n>TituloDetalhes}" binding="{path: 'clientes>/'}"
+        showNavButton="true" navButtonPress=".aoRetroceder">
+        <headerContent>
+            <Button 
+                text="Editar Cliente"
+                icon="sap-icon://edit"/>
+            <Button 
+                text="Remover Cliente"
+                icon="sap-icon://delete"/>
+        </headerContent>
+        
+        <ObjectHeader            
+            icon="sap-icon://employee-lookup"
+            title="{clientes>nome}"/>
+            <Image src="{clientes>imagemUsuarioTraduzido}" width="500px" alt="Example picture of spotlight"/>
+            <ObjectAttribute text="Telefone: {clientes>telefone}" class="sapUiLargeMargin sapUiLargeFont"/>
+            <ObjectAttribute text="E-Mail: {clientes>email}" class="sapUiLargeMargin sapUiLargeFont"/>
+            <ObjectAttribute text="CPF: {clientes>cpf}" class="sapUiLargeMargin sapUiLargeFont"/>
+            <ObjectAttribute text="Data Nascimento: {clientes>data}" class="sapUiLargeMargin sapUiLargeFont"/>
+            
     </Page>
 </mvc:View>

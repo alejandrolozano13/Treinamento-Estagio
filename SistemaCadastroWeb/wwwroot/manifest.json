@@ -41,7 +41,7 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "listaClientes",
+					"name": "listaclientes",
 					"target": "ListaClientes"
 				},
 				{

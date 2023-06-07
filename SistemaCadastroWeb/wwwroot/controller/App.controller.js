@@ -20,7 +20,6 @@ sap.ui.define([
                 });
         },
         aoPesquisarClientes : function(oEvent){
-            let aFiltro = [];
             let sQuery = oEvent.getParameter("query");
             let tela = this.getView();
             fetch(`api/Cliente?nome=${sQuery}`)
@@ -40,7 +39,6 @@ sap.ui.define([
                 .getSource()
                 .getBindingContext("clientes")
                 .getObject();
-
             let oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("detail",{
                 id:cliente.id
