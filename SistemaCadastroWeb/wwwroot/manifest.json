@@ -48,6 +48,11 @@
 					"pattern": "detail/{id}",
 					"name": "detail",
 					"target": "detail"
+				},
+				{
+					"pattern": "cadastro",
+					"name": "cadastro",
+					"target": "cadastro"
 				}
 			],
 			"targets": {
@@ -58,6 +63,10 @@
 				"detail": {
 					"id": "detail",
 					"name": "Detail"
+				},
+				"cadastro": {
+					"id": "cadastro",
+					"name": "Cadastro"
 				}
 			}
 		}

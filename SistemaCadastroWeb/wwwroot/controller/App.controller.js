@@ -12,8 +12,13 @@ sap.ui.define([
                 .then(function (response) {
                     return response.json();
                 })
-                .then(function (data) {
-                    tela.setModel(new JSONModel(data), "clientes")
+                .then((dados) => {
+                    dados.forEach(cliente=>{
+                        let arquivo = this.dataURLtoFile(cliente.imagemUsuario, "imagem.jpeg");
+                        cliente.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
+                    })
+                    
+                    tela.setModel(new JSONModel(dados), "clientes")
                 })
                 .catch(function (error) {
                     console.error(error);
@@ -43,6 +48,25 @@ sap.ui.define([
             oRouter.navTo("detail",{
                 id:cliente.id
             });
+        },
+
+        aoAdicionarCliente : function(oEvent){
+            let oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("cadastro");
+        },
+
+        dataURLtoFile(bse64, filename) {
+            let bstr = atob(bse64)
+            let n = bstr.length
+            let u8arr = new Uint8Array(n)
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, { type: "image/jpeg" });
+        },
+
+        dataCreateObject(file){
+            return URL.createObjectURL(file);
         }
     });
 });

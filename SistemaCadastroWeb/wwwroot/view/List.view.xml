@@ -4,24 +4,23 @@ xmlns:core="sap.ui.core"
 xmlns:mvc="sap.ui.core.mvc"
 xmlns="sap.m">
 <Page title="MANITOMARK - CLIENTES">
-    <List id="ListaClientes" items="{path: 'clientes>/'}">
-    <headerToolbar>
-        <Toolbar>
-            <Button text="Adicionar Cliente" icon="sap-icon://add-employee" press=".aoAdicionarCliente"/>
-            <ToolbarSpacer/>
-            <ToolbarSpacer/>
-            <SearchField width= "60%" search=".aoPesquisarClientes"/>
-        </Toolbar>
-    </headerToolbar>
-    <CustomListItem class="sapUiSmallMargin" type="Navigation" press=".buscaDetalhes">
-        <HBox>
-        <core:Icon src="sap-icon://employee-approvals" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" size="1.5rem"/>
-            <VBox class="sapUiSmallMargin">
-                <Link text="{clientes>nome}"/>
-                <Label text="{clientes>telefone}"/>
-            </VBox>
-        </HBox>
-    </CustomListItem>
+<List id="ListaClientes" items="{path: 'clientes>/'}">
+<headerToolbar>
+    <Toolbar>
+        <Button text="Adicionar Cliente" icon="sap-icon://add-employee" press=".aoAdicionarCliente"/>
+        <ToolbarSpacer/>
+        <ToolbarSpacer/>
+        <SearchField width= "60%" search=".aoPesquisarClientes"/>
+    </Toolbar>
+</headerToolbar>
+<CustomListItem class="sapUiTinyMargin" type="Navigation" press=".buscaDetalhes">
+    <HBox>
+        <Image src="{clientes>imagemUsuarioTraduzido}" width="60px" height="60px" class="sapFAvatarCircle sapFAvatarImageHolder sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+        <VBox class="sapUiMediumMargin">
+            <Link text="{clientes>nome}" class="sapUiLargeMarginBegin"/>
+        </VBox>            
+    </HBox>
+</CustomListItem>
 </List>
 </Page>
 </mvc:View>
