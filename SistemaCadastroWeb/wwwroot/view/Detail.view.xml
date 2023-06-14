@@ -6,7 +6,7 @@
         showNavButton="true" navButtonPress=".aoRetroceder">
         <headerContent>
             <Button 
-                text="Editar Cliente"
+                text="{i18n>editar}"
                 icon="sap-icon://edit"/>
             <Button 
                 text="Remover Cliente"
@@ -16,10 +16,10 @@
         <ObjectHeader            
             icon="sap-icon://employee-lookup"
             title="{clientes>nome}"/>
-            <ObjectAttribute text="Telefone: {clientes>telefone}" class="sapUiLargeMargin sapUiLargeFont"/>
-            <ObjectAttribute text="E-Mail: {clientes>email}" class="sapUiLargeMargin sapUiLargeFont"/>
-            <ObjectAttribute text="CPF: {clientes>cpf}" class="sapUiLargeMargin sapUiLargeFont"/>
-            <ObjectAttribute text="Data Nascimento: {clientes>data}" class="sapUiLargeMargin sapUiLargeFont"/>
+            <ObjectAttribute text="{i18n>Telefone} {clientes>telefone}" class="sapUiLargeMargin sapUiLargeFont"/>
+            <ObjectAttribute text="{i18n>email} {clientes>email}" class="sapUiLargeMargin sapUiLargeFont"/>
+            <ObjectAttribute text="{i18n>cpf} {clientes>cpf}" class="sapUiLargeMargin sapUiLargeFont"/>
+            <ObjectAttribute text="{i18n>data} {clientes>data}" class="sapUiLargeMargin sapUiLargeFont"/>
             
     </Page>
 </mvc:View>

@@ -42,6 +42,11 @@ namespace Infra.Repositorio
             return SingletonCliente.Lista();
         }
 
+        public Cliente pesquisarPeloCpf(string cpf)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Remover(int id)
         {
             var ClienteRemover = ObterPorId(id);

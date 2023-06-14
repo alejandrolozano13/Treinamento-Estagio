@@ -1,0 +1,35 @@
+<mvc:View xmlns:layout="sap.ui.layout"
+    controllerName = "sap.ui.demo.cadastro.controller.Cadastrar"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page
+        title="{i18n>tituloCadastro}"
+        navButtonPress=".voltarAoMenu"
+        showNavButton="true">
+        <headerContent>
+            <Button text="{i18n>btnSalvar}" icon="sap-icon://save" press=".aoSalvarCliente"/>
+            <Button text="{i18n>btnCancelar}" icon="sap-icon://error" press=".aoCancelarCadastro"/>
+        </headerContent>
+
+       <layout:VerticalLayout class="sapUiContentPadding" width="70%">
+            <Label text="{i18n>cpfCadatro}" labelFor="campoCpf" design="Bold"/>
+            <Input id="campoCpf" required="true" value="{cliente>/cpf}" placeholder="{i18n>NumeroCpf}"/>
+
+            <Label text="{i18n>nomeCadastro}" labelFor="campoNome" design="Bold"/>
+            <Input id="campoNome" required="true" value="{cliente>/nome}" placeholder="{i18n>NomeCliente}"/>
+
+            <Label text="{i18n>emailCadastro}" labelFor="campoEmail" design="Bold"/>
+            <Input id="campoEmail" required="true" value="{cliente>/email}" placeholder="{i18n>EmailCliente}"/>
+
+            <Label text="{i18n>telefoneCadastro}" labelFor="campoTelefone" design="Bold"/>
+            <Input id="campoTelefone" required="true" value="{cliente>/telefone}" placeholder="{i18n>TelefoneCliente}"/>
+
+            <Label text="{i18n>dataCadastro}" labelFor="campoData" design="Bold"/>
+            <DatePicker id="campoData" change="handleChange" placeholder="{i18n>DataCliente}" class="sapUiSmallMarginBottom" required="true"
+                value="{path: 'cliente>/data', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}"/>
+            
+            <Label text="{i18n>requisicoes}" design="Bold"/>
+       </layout:VerticalLayout>
+    </Page>
+</mvc:View>

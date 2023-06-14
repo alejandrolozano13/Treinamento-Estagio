@@ -109,6 +109,11 @@ namespace Infra.Repositorio
             return listaDeClientes;
         }
 
+        public Cliente pesquisarPeloCpf(string cpf)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Remover(int id)
         {
             var conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings

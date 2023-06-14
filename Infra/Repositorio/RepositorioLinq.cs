@@ -27,6 +27,15 @@ namespace Infra.Repositorio
                 conexaoLinq2Db.Insert(novoCliente);
         }
 
+        public Cliente pesquisarPeloCpf(string cpf)
+        {
+            var bd = new ConexaoBD();
+            var conexaoLinq2Db = bd.MinhaConexao();
+
+            return conexaoLinq2Db.GetTable<Cliente>().FirstOrDefault(c => c.Cpf == cpf)
+                ?? throw new Exception($"Cliente não encontrado com o CPF: [{cpf}]");
+        }
+
         public Cliente ObterPorId(int id)
         {
             var bd = new ConexaoBD();

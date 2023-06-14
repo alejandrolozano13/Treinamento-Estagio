@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0mVGr9Mi786z5httIo24w8QFZI2oMHoYcw9mfwj1WW8=",
+  "Hash": "jpZyc+TIEjJBE4TLx4sJBxsYw126SlTTWZSx4SshQAk=",
   "Source": "SistemaCadastroWeb",
   "BasePath": "_content/SistemaCadastroWeb",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\controller\\App.controller.js"
+    },
+    {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\controller\\Cadastrar.controller.js",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "controller/Cadastrar.controller.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\Cadastrar.controller.js"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\controller\\Detail.controller.js",
@@ -117,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\foto-messi.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Ibra.jpg",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/Ibra.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\Ibra.jpg"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Iniesta.jpg",
@@ -289,23 +323,6 @@
       "OriginalItemSpec": "wwwroot\\manifest.json"
     },
     {
-      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\mock\\img.json",
-      "SourceId": "SistemaCadastroWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
-      "BasePath": "_content/SistemaCadastroWeb",
-      "RelativePath": "mock/img.json",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\mock\\img.json"
-    },
-    {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\view\\App.view.xml",
       "SourceId": "SistemaCadastroWeb",
       "SourceType": "Discovered",
@@ -321,6 +338,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\view\\App.view.xml"
+    },
+    {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\view\\Cadastrar.view.xml",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "view/Cadastrar.view.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\view\\Cadastrar.view.xml"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\view\\Detail.view.xml",

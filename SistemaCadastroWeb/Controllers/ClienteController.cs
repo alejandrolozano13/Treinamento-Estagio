@@ -60,8 +60,9 @@ namespace SistemaCadastroWeb.Controllers
             {
                 _validadorDeCliente.Validar(cliente, false);
                 _repostorio.Criar(cliente);
+                var novoCliente = _repostorio.pesquisarPeloCpf(cliente.Cpf);
 
-                return Ok();
+                return Ok(novoCliente.Id);
             }
             catch (Exception ex)
             {

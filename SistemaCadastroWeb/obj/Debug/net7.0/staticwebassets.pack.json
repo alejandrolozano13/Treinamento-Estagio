@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Component.js"
     },
     {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Ibra.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\Ibra.jpg"
+    },
+    {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Iniesta.jpg",
       "PackagePath": "staticwebassets\\Imagens\\Iniesta.jpg"
     },
@@ -45,6 +49,10 @@
       "PackagePath": "staticwebassets\\controller\\App.controller.js"
     },
     {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\controller\\Cadastrar.controller.js",
+      "PackagePath": "staticwebassets\\controller\\Cadastrar.controller.js"
+    },
+    {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\controller\\Detail.controller.js",
       "PackagePath": "staticwebassets\\controller\\Detail.controller.js"
     },
@@ -65,12 +73,12 @@
       "PackagePath": "staticwebassets\\manifest.json"
     },
     {
-      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\mock\\img.json",
-      "PackagePath": "staticwebassets\\mock\\img.json"
-    },
-    {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\view\\App.view.xml",
       "PackagePath": "staticwebassets\\view\\App.view.xml"
+    },
+    {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\view\\Cadastrar.view.xml",
+      "PackagePath": "staticwebassets\\view\\Cadastrar.view.xml"
     },
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\view\\Detail.view.xml",
