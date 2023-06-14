@@ -2,6 +2,10 @@
 using Domain.BancoDeDados;
 using Domain.Validacao;
 using Infra.Repositorio;
+using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Azure.Management.Storage.Fluent.Models;
+using Microsoft.Extensions.FileProviders;
 
 namespace SistemaCadastroWeb
 {
@@ -30,10 +34,28 @@ namespace SistemaCadastroWeb
                 app.UseSwaggerUI();
             }
 
+            app.UseFileServer();
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")
+                ),
+                ContentTypeProvider = new FileExtensionContentTypeProvider
+                {
+                    Mappings = { [".properties"] = "application/x-msdownload" }
+                }
+            });
             app.UseHttpsRedirection();
-
+            app.UseRouting();
             app.UseAuthorization();
-
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
 
             app.MapControllers();
 

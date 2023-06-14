@@ -1,28 +1,72 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/resource/ResourceModel"
-], function(Controller, MessageToast, JSONModel, ResourceModel) {
-    'use strict';
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (Controller, JSONModel, FilterOperator, Filter) {
+    "use strict";
     return Controller.extend("sap.ui.demo.cadastro.controller.App", {
-        onInit : function(){
-            var oData = {
-                recipient : {
-                    name : ""
-                }
-            };
-            var oModel = new JSONModel(oData);
-            this.getView().setModel(oModel);
+        onInit: function () {
+            let tela = this.getView();
+            fetch("api/Cliente")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then((dados) => {
+                    dados.forEach(cliente=>{
+                        let arquivo = this.dataURLtoFile(cliente.imagemUsuario, "imagem.jpeg");
+                        cliente.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
+                    })
+                    
+                    tela.setModel(new JSONModel(dados), "clientes")
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        },
+        aoPesquisarClientes : function(oEvent){
+            let sQuery = oEvent.getParameter("query");
+            let tela = this.getView();
+            fetch(`api/Cliente?nome=${sQuery}`)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    tela.setModel(new JSONModel(data), "clientes")
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        },
 
-            var i18nModel = new ResourceModel({
-                bundleName: "sap.ui.demo.cadastro.i18n.i18n"
+        buscaDetalhes : function(oEvent){
+            let cliente = oEvent
+                .getSource()
+                .getBindingContext("clientes")
+                .getObject();
+            let oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("detail",{
+                id:cliente.id
             });
-            this.getView().setModel(i18nModel, "i18n");
         },
 
-        AoEntrar : function(){
-            MessageToast.show("Bem vindo ao ManitoMark");
+        aoAdicionarCliente : function(oEvent){
+            let oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("cadastro");
         },
+
+        dataURLtoFile(bse64, filename) {
+            let bstr = atob(bse64)
+            let n = bstr.length
+            let u8arr = new Uint8Array(n)
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, { type: "image/jpeg" });
+        },
+
+        dataCreateObject(file){
+            return URL.createObjectURL(file);
+        }
     });
 });

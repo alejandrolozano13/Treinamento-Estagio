@@ -3,6 +3,8 @@ using Domain.Modelo;
 using Domain.Validacao;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace SistemaCadastroWeb.Controllers
 {
@@ -11,20 +13,21 @@ namespace SistemaCadastroWeb.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly IRepositorio _repostorio;
-        private readonly ValidadorDeCliente _Validador;
+        private readonly ValidadorDeCliente _validadorDeCliente;
 
         public ClienteController(IRepositorio repositorio, ValidadorDeCliente validacoes)
         {
             _repostorio = repositorio;
-            _Validador = validacoes;
+            _validadorDeCliente = validacoes;
         }
 
         [HttpGet]
-        public IActionResult OberTodos()
+        public IActionResult OberTodos([FromQuery] string? nome)
         {
             try
             {
-                List<Cliente> clientes = _repostorio.ObterTodos().ToList();
+                var clientes = _repostorio.ObterTodos(nome);
+
                 return Ok(clientes);
             }
             catch (Exception ex)
@@ -32,9 +35,9 @@ namespace SistemaCadastroWeb.Controllers
                 return BadRequest(ex);
             }
         }
+        
 
         [HttpGet("{id}")]
-        [AllowAnonymous]
         public IActionResult ObterPorId(int id)
         {
             try
@@ -55,7 +58,7 @@ namespace SistemaCadastroWeb.Controllers
             if (cliente == null) { return BadRequest(); }
             try
             {
-                _Validador.Validar(cliente, false);
+                _validadorDeCliente.Validar(cliente, false);
                 _repostorio.Criar(cliente);
 
                 return Ok();
@@ -67,13 +70,15 @@ namespace SistemaCadastroWeb.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar([FromBody] Cliente cliente)
+        public IActionResult Atualizar([FromBody, Required()] Cliente cliente, int id)
         {
             try
             {
-                _Validador.Validar(cliente, true);
+                cliente.Id = id;
                 _repostorio.Atualizar(cliente);
-                return Ok();
+                _validadorDeCliente.Validar(cliente, true);
+                
+                return Ok(cliente);
             }
             catch (Exception ex)
             {

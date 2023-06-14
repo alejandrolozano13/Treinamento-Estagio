@@ -1,6 +1,8 @@
 ﻿using Domain.BancoDeDados;
 using Domain.Modelo;
 using Domain.Validacao;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace TreinamentoInvent
 {
@@ -8,6 +10,7 @@ namespace TreinamentoInvent
     {
         private int idAtual;
         private bool _eClienteParaEdicao = false;
+        private string caminhoImagem;
 
         private readonly IRepositorio _repositorio;
         public CadastroDeClientes(bool eClienteParaEdicao, int id, IRepositorio repositorio)
@@ -29,7 +32,7 @@ namespace TreinamentoInvent
                 txtCpf.Enabled = false;
                 this.Text = "ATUALIZAR";
             }
-            
+
             _eClienteParaEdicao = eClienteParaEdicao;
         }
 
@@ -48,7 +51,7 @@ namespace TreinamentoInvent
             Close();
         }
 
-        public Cliente PreencherDadosCliente(string nome, string cpf, string email, string telefone, DateTime data)
+        public Cliente PreencherDadosCliente(string nome, string cpf, string email, string telefone, DateTime data, string caminhoImagem)
         {
             Cliente cliente = new Cliente();
 
@@ -57,8 +60,21 @@ namespace TreinamentoInvent
             cliente.Email = email;
             cliente.Telefone = telefone;
             cliente.Data = data;
+            cliente.ImagemUsuario = caminhoImagem;
 
             return cliente;
+        }
+
+        public string ConvertToBase64(Stream stream)
+        {
+            byte[] bytes;
+            using (var memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                bytes = memoryStream.ToArray();
+            }
+
+            return Convert.ToBase64String(bytes);
         }
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
@@ -71,13 +87,13 @@ namespace TreinamentoInvent
             {
                 bool edita = false;
 
-                cliente = cadastroClientes.PreencherDadosCliente(txtNome.Text, txtCpf.Text, txtEmail.Text, txtTelefone.Text, txtData.Value);
+                cliente = cadastroClientes.PreencherDadosCliente(txtNome.Text, txtCpf.Text, txtEmail.Text, txtTelefone.Text, txtData.Value, caminhoImagem);
 
                 try
                 {
                     validacoes.Validar(cliente, edita);
                     _repositorio.Criar(cliente);
-                    
+
                     Close();
                 }
                 catch (Exception ex)
@@ -89,7 +105,7 @@ namespace TreinamentoInvent
             {
                 bool edita = true;
 
-                cliente = cadastroClientes.PreencherDadosCliente(txtNome.Text, txtCpf.Text, txtEmail.Text, txtTelefone.Text, txtData.Value);
+                cliente = cadastroClientes.PreencherDadosCliente(txtNome.Text, txtCpf.Text, txtEmail.Text, txtTelefone.Text, txtData.Value, caminhoImagem);
                 cliente.Id = idAtual;
 
                 try
@@ -98,11 +114,35 @@ namespace TreinamentoInvent
                     _repositorio.Atualizar(cliente);
 
                     Close();
-                } catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message + "\n", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-    }    
+
+        private void txtImagem_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void btnAbrirFoto_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog(this);
+        }
+
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //var cadastro = new CadastroDeClientes();
+            var cliente = new Cliente();
+            
+            var file = openFileDialog1.OpenFile();
+            var base64 = ConvertToBase64(file);
+
+            caminhoImagem = base64;
+        }
+
+    }
 }

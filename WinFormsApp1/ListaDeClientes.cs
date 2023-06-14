@@ -8,19 +8,21 @@ namespace TreinamentoInvent
         private readonly IRepositorio _repositorio;
         public ListaDeClientes(IRepositorio repositorio)
         {
+            string nome;
             InitializeComponent();
             _repositorio = repositorio;
-            DataGridView.DataSource = _repositorio.ObterTodos();
+            DataGridView.DataSource = _repositorio.ObterTodos(nome = null);
         }
 
         int id = 0;
         private void AoClicarEmAdicionar(object sender, EventArgs e)
         {
+            string nome;
             var eClienteParaEdicao = false;
             var telaDeCadastro = new CadastroDeClientes(eClienteParaEdicao, id, _repositorio);
             telaDeCadastro.ShowDialog();
             DataGridView.DataSource = null;
-            DataGridView.DataSource = _repositorio.ObterTodos();
+            DataGridView.DataSource = _repositorio.ObterTodos(nome = null);
         }
 
         private void AoClicarEmEditar(object sender, EventArgs e)
@@ -29,11 +31,12 @@ namespace TreinamentoInvent
 
             if (DataGridView.SelectedRows.Count == 1)
             {
+                string nome;
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
                 var telaDeCadastro = new CadastroDeClientes( eClienteParaEdicao, clienteSelecionado.Id, _repositorio);
                 telaDeCadastro.ShowDialog();
                 DataGridView.DataSource = null;
-                DataGridView.DataSource = _repositorio.ObterTodos();
+                DataGridView.DataSource = _repositorio.ObterTodos(nome = null);
             }
             else
             {
@@ -45,11 +48,12 @@ namespace TreinamentoInvent
         {
             if (DataGridView.SelectedRows.Count == 1)
             {
+                string nome = null;
                 var clienteSelecionado = (Cliente)DataGridView.SelectedRows[0].DataBoundItem;
 
                 _repositorio.Remover(clienteSelecionado.Id);
                 DataGridView.DataSource = null;
-                DataGridView.DataSource = _repositorio.ObterTodos();
+                DataGridView.DataSource = _repositorio.ObterTodos(nome = null);
             }
             else
             {

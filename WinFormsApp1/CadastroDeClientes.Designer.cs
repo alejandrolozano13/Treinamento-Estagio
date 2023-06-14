@@ -28,158 +28,186 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtCpf = new System.Windows.Forms.MaskedTextBox();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
-            this.txtData = new System.Windows.Forms.DateTimePicker();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            txtCpf = new MaskedTextBox();
+            txtNome = new TextBox();
+            txtEmail = new TextBox();
+            txtTelefone = new MaskedTextBox();
+            txtData = new DateTimePicker();
+            btnSalvar = new Button();
+            btnCancelar = new Button();
+            label7 = new Label();
+            openFileDialog1 = new OpenFileDialog();
+            btnAbrirFoto = new Button();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(179, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 41);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Cadastro";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(183, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(143, 41);
+            label1.TabIndex = 0;
+            label1.Text = "Cadastro";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Nome";
+            label2.AutoSize = true;
+            label2.Location = new Point(24, 63);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 1;
+            label2.Text = "Nome";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 162);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "CPF";
+            label3.AutoSize = true;
+            label3.Location = new Point(24, 132);
+            label3.Name = "label3";
+            label3.Size = new Size(33, 20);
+            label3.TabIndex = 2;
+            label3.Text = "CPF";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 235);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "E-Mail";
+            label4.AutoSize = true;
+            label4.Location = new Point(24, 199);
+            label4.Name = "label4";
+            label4.Size = new Size(52, 20);
+            label4.TabIndex = 3;
+            label4.Text = "E-Mail";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 302);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 20);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Telefone";
+            label5.AutoSize = true;
+            label5.Location = new Point(24, 263);
+            label5.Name = "label5";
+            label5.Size = new Size(66, 20);
+            label5.TabIndex = 4;
+            label5.Text = "Telefone";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 372);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(145, 20);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Data de Nascimento";
+            label6.AutoSize = true;
+            label6.Location = new Point(24, 328);
+            label6.Name = "label6";
+            label6.Size = new Size(145, 20);
+            label6.TabIndex = 5;
+            label6.Text = "Data de Nascimento";
             // 
             // txtCpf
             // 
-            this.txtCpf.Location = new System.Drawing.Point(24, 185);
-            this.txtCpf.Mask = "999.999.999-99";
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(456, 27);
-            this.txtCpf.TabIndex = 6;
+            txtCpf.Location = new Point(24, 155);
+            txtCpf.Mask = "999.999.999-99";
+            txtCpf.Name = "txtCpf";
+            txtCpf.Size = new Size(456, 27);
+            txtCpf.TabIndex = 6;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(24, 118);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(456, 27);
-            this.txtNome.TabIndex = 7;
-            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaDeLetrasParaNome);
+            txtNome.Location = new Point(24, 86);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(456, 27);
+            txtNome.TabIndex = 7;
+            txtNome.KeyPress += EntradaDeLetrasParaNome;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(24, 258);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(456, 27);
-            this.txtEmail.TabIndex = 8;
+            txtEmail.Location = new Point(24, 222);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(456, 27);
+            txtEmail.TabIndex = 8;
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(24, 325);
-            this.txtTelefone.Mask = "99 9 9999-9999";
-            this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(456, 27);
-            this.txtTelefone.TabIndex = 9;
+            txtTelefone.Location = new Point(24, 286);
+            txtTelefone.Mask = "99 9 9999-9999";
+            txtTelefone.Name = "txtTelefone";
+            txtTelefone.Size = new Size(456, 27);
+            txtTelefone.TabIndex = 9;
             // 
             // txtData
             // 
-            this.txtData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtData.Location = new System.Drawing.Point(24, 395);
-            this.txtData.Name = "txtData";
-            this.txtData.Size = new System.Drawing.Size(145, 27);
-            this.txtData.TabIndex = 10;
+            txtData.Format = DateTimePickerFormat.Short;
+            txtData.Location = new Point(24, 351);
+            txtData.Name = "txtData";
+            txtData.Size = new Size(145, 27);
+            txtData.TabIndex = 10;
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(24, 488);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(126, 57);
-            this.btnSalvar.TabIndex = 11;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.AoClicarEmSalvar);
+            btnSalvar.Location = new Point(24, 488);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(126, 57);
+            btnSalvar.TabIndex = 11;
+            btnSalvar.Text = "Salvar";
+            btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += AoClicarEmSalvar;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(354, 488);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(126, 57);
-            this.btnCancelar.TabIndex = 12;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.AoClicarEmCancelar);
+            btnCancelar.Location = new Point(354, 488);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(126, 57);
+            btnCancelar.TabIndex = 12;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += AoClicarEmCancelar;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(24, 394);
+            label7.Name = "label7";
+            label7.Size = new Size(107, 20);
+            label7.TabIndex = 13;
+            label7.Text = "Adicionar Foto";
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.FileOk += openFileDialog1_FileOk;
+            // 
+            // btnAbrirFoto
+            // 
+            btnAbrirFoto.Location = new Point(24, 417);
+            btnAbrirFoto.Name = "btnAbrirFoto";
+            btnAbrirFoto.Size = new Size(145, 30);
+            btnAbrirFoto.TabIndex = 14;
+            btnAbrirFoto.Text = "Arquivo";
+            btnAbrirFoto.UseVisualStyleBackColor = true;
+            btnAbrirFoto.Click += btnAbrirFoto_Click;
             // 
             // CadastroDeClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 573);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.txtData);
-            this.Controls.Add(this.txtTelefone);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtNome);
-            this.Controls.Add(this.txtCpf);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Name = "CadastroDeClientes";
-            this.Text = "Form2";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(505, 573);
+            Controls.Add(btnAbrirFoto);
+            Controls.Add(label7);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnSalvar);
+            Controls.Add(txtData);
+            Controls.Add(txtTelefone);
+            Controls.Add(txtEmail);
+            Controls.Add(txtNome);
+            Controls.Add(txtCpf);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Name = "CadastroDeClientes";
+            Text = "Form2";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -197,5 +225,8 @@
         private DateTimePicker txtData;
         private Button btnSalvar;
         private Button btnCancelar;
+        private Label label7;
+        private OpenFileDialog openFileDialog1;
+        private Button btnAbrirFoto;
     }
 }

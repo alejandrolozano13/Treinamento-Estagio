@@ -37,7 +37,7 @@ namespace Infra.Repositorio
                 .Find(cliente => cliente.Id == id);
         }
 
-        public List<Cliente> ObterTodos()
+        public List<Cliente> ObterTodos(string? nome)
         {
             return SingletonCliente.Lista();
         }

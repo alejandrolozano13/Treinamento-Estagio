@@ -41,12 +41,13 @@ namespace TreinamentoInvent
             return new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
-                .AddSqlServer2016()
-                .WithGlobalConnectionString("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;Integrated Security=SSPI;TrustServerCertificate=True;User ID=sa;Password=Sap@123")
-                .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
+                    .AddSqlServer2016()
+                    .WithGlobalConnectionString("server=DESKTOPALEK\\MSSQLSERVER01;database=CinemaClientes;Integrated Security=SSPI;TrustServerCertificate=True;User ID=sa;Password=Sap@123")
+                    .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 .BuildServiceProvider(false);
         }
+
 
         static IHostBuilder criaHostBuilder()
         {
