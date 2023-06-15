@@ -10,10 +10,8 @@ sap.ui.define([
         onInit: function () {
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("cadastrar").attachPatternMatched(this._aoCoincidirRota, this);
-            
-            
         },
-        
+
         _aoCoincidirRota: function () {
             let cliente = {
                 nome: "",
@@ -31,19 +29,12 @@ sap.ui.define([
         },
 
         voltarAoMenu: function () {
-            let oHistory = History.getInstance();
-            let sPreviousHash = oHistory.getPreviousHash();
-
-            if (sPreviousHash !== undefined) {
-                window.history.go(-1);
-            } else {
-                var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("listaClientes");
-            }
             this.aoLimparCampos()
+            var oRouter = this.getOwnerComponent().getRouter();
+                oRouter.navTo("listaclientes", {}, true);                      
         },
 
-        
+
 
         aoSalvarCliente: function () {
             let clientes = this.getView().getModel("cliente").getData();
@@ -55,26 +46,32 @@ sap.ui.define([
                 },
                 body: JSON.stringify(clientes)
             })
-            .then(resp => resp.json())
-            .then(response=>{
-                MessageBox.information(
-                    "Cliente criado com sucesso", {
-                        actions: [MessageBox.Action.Ok], onClose:(acao)=>{
-                        if (acao == MessageBox.Action.Ok){
-                            this.aoNavegar(response);
-                        }
+                .then(resp => resp.json())
+                .then(response => {
+                    if (response.status == 400) {
+                        MessageBox.error("Erro ao cadastrar cliente");
                     }
-                }
-                )
-            })
-            .catch(function(error){
-                console.error(error);
-            });
+                    else {
+                        MessageBox.information(
+                            "Cliente criado com sucesso", {
+                            EmphasizedAction : MessageBox.Action.OK,
+                            actions: [MessageBox.Action.OK], onClose: (acao) => {
+                                if (acao == MessageBox.Action.OK) {
+                                    this.aoNavegar(response);
+                                }
+                            }
+                        }
+                        )
+                    }
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
         },
 
-        aoNavegar : function(id){
+        aoNavegar: function (id) {
             let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("detail",{
+            oRouter.navTo("detail", {
                 id: id
             });
         },

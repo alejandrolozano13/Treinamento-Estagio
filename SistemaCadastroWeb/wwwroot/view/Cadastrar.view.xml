@@ -12,6 +12,8 @@
             <Button text="{i18n>btnCancelar}" icon="sap-icon://error" press=".aoCancelarCadastro"/>
         </headerContent>
 
+
+
        <layout:VerticalLayout class="sapUiContentPadding" width="70%">
             <Label text="{i18n>cpfCadatro}" labelFor="campoCpf" design="Bold"/>
             <Input id="campoCpf" required="true" value="{cliente>/cpf}" placeholder="{i18n>NumeroCpf}"/>

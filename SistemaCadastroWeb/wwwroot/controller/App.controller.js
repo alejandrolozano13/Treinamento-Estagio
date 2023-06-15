@@ -7,10 +7,11 @@ sap.ui.define([
     "use strict";
     return Controller.extend("sap.ui.demo.cadastro.controller.App", {
         onInit: function () {
-            this.aoCoincidirRota();
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.getRoute("listaclientes").attachPatternMatched(this.aoCoincidirRota, this);
         },
-
         aoCoincidirRota : function(){
+            
             let tela = this.getView();
             fetch("api/Cliente")
                 .then(function (response) {
@@ -18,8 +19,10 @@ sap.ui.define([
                 })
                 .then((dados) => {
                     dados.forEach(cliente=>{
-                        let arquivo = this.dataURLtoFile(cliente.imagemUsuario, "imagem.jpeg");
-                        cliente.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
+                        if(cliente.imagemUsuario){
+                            let arquivo = this.dataURLtoFile(cliente.imagemUsuario, "imagem.jpeg")
+                            cliente.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
+                        }
                     })
                     
                     tela.setModel(new JSONModel(dados), "clientes")

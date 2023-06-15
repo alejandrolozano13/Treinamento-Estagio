@@ -7,7 +7,6 @@ sap.ui.define([
 
     return Controller.extend("sap.ui.demo.cadastro.controller.Detail", {
         onInit: function () {
-
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
         },
@@ -36,12 +35,12 @@ sap.ui.define([
             var oHistory = History.getInstance();
             var sPreviousHash = oHistory.getPreviousHash();
 
-            if (sPreviousHash !== undefined) {
-                window.history.go(-1);
-            } else {
+            // if (sPreviousHash !== undefined) {
+            //     window.history.go(-1);
+            // } else {
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("listaclientes", {}, true);
-            }
+            //}
         },
 
         dataURLtoFile(bse64, filename) {
