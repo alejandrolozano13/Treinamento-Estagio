@@ -1,4 +1,4 @@
-<mvc:View xmlns:layout="sap.ui.layout"
+<mvc:View xmlns:unified="sap.ui.unified" xmlns:layout="sap.ui.layout"
     controllerName = "sap.ui.demo.cadastro.controller.Cadastrar"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
@@ -11,8 +11,6 @@
             <Button text="{i18n>btnSalvar}" icon="sap-icon://save" press=".aoSalvarCliente"/>
             <Button text="{i18n>btnCancelar}" icon="sap-icon://error" press=".aoCancelarCadastro"/>
         </headerContent>
-
-
 
        <layout:VerticalLayout class="sapUiContentPadding" width="70%">
             <Label text="{i18n>cpfCadatro}" labelFor="campoCpf" design="Bold"/>
@@ -30,6 +28,17 @@
             <Label text="{i18n>dataCadastro}" labelFor="campoData" design="Bold"/>
             <DatePicker id="campoData" change="handleChange" placeholder="{i18n>DataCliente}" class="sapUiSmallMarginBottom" required="true"
                 value="{path: 'cliente>/data', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}"/>
+
+            <unified:FileUploader
+                id="fileUploader"
+                name="myFileUpload"
+                uploadUrl="upload/"
+                tooltip="Upload your file to the local server"
+                uploadComplete="handleUploadComplete"
+                value="{cliente>/imagemUsuario}"/>
+            <Button 
+                text="Upload file"
+                press="handleUploadPress"/>
             
             <Label text="{i18n>requisicoes}" design="Bold"/>
        </layout:VerticalLayout>

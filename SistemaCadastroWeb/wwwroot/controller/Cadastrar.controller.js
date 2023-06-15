@@ -8,19 +8,46 @@ sap.ui.define([
 
     return Controller.extend("sap.ui.demo.cadastro.controller.Cadastrar", {
         onInit: function () {
-            var oRouter = this.getOwnerComponent().getRouter();
+            let oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("cadastrar").attachPatternMatched(this._aoCoincidirRota, this);
         },
 
+        handleUploadComplete: function (oEvent) {
+            let sResponse = oEvent.getParameter("response"),
+                iHttpStatusCode = parseInt(/\d{3}/.exec(sResponse)[0]),
+                sMessage;
+
+            if (sResponse) {
+                sMessage = iHttpStatusCode === 200 ? sResponse + " (Upload Success)" : sResponse + " (Upload Error)";
+                MessageToast.show(sMessage);
+            }
+        },
+
+
         _aoCoincidirRota: function () {
-            let cliente = {
+            let modeloCliente = {
                 nome: "",
                 email: "",
                 cpf: "",
                 data: "",
-                telefone: ""
+                telefone: "",
+                imagemUsuario: ""
             }
-            this.getView().setModel(new JSONModel(cliente), "cliente");
+
+            this.getView().setModel(new JSONModel(modeloCliente), "cliente");
+        },
+
+        getBase64(file) {
+            return new Promise((resolve, reject) => {
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    resolve(reader.result);
+                };
+                reader.onerror = (error) => {
+                    reject(error);
+                };
+            })
         },
 
         aoCancelarCadastro: function () {
@@ -31,42 +58,50 @@ sap.ui.define([
         voltarAoMenu: function () {
             this.aoLimparCampos()
             var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("listaclientes", {}, true);                      
+            oRouter.navTo("listaclientes", {}, true);
         },
 
-
-
         aoSalvarCliente: function () {
-            let clientes = this.getView().getModel("cliente").getData();
-            fetch("https://localhost:7035/api/Cliente", {
-                method: 'POST',
-                headers: {
+            debugger
+            let oFileUploader = this.byId("fileUploader");
+            let cliente = this.getView().getModel("cliente").getData();
 
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(clientes)
-            })
-                .then(resp => resp.json())
-                .then(response => {
-                    if (response.status == 400) {
-                        MessageBox.error("Erro ao cadastrar cliente");
-                    }
-                    else {
-                        MessageBox.information(
-                            "Cliente criado com sucesso", {
-                            EmphasizedAction : MessageBox.Action.OK,
-                            actions: [MessageBox.Action.OK], onClose: (acao) => {
-                                if (acao == MessageBox.Action.OK) {
-                                    this.aoNavegar(response);
-                                }
+            this.getBase64(oFileUploader.oFileUpload.files[0])
+                .then(base64 => {
+                    let string64 = base64.split(",")[1];
+                    cliente.imagemUsuario = string64;
+                    fetch("api/Cliente", {
+                        method: 'POST',
+                        headers: {
+
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(cliente)
+                    })
+                        .then(resp => resp.json())
+                        .then(response => {
+                            if (response.status == 400) {
+                                MessageBox.error("Erro ao cadastrar cliente");
                             }
-                        }
-                        )
-                    }
-                })
-                .catch(function (error) {
-                    console.error(error);
+                            else {
+                                MessageBox.information(
+                                    "Cliente criado com sucesso", {
+                                    EmphasizedAction: MessageBox.Action.OK,
+                                    actions: [MessageBox.Action.OK], onClose: (acao) => {
+                                        if (acao == MessageBox.Action.OK) {
+                                            this.aoNavegar(response);
+                                        }
+                                    }
+                                }
+                                )
+                            }
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        });
                 });
+
+
         },
 
         aoNavegar: function (id) {

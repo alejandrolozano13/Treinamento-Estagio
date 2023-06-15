@@ -135,7 +135,6 @@ namespace TreinamentoInvent
 
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //var cadastro = new CadastroDeClientes();
             var cliente = new Cliente();
             
             var file = openFileDialog1.OpenFile();
