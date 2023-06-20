@@ -2,8 +2,9 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
-    "sap/m/MessageBox"
-], function (Controller, JSONModel, History, MessageBox) {
+    "sap/m/MessageBox",
+    "../validacoes/Validacoes"
+], function (Controller, JSONModel, History, MessageBox, Validacoes) {
     'use strict';
 
     return Controller.extend("sap.ui.demo.cadastro.controller.Cadastrar", {
@@ -23,6 +24,8 @@ sap.ui.define([
             }
         },
 
+
+        
 
         _aoCoincidirRota: function () {
             let modeloCliente = {
@@ -47,7 +50,7 @@ sap.ui.define([
                 reader.onerror = (error) => {
                     reject(error);
                 };
-            })
+            });
         },
 
         aoCancelarCadastro: function () {
@@ -61,47 +64,93 @@ sap.ui.define([
             oRouter.navTo("listaclientes", {}, true);
         },
 
-        aoSalvarCliente: function () {
-            debugger
-            let oFileUploader = this.byId("fileUploader");
+        validarNomeInput : function(){
+            let nome = this.byId("campoNome");
+            Validacoes.validarNome(nome.getValue(), nome);
+            return nome.getValueState() == "None";
+        },
+
+        testeNome : async function(){
+            return Validacoes.validarNome();
+        },
+
+        vaildarCampos: function(){
+            let nome = this.byId("campoNome").getValue();
+            let cpf = this.byId("campoCpf").getValue();
+            let tel = this.byId("campoTelefone").getValue();
+            let email = this.byId("campoEmail").getValue();
+
+            this.validarNomeInput();
+            Validacoes.validarNome(nome, this.byId("campoNome"));
+            Validacoes.validarCpf(cpf, this.byId("campoCpf"));
+            Validacoes.validarTelefone(tel, this.byId("campoTelefone"));
+            Validacoes.validarEmail(email, this.byId("campoEmail"));
+
+            return this.validarNomeInput() && this.validarNomeInput()
+        },
+
+        aoSalvarCliente: async function () {
+            let nome = this.byId("campoNome").getValue();
+            let cpf = this.byId("campoCpf").getValue();
+            let tel = this.byId("campoTelefone").getValue();
+            let email = this.byId("campoEmail").getValue();
+
+            // this.validarNomeInput();
+            Validacoes.validarNome(nome, this.byId("campoNome"));
+            Validacoes.validarCpf(cpf, this.byId("campoCpf"));
+            Validacoes.validarTelefone(tel, this.byId("campoTelefone"));
+            Validacoes.validarEmail(email, this.byId("campoEmail"));
+
             let cliente = this.getView().getModel("cliente").getData();
 
-            this.getBase64(oFileUploader.oFileUpload.files[0])
-                .then(base64 => {
-                    let string64 = base64.split(",")[1];
-                    cliente.imagemUsuario = string64;
-                    fetch("api/Cliente", {
-                        method: 'POST',
-                        headers: {
+            let oFileUploader = this.byId("fileUploader");
+            let arquivo = oFileUploader.oFileUpload.files[0];
+            if(!!arquivo){
+                let base64 = await this.getBase64(arquivo);
+                let string64 = base64.split(",")[1];
+                cliente.imagemUsuario = string64;
+            };
 
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(cliente)
-                    })
-                        .then(resp => resp.json())
-                        .then(response => {
-                            if (response.status == 400) {
-                                MessageBox.error("Erro ao cadastrar cliente");
-                            }
-                            else {
-                                MessageBox.information(
-                                    "Cliente criado com sucesso", {
-                                    EmphasizedAction: MessageBox.Action.OK,
-                                    actions: [MessageBox.Action.OK], onClose: (acao) => {
-                                        if (acao == MessageBox.Action.OK) {
-                                            this.aoNavegar(response);
-                                        }
-                                    }
+            if (cliente.data == "" || cliente.data == null) {
+
+                delete cliente.data
+            };
+
+            fetch("api/Cliente", {
+                method: 'POST',
+                headers: {
+
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(cliente)
+            })
+                .then(resp => {
+                    if(resp.status != 200){
+                        return resp.text();
+                    }
+                    return resp.json();
+                })
+                .then(response => {
+                    if (typeof response == "string") {
+                        MessageBox.error(response);
+                    }
+                    else {
+                        MessageBox.information(
+                            "Cliente criado com sucesso", {
+                            EmphasizedAction: MessageBox.Action.OK,
+                            actions: [MessageBox.Action.OK], onClose: (acao) => {
+                                if (acao == MessageBox.Action.OK) {
+                                    this.aoNavegar(response);
                                 }
-                                )
                             }
-                        })
-                        .catch(function (error) {
-                            console.error(error);
-                        });
+                        }
+                        )
+                    }
+                })
+                .catch((error)=> {
+                    MessageBox.error(error);
                 });
-
-
+        
         },
 
         aoNavegar: function (id) {

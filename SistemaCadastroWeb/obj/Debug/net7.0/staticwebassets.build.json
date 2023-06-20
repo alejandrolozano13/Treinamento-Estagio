@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jpZyc+TIEjJBE4TLx4sJBxsYw126SlTTWZSx4SshQAk=",
+  "Hash": "CHoakAhuzf8BU7ab3lyOX6zINt5pZ4n2zaEVyonEA58=",
   "Source": "SistemaCadastroWeb",
   "BasePath": "_content/SistemaCadastroWeb",
   "Mode": "Default",
@@ -119,6 +119,23 @@
       "OriginalItemSpec": "wwwroot\\i18n\\i18n.properties"
     },
     {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\ap090210014404.webp",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/ap090210014404.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\ap090210014404.webp"
+    },
+    {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\foto-messi.jpeg",
       "SourceId": "SistemaCadastroWeb",
       "SourceType": "Discovered",
@@ -134,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\foto-messi.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\haaland.jpeg",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/haaland.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\haaland.jpeg"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Ibra.jpg",
@@ -272,6 +306,23 @@
       "OriginalItemSpec": "wwwroot\\Imagens\\ney.jpg"
     },
     {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\vjr.webp",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/vjr.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\vjr.webp"
+    },
+    {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\xavi.jpg",
       "SourceId": "SistemaCadastroWeb",
       "SourceType": "Discovered",
@@ -321,6 +372,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\manifest.json"
+    },
+    {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\validacoes\\Validacoes.js",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "validacoes/Validacoes.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\validacoes\\Validacoes.js"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\view\\App.view.xml",

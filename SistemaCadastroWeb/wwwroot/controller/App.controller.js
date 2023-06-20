@@ -33,7 +33,7 @@ sap.ui.define([
         },
 
         aoPesquisarClientes : function(oEvent){
-            let sQuery = oEvent.getParameter("query");
+            let sQuery = oEvent.getParameter("newValue");
             let tela = this.getView();
             fetch(`api/Cliente?nome=${sQuery}`)
                 .then(function (response) {

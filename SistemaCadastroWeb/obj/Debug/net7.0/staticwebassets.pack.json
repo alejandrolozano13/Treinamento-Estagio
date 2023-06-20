@@ -17,8 +17,16 @@
       "PackagePath": "staticwebassets\\Imagens\\Killian.jpg"
     },
     {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\ap090210014404.webp",
+      "PackagePath": "staticwebassets\\Imagens\\ap090210014404.webp"
+    },
+    {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\foto-messi.jpeg",
       "PackagePath": "staticwebassets\\Imagens\\foto-messi.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\haaland.jpeg",
+      "PackagePath": "staticwebassets\\Imagens\\haaland.jpeg"
     },
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\messi-fcb.jpeg",
@@ -39,6 +47,10 @@
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\ney.jpg",
       "PackagePath": "staticwebassets\\Imagens\\ney.jpg"
+    },
+    {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\vjr.webp",
+      "PackagePath": "staticwebassets\\Imagens\\vjr.webp"
     },
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\xavi.jpg",
@@ -71,6 +83,10 @@
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\manifest.json",
       "PackagePath": "staticwebassets\\manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\validacoes\\Validacoes.js",
+      "PackagePath": "staticwebassets\\validacoes\\Validacoes.js"
     },
     {
       "Id": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\view\\App.view.xml",

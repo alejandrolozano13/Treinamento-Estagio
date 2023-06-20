@@ -5,7 +5,7 @@ namespace Domain.BancoDeDados
 {
     public interface IRepositorio
     {
-        public List<Cliente> ObterTodos(string? nome);
+        public List<Cliente> ObterTodos(string nome);
 
         public void Criar(Cliente novoCliente);
 
