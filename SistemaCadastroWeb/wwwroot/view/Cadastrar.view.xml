@@ -27,7 +27,7 @@
 
             <Label text="{i18n>dataCadastro}" labelFor="campoData" design="Bold"/>
             <DatePicker id="campoData" change="handleChange" placeholder="{i18n>DataCliente}" class="sapUiSmallMarginBottom" required="true"
-                value="{path: 'cliente>/data', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}"/>
+                value="{path: 'cliente>/data', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}"/>
     
             <Label text="Foto de Perfil" labelFor="fileUploader"/>
             <unified:FileUploader
@@ -37,9 +37,9 @@
                 tooltip="Upload your file to the local server"
                 uploadComplete="handleUploadComplete"
                 value="{cliente>/imagemUsuario}"/>
-            <Button 
+            <!-- <Button 
                 text="Upload file"
-                press="handleUploadPress"/>
+                press="handleUploadPress"/> -->
             
             <Label text="{i18n>requisicoes}" design="Bold"/>
        </layout:VerticalLayout>

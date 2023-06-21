@@ -24,8 +24,23 @@ sap.ui.define([
             }
         },
 
+        validarData: function (data, campoData) {
+            debugger
+            let cliente = this.getView().getModel("cliente").getData();
+            
+            data = cliente.data;
+            data = new Date(data).getFullYear();
+            
+            // if (cliente.data == "" || cliente.data == null) {
 
-        
+            //         delete cliente.data
+            //         // assim força o erro 400
+            // } 
+                return Validacoes.validarData(data, campoData);
+
+        },
+
+
 
         _aoCoincidirRota: function () {
             let modeloCliente = {
@@ -54,103 +69,118 @@ sap.ui.define([
         },
 
         aoCancelarCadastro: function () {
-            this.voltarAoMenu()
-            this.aoLimparCampos()
+            this.voltarAoMenu();
+            this.aoLimparCampos();
+            this.aoDevolverCamposVazios();
         },
 
         voltarAoMenu: function () {
             this.aoLimparCampos()
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("listaclientes", {}, true);
+            this.aoDevolverCamposVazios();
         },
 
-        validarNomeInput : function(){
+        validarNomeInput: function () {
             let nome = this.byId("campoNome");
             Validacoes.validarNome(nome.getValue(), nome);
-            return nome.getValueState() == "None";
+            return nome.getValueState() === "None";
         },
 
-        testeNome : async function(){
-            return Validacoes.validarNome();
+        validarCpf: function () {
+            let cpf = this.byId("campoCpf");
+            Validacoes.validarCpf(cpf.getValue(), cpf);
+            return cpf.getValueState() === "None";
         },
 
-        vaildarCampos: function(){
-            let nome = this.byId("campoNome").getValue();
-            let cpf = this.byId("campoCpf").getValue();
-            let tel = this.byId("campoTelefone").getValue();
-            let email = this.byId("campoEmail").getValue();
-
-            this.validarNomeInput();
-            Validacoes.validarNome(nome, this.byId("campoNome"));
-            Validacoes.validarCpf(cpf, this.byId("campoCpf"));
-            Validacoes.validarTelefone(tel, this.byId("campoTelefone"));
-            Validacoes.validarEmail(email, this.byId("campoEmail"));
-
-            return this.validarNomeInput() && this.validarNomeInput()
+        validarTelefone: function () {
+            let telefone = this.byId("campoTelefone");
+            Validacoes.validarTelefone(telefone.getValue(), telefone);
+            return telefone.getValueState() === "None";
         },
+
+        validarEmail: function () {
+            let email = this.byId("campoEmail");
+            Validacoes.validarEmail(email.getValue(), email);
+            return email.getValueState() === "None";
+        },
+
+        vaildarCampos: function () {
+            let data = this.byId("campoData");
+
+            let lista = []
+            lista.push(this.validarNomeInput());
+            lista.push(this.validarCpf());
+            lista.push(this.validarEmail());
+            lista.push(this.validarTelefone());
+            lista.push(this.validarData(data.getValue(), data));
+
+            return !lista.includes(false);
+        },
+
+        aoDevolverCamposVazios: function () {
+            this.byId("campoNome").setValueState("None");
+            this.byId("campoCpf").setValueState("None");
+            this.byId("campoEmail").setValueState("None");
+            this.byId("campoTelefone").setValueState("None");
+            this.byId("campoData").setValueState("None");
+        },
+
+
 
         aoSalvarCliente: async function () {
-            let nome = this.byId("campoNome").getValue();
-            let cpf = this.byId("campoCpf").getValue();
-            let tel = this.byId("campoTelefone").getValue();
-            let email = this.byId("campoEmail").getValue();
+            debugger
+            if (this.vaildarCampos()) {
+                let cliente = this.getView().getModel("cliente").getData();
 
-            // this.validarNomeInput();
-            Validacoes.validarNome(nome, this.byId("campoNome"));
-            Validacoes.validarCpf(cpf, this.byId("campoCpf"));
-            Validacoes.validarTelefone(tel, this.byId("campoTelefone"));
-            Validacoes.validarEmail(email, this.byId("campoEmail"));
+                
 
-            let cliente = this.getView().getModel("cliente").getData();
+                let oFileUploader = this.byId("fileUploader");
+                let arquivo = oFileUploader.oFileUpload.files[0];
+                if (!!arquivo) {
+                    let base64 = await this.getBase64(arquivo);
+                    let string64 = base64.split(",")[1];
+                    cliente.imagemUsuario = string64;
+                };
 
-            let oFileUploader = this.byId("fileUploader");
-            let arquivo = oFileUploader.oFileUpload.files[0];
-            if(!!arquivo){
-                let base64 = await this.getBase64(arquivo);
-                let string64 = base64.split(",")[1];
-                cliente.imagemUsuario = string64;
-            };
+                fetch("api/Cliente", {
+                    method: 'POST',
+                    headers: {
 
-            if (cliente.data == "" || cliente.data == null) {
-
-                delete cliente.data
-            };
-
-            fetch("api/Cliente", {
-                method: 'POST',
-                headers: {
-
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(cliente)
-            })
-                .then(resp => {
-                    if(resp.status != 200){
-                        return resp.text();
-                    }
-                    return resp.json();
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(cliente)
                 })
-                .then(response => {
-                    if (typeof response == "string") {
-                        MessageBox.error(response);
-                    }
-                    else {
-                        MessageBox.information(
-                            "Cliente criado com sucesso", {
-                            EmphasizedAction: MessageBox.Action.OK,
-                            actions: [MessageBox.Action.OK], onClose: (acao) => {
-                                if (acao == MessageBox.Action.OK) {
-                                    this.aoNavegar(response);
+                    .then(resp => {
+                        if (resp.status != 200) {
+                            return resp.text();
+                        }
+                        return resp.json();
+                    })
+                    .then(response => {
+                        if (typeof response == "string") {
+                            MessageBox.error(response);
+                        }
+                        else {
+                            MessageBox.information(
+                                "Cliente criado com sucesso", {
+                                EmphasizedAction: MessageBox.Action.OK,
+                                actions: [MessageBox.Action.OK], onClose: (acao) => {
+                                    if (acao == MessageBox.Action.OK) {
+                                        this.aoNavegar(response);
+                                    }
                                 }
                             }
+                            )
                         }
-                        )
-                    }
-                })
-                .catch((error)=> {
-                    MessageBox.error(error);
-                });
-        
+                    })
+                    .catch((error) => {
+                        MessageBox.error(error);
+                    });
+            }
+            else {
+                console.log("oi");
+            }
         },
 
         aoNavegar: function (id) {

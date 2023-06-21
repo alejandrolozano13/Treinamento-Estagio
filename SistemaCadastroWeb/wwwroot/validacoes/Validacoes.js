@@ -5,7 +5,6 @@ sap.ui.define([
 
     return {
         validarNome: function (nome, campoNome) {
-            //debugger
             const regex = /^[a-záàâãéèêíïóôõöúçñA-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+$/
             let erro = "Erro, nome não pode ser nulo";
             let erroo = "Erro, nome não pode conter número";
@@ -22,7 +21,6 @@ sap.ui.define([
             }
         },
         validarCpf: function (cpf, campoCpf) {
-
             let cpfCorrigido = cpf.replace(/[^0-9]/g, '');
             let erro = "Erro, CPF incompleto";
             let erroo = "Erro, CPF não pode estar vazio";
@@ -35,9 +33,9 @@ sap.ui.define([
                 if (cpfCorrigido.length < 11 || !cpfValido) {
                     return campoCpf.setValueState(sap.ui.core.ValueState.Error), campoCpf.setValueStateText(erro);
                 }
-                else {
-                    return campoCpf.setValueState(sap.ui.core.ValueState.None);
-                }
+                // else {
+                //     return campoCpf.setValueState(sap.ui.core.ValueState.None);
+                // }
             }
         },
         validarTelefone: function (telefone, campoTelefone) {
@@ -85,18 +83,30 @@ sap.ui.define([
             return erros;
         },
         validarEmail: function(email, campoEmail){
-            debugger
             let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             let emailInvalido = "E-mail inválido";
             
             if(email.match(validRegex)){
                 return campoEmail.setValueState(sap.ui.core.ValueState.None);
             } else{
-                return campoEmail.setValueState(sap.ui.core.ValueState.Error), campoEmail.setValueStateText(emailInvalido);;
+                return campoEmail.setValueState(sap.ui.core.ValueState.Error), campoEmail.setValueStateText(emailInvalido);
             }
         },
-        validarData: function(data, campoData){
-            // verificar se tem como remover o campo input da data e se tem como escolher direto do datepicker
+        validarData: function(datavalida, campoData){
+            debugger
+            let dataAtual = new Date(Date.now()).getFullYear()
+           
+            if( dataAtual - datavalida < 18 ) 
+            {
+                return campoData.setValueState(sap.ui.core.ValueState.Error), campoData.setValueStateText("Precisa ter mais de 18 anos.");
+            }
+            else{
+                if(!!datavalida || isNaN(datavalida)){
+                    return campoData.setValueState(sap.ui.core.ValueState.Error), campoData.setValueStateText("Preencha a data.");
+                } else{
+                    return campoData.setValueState(sap.ui.core.ValueState.None);
+                }
+            }
         }
     };
 });
