@@ -11,6 +11,12 @@ sap.ui.define([
         onInit: function () {
             let oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("cadastrar").attachPatternMatched(this._aoCoincidirRota, this);
+            
+            const id = oRouter.oHashChanger.hash.split('/')[1];
+
+            if(id){
+                this.carregarCliente(id);
+            }
         },
 
         handleUploadComplete: function (oEvent) {
@@ -25,22 +31,14 @@ sap.ui.define([
         },
 
         validarData: function (data, campoData) {
-            debugger
             let cliente = this.getView().getModel("cliente").getData();
             
             data = cliente.data;
             data = new Date(data).getFullYear();
             
-            // if (cliente.data == "" || cliente.data == null) {
-
-            //         delete cliente.data
-            //         // assim força o erro 400
-            // } 
-                return Validacoes.validarData(data, campoData);
+            return Validacoes.validarData(data, campoData);
 
         },
-
-
 
         _aoCoincidirRota: function () {
             let modeloCliente = {
@@ -126,10 +124,39 @@ sap.ui.define([
             this.byId("campoData").setValueState("None");
         },
 
+        carregarCliente: function(id){
+            let tela = this.getView();
 
+            fetch(`api/Cliente/${id}`)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then((data) => {
+
+                    let arquivo = this.dataURLtoFile(data.imagemUsuario, "imagem.jpeg");
+                    data.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
+                    tela.setModel(new JSONModel(data), "cliente")
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        },
+
+        dataCreateObject(file){
+            return URL.createObjectURL(file);
+        },
+
+        dataURLtoFile(bse64, filename) {
+            let bstr = atob(bse64)
+            let n = bstr.length
+            let u8arr = new Uint8Array(n)
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, { type: "image/jpeg" });
+        },
 
         aoSalvarCliente: async function () {
-            debugger
             if (this.vaildarCampos()) {
                 let cliente = this.getView().getModel("cliente").getData();
 
@@ -179,7 +206,7 @@ sap.ui.define([
                     });
             }
             else {
-                console.log("oi");
+                MessageBox.error("Verifique as informações por gentileza, informações inválidas.");
             }
         },
 

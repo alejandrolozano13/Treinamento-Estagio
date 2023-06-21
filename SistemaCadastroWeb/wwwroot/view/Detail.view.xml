@@ -7,10 +7,12 @@
         <headerContent>
             <Button 
                 text="{i18n>editar}"
-                icon="sap-icon://edit"/>
+                icon="sap-icon://edit"
+                press=".aoEditarCliente"/>
             <Button 
                 text="Remover Cliente"
-                icon="sap-icon://delete"/>
+                icon="sap-icon://delete"
+                press=".aoRemoverCliente"/>
         </headerContent>
         <Image src="{clientes>imagemUsuarioTraduzido}" width="1600px" height="425px"/>
         <ObjectHeader            

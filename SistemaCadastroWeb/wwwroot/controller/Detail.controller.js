@@ -11,10 +11,22 @@ sap.ui.define([
             oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
         },
         _onObjectMatched: function (oEvent) {
+            console.log(oEvent);
+            debugger
+
+
+
             let id = oEvent.getParameter("arguments").id
-            this._obtendoPorId(id);
+            this._obterPorId(id);
         },
-        _obtendoPorId: function (id) {
+        aoEditarCliente: function(){
+            let cliente = this.getView().getModel("clientes").getData();
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("editarCliente", {
+                id: cliente.id
+            });
+        },
+        _obterPorId: function (id) {
 
             let tela = this.getView();
 
@@ -25,22 +37,15 @@ sap.ui.define([
                 .then((data) => {
                     let arquivo = this.dataURLtoFile(data.imagemUsuario, "imagem.jpeg");
                     data.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
-                    tela.setModel(new JSONModel(data), "clientes")
+                    tela.setModel(new JSONModel(data), "cliente")
                 })
                 .catch(function (error) {
                     console.error(error);
                 });
         },
         aoRetroceder: function () {
-            var oHistory = History.getInstance();
-            var sPreviousHash = oHistory.getPreviousHash();
-
-            // if (sPreviousHash !== undefined) {
-            //     window.history.go(-1);
-            // } else {
-                var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("listaclientes", {}, true);
-            //}
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("listaclientes", {}, true);
         },
 
         dataURLtoFile(bse64, filename) {
