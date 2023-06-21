@@ -24,6 +24,6 @@ namespace Domain.Modelo
         public DateTime Data { get; set; }
 
         [Column("Imagem_Usuario"), Nullable]
-        public string ImagemUsuario { get; set; }
+        public string? ImagemUsuario { get; set; }
     }
 }

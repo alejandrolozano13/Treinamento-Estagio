@@ -50,9 +50,9 @@
 					"target": "detail"
 				},
 				{
-					"pattern": "cadastro",
-					"name": "cadastro",
-					"target": "cadastro"
+					"pattern": "cadastrar",
+					"name": "cadastrar",
+					"target": "cadastrar"
 				}
 			],
 			"targets": {
@@ -64,9 +64,9 @@
 					"id": "detail",
 					"name": "Detail"
 				},
-				"cadastro": {
-					"id": "cadastro",
-					"name": "Cadastro"
+				"cadastrar": {
+					"id": "cadastrar",
+					"name": "Cadastrar"
 				}
 			}
 		}

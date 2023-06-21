@@ -7,6 +7,11 @@ sap.ui.define([
     "use strict";
     return Controller.extend("sap.ui.demo.cadastro.controller.App", {
         onInit: function () {
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.getRoute("listaclientes").attachPatternMatched(this.aoCoincidirRota, this);
+        },
+        aoCoincidirRota : function(){
+            
             let tela = this.getView();
             fetch("api/Cliente")
                 .then(function (response) {
@@ -14,8 +19,10 @@ sap.ui.define([
                 })
                 .then((dados) => {
                     dados.forEach(cliente=>{
-                        let arquivo = this.dataURLtoFile(cliente.imagemUsuario, "imagem.jpeg");
-                        cliente.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
+                        if(cliente.imagemUsuario){
+                            let arquivo = this.dataURLtoFile(cliente.imagemUsuario, "imagem.jpeg")
+                            cliente.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
+                        }
                     })
                     
                     tela.setModel(new JSONModel(dados), "clientes")
@@ -24,6 +31,7 @@ sap.ui.define([
                     console.error(error);
                 });
         },
+
         aoPesquisarClientes : function(oEvent){
             let sQuery = oEvent.getParameter("query");
             let tela = this.getView();
@@ -31,14 +39,18 @@ sap.ui.define([
                 .then(function (response) {
                     return response.json();
                 })
-                .then(function (data) {
-                    tela.setModel(new JSONModel(data), "clientes")
+                .then((dados) => {
+                    dados.forEach(cliente=> {
+                        let arquivo = this.dataURLtoFile(cliente.imagemUsuario, "imagem.jpeg");
+                        cliente.imagemUsuarioTraduzido = this.dataCreateObject(arquivo);
+                    })
+                    tela.setModel(new JSONModel(dados), "clientes")
                 })
                 .catch(function (error) {
                     console.error(error);
                 });
         },
-
+        
         buscaDetalhes : function(oEvent){
             let cliente = oEvent
                 .getSource()
@@ -52,7 +64,7 @@ sap.ui.define([
 
         aoAdicionarCliente : function(oEvent){
             let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("cadastro");
+            oRouter.navTo("cadastrar");
         },
 
         dataURLtoFile(bse64, filename) {

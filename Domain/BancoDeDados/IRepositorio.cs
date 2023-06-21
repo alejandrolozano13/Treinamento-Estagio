@@ -17,5 +17,7 @@ namespace Domain.BancoDeDados
 
         public bool ValidaCPF(string cpf);
 
+        public Cliente pesquisarPeloCpf(string cpf);
+
     }
 }

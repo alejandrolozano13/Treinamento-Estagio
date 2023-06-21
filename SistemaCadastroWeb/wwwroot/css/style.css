@@ -1,10 +1,18 @@
-.myAppDemoWT .myCustomText {
+.myAppDemoWT .fundo {
 	display: inline-block;
 	font-weight: bold;
     text-align: center;
 }
 
+.fundo{
+    background-color: red;
+}
+
 .TextoTitulo {
     font-style: italic;
+}
+
+.TituloPage{
+    text-align: center;
 }
 
