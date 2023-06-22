@@ -55,7 +55,7 @@
 					"target": "cadastrar"
 				},
 				{
-					"pattern":"cadastrar/{id}",
+					"pattern":"editarCliente/{id}",
 					"name":"editarCliente",
 					"target":"cadastrar"
 				}

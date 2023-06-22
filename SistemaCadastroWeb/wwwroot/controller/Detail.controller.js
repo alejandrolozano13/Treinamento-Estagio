@@ -11,11 +11,6 @@ sap.ui.define([
             oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
         },
         _onObjectMatched: function (oEvent) {
-            console.log(oEvent);
-            debugger
-
-
-
             let id = oEvent.getParameter("arguments").id
             this._obterPorId(id);
         },
@@ -37,7 +32,7 @@ sap.ui.define([
                 .then((data) => {
                     let arquivo = this.dataURLtoFile(data.imagemUsuario, "imagem.jpeg");
                     data.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
-                    tela.setModel(new JSONModel(data), "cliente")
+                    tela.setModel(new JSONModel(data), "clientes")
                 })
                 .catch(function (error) {
                     console.error(error);

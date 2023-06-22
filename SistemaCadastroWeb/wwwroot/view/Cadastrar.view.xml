@@ -32,6 +32,7 @@
             <MaskInput mask="99 9 9999-9999" id="campoTelefone" required="true" value="{cliente>/telefone}" placeholder="{i18n>TelefoneCliente}"/>
     
             <Label text="Foto de Perfil" labelFor="fileUploader"/>
+            <HBox >
             <unified:FileUploader
                 id="fileUploader"
                 name="myFileUpload"
@@ -39,6 +40,11 @@
                 tooltip="Upload your file to the local server"
                 uploadComplete="handleUploadComplete"
                 value="{cliente>/imagemUsuario}"/>
+                
+                <ToolbarSpacer />
+                <Button icon="sap-icon://delete" type="Reject" class="sapUiTinyMarginBegin" press=".aoLimparImagem"/>
+                <ToolbarSpacer />
+            </HBox>
             
             <Label text="{i18n>requisicoes}" design="Bold"/>
        </layout:VerticalLayout>
