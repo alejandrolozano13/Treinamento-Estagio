@@ -12,7 +12,7 @@ xmlns="sap.m">
         <Button text="{i18n>AdicionarCliente}" icon="sap-icon://add-employee" press=".aoAdicionarCliente"/>
         <ToolbarSpacer/>
         <ToolbarSpacer/>
-        <SearchField width= "60%" search=".aoPesquisarClientes" placeholder="{i18n>PesquisaCliente}"/>
+        <SearchField width= "60%" liveChange=".aoPesquisarClientes" placeholder="{i18n>PesquisaCliente}"/>
     </Toolbar>
 </headerToolbar>
 <CustomListItem class="sapUiTinyMargin" type="Navigation" press=".buscaDetalhes">
