@@ -3,6 +3,7 @@
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
+    <Shell >
     <Page
         title="{i18n>tituloCadastro}"
         navButtonPress=".voltarAoMenu"
@@ -49,4 +50,5 @@
             <Label text="{i18n>requisicoes}" design="Bold"/>
        </layout:VerticalLayout>
     </Page>
+    </Shell>
 </mvc:View>

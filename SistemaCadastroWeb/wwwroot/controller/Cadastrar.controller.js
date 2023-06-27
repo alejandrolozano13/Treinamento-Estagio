@@ -11,28 +11,30 @@ sap.ui.define([
     return Controller.extend("sap.ui.demo.cadastro.controller.Cadastrar", {
         onInit: function () {
             let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.getRoute("cadastrar").attachPatternMatched(this._aoCoincidirRota, this);
+            oRouter.getRoute("cadastrarCliente").attachPatternMatched(this._aoCoincidirRota, this);
             oRouter.getRoute("editarCliente").attachPatternMatched(this._aoCoincidirRotaDeEdicao, this);
         },
-
-        handleUploadComplete: function (oEvent) {
-            let sResponse = oEvent.getParameter("response"),
-                iHttpStatusCode = parseInt(/\d{3}/.exec(sResponse)[0]),
-                sMessage;
-
-            if (sResponse) {
-                sMessage = iHttpStatusCode === 200 ? sResponse + " (Upload Success)" : sResponse + " (Upload Error)";
-                MessageToast.show(sMessage);
+        
+        modeloClientes: function(JSONModel){
+            const nomeModelo = "cliente";
+            
+            if (!JSONModel){
+                return this.getView().getModel(nomeModelo);
+            } else{
+                return this.getView().setModel(JSONModel, nomeModelo);   
             }
         },
 
         validarData: function (data, campoData) {
-            let cliente = this.getView().getModel("cliente").getData();
-            data = cliente.data;
-            data = new Date(data).getFullYear();
+            let cliente = this.modeloClientes().getData();
+            if (cliente.data == "" || cliente.data == null) {
+                delete cliente.data;
+            } else {
+                data = cliente.data;
+                data = new Date(data).getFullYear();
+            }
             return Validacoes.validarData(data, campoData);
         },
-
         _aoCoincidirRota: function () {
             let modeloCliente = {
                 nome: "",
@@ -42,15 +44,15 @@ sap.ui.define([
                 telefone: "",
                 imagemUsuario: ""
             }
-            this.getView().setModel(new JSONModel(modeloCliente), "cliente");
+            this.modeloClientes(new JSONModel(modeloCliente));
         },
 
         _aoCoincidirRotaDeEdicao(oEvent) {
             let id = oEvent.getParameter("arguments").id;
             this.carregarCliente(id);
         },
-
-        getBase64(file) {
+        
+        pegandoBase64(file) {
             return new Promise((resolve, reject) => {
                 let reader = new FileReader();
                 reader.readAsDataURL(file);
@@ -65,23 +67,23 @@ sap.ui.define([
 
         aoCancelarCadastro: function () {
             this.voltarAoMenu();
-            this.aoLimparCampos();
-            this.aoDevolverCamposVazios();
+            this.limpandoCampos();
+            this.devolvendoCamposVazios();
         },
 
         voltarAoMenu: function () {
-            this.aoLimparCampos()
+            this.limpandoCampos()
             var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("listaclientes", {}, true);
-            this.aoDevolverCamposVazios();
+            oRouter.navTo("listaDeclientes", {}, true);
+            this.devolvendoCamposVazios();
         },
-
+        
         validarNomeInput: function () {
             let nome = this.byId("campoNome");
             Validacoes.validarNome(nome.getValue(), nome);
             return nome.getValueState() === "None";
         },
-
+        
         validarCpf: function () {
             let cpf = this.byId("campoCpf");
             Validacoes.validarCpf(cpf.getValue(), cpf);
@@ -93,7 +95,7 @@ sap.ui.define([
             Validacoes.validarTelefone(telefone.getValue(), telefone);
             return telefone.getValueState() === "None";
         },
-
+        
         validarEmail: function () {
             let email = this.byId("campoEmail");
             Validacoes.validarEmail(email.getValue(), email);
@@ -108,41 +110,40 @@ sap.ui.define([
             lista.push(this.validarEmail());
             lista.push(this.validarTelefone());
             lista.push(this.validarData(data.getValue(), data));
-
+            
             return !lista.includes(false);
         },
-
-        aoDevolverCamposVazios: function () {
-            this.byId("campoNome").setValueState("None");
-            this.byId("campoCpf").setValueState("None");
-            this.byId("campoEmail").setValueState("None");
-            this.byId("campoTelefone").setValueState("None");
-            this.byId("campoData").setValueState("None");
+        
+        devolvendoCamposVazios: function () {
+            const campoNulo = "None";
+            this.byId("campoNome").setValueState(campoNulo);
+            this.byId("campoCpf").setValueState(campoNulo);
+            this.byId("campoEmail").setValueState(campoNulo);
+            this.byId("campoTelefone").setValueState(campoNulo);
+            this.byId("campoData").setValueState(campoNulo);
         },
 
         carregarCliente: function (id) {
-            let tela = this.getView();
-
             fetch(`api/Cliente/${id}`)
                 .then(function (response) {
                     return response.json();
                 })
                 .then((data) => {
-                    let arquivo = this.dataURLtoFile(data.imagemUsuario, "imagem.jpeg");
-                    data.imagemUsuarioTraduzido = this.dataCreateObject(arquivo)
+                    let arquivo = this.converteCaminhoParaImagem(data.imagemUsuario, "imagem.jpeg");
+                    data.imagemUsuarioTraduzido = this.criandoArquivo(arquivo);
                     data.data = new Date(data.data);
-                    tela.setModel(new JSONModel(data), "cliente")
+                    this.modeloClientes(new JSONModel(data));
                 })
                 .catch(function (error) {
                     console.error(error);
                 });
         },
 
-        dataCreateObject(file) {
+        criandoArquivo(file) {
             return URL.createObjectURL(file);
         },
 
-        dataURLtoFile(bse64, filename) {
+        converteCaminhoParaImagem(bse64, filename) {
             let bstr = atob(bse64)
             let n = bstr.length
             let u8arr = new Uint8Array(n)
@@ -151,73 +152,83 @@ sap.ui.define([
             }
             return new File([u8arr], filename, { type: "image/jpeg" });
         },
-
+        
         aoCarregarImagem: async function () {
             let oFileUploader = this.byId("fileUploader");
             let arquivo = oFileUploader.oFileUpload.files[0];
             if (!!arquivo) {
-                let base64 = await this.getBase64(arquivo);
+                let base64 = await this.pegandoBase64(arquivo);
                 let string64 = base64.split(",")[1];
                 return string64;
             };
         },
 
+
         aoSalvarCliente: async function () {
-            let cliente = this.getView().getModel("cliente").getData();
-            if (this.vaildarCampos() && cliente.id) {
+            let cliente = this.modeloClientes().getData();
+            if (cliente.id) {
+                this.vaildarCampos()
                 cliente.imagemUsuario = await this.aoCarregarImagem();
                 this.fetchEditar();
             }
             else {
-                if (this.vaildarCampos()) {
-                    cliente.imagemUsuario = await this.aoCarregarImagem();
-                    this.fetchSalvar()
-                } else {
-                    MessageBox.error("Verifique as informações por gentileza, informações inválidas.");
-                }
+                this.vaildarCampos()
+                cliente.imagemUsuario = await this.aoCarregarImagem();
+                this.fetchSalvar()
             }
         },
 
-        aoLimparImagem: function(){
-            let cliente = this.getView().getModel("cliente").getData();
+        aoLimparImagem: function () {
+            let cliente = this.modeloClientes().getData();
             cliente.imagemUsuario = null;
             this.byId("fileUploader").setValue("");
         },
 
         fetchSalvar() {
-            let cliente = this.getView().getModel("cliente").getData();
+            const campoCpf = this.byId("campoCpf");
+            let mensagemData = "";
+            let cliente = this.modeloClientes().getData();
+            if (cliente.data == null || cliente.data == "") { mensagemData = "Data Inválida" }
             fetch("api/Cliente", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(cliente)
-            }).then(resp => {
-                if (resp.status != 200) {
-                    return resp.text();
-                }
-                return resp.json();
-            }).then(response => {
-                if (typeof response == "string") {
-                    MessageBox.error(response);
-                } else {
-                    MessageBox.information("Ciente atualizado com sucesso", {
-                        EmphasizedAction: MessageBox.Action.OK,
-                        actions: [MessageBox.Action.OK], onClose: (acao) => {
-                            if (acao == MessageBox.Action.OK) {
-                                this.aoNavegar(response);
+            })
+                .then(resp => {
+                    if (resp.status != 200) {
+                        return resp.text();
+                    }
+                    return resp.json();
+                }).then(response => {                    
+                    if (typeof response == "string") {
+                        MessageBox.error(response + "\n" + mensagemData);
+                    } else {
+                        MessageBox.information("Ciente adicionado com sucesso", {
+                            EmphasizedAction: MessageBox.Action.OK,
+                            actions: [MessageBox.Action.OK], onClose: (acao) => {
+                                if (acao == MessageBox.Action.OK) {
+                                    this.navegandoParaDetalhes(response);
+                                }
                             }
-                        }
-                    })
-                }
-            }).catch((error) => {
-                MessageBox.error(error);
-            });
+                        })
+                    }
+                    if (typeof response == "string" && response.includes("CPF já existe!")) {
+                        Validacoes.validandoCpfExistente(campoCpf);
+                    }
+
+                    if(typeof response == "string" && response.includes("CPF inválido")){
+                        Validacoes.validarCpfValido(campoCpf);
+                    }
+                }).catch((error) => {
+                    MessageBox.error(error);
+                });
         },
 
         fetchEditar() {
-            // BusyIndicator.show()
-            let cliente = this.getView().getModel("cliente").getData();
+            BusyIndicator.show()
+            let cliente = this.modeloClientes().getData();
             fetch(`api/Cliente/${cliente.id}`, {
                 method: 'PUT',
                 headers: {
@@ -228,7 +239,7 @@ sap.ui.define([
                 if (resp.status != 200) {
                     return resp.text();
                 }
-                // BusyIndicator.hide();
+                BusyIndicator.hide();
                 return resp.json();
             }).then(response => {
                 if (typeof response == "string") {
@@ -238,38 +249,42 @@ sap.ui.define([
                         EmphasizedAction: MessageBox.Action.OK,
                         actions: [MessageBox.Action.OK], onClose: (acao) => {
                             if (acao == MessageBox.Action.OK) {
-                                this.aoNavegar(cliente.id);
+                                this.navegandoParaDetalhes(cliente.id);
                             }
                         }
                     })
+                }
+                if(typeof response == "string" && response.includes("CPF inválido")){
+                    this.byId("campoCpf").setValueState(sap.ui.core.ValueState.Error);
                 }
             }).catch((error) => {
                 MessageBox.error(error);
             });
         },
 
-        aoNavegar: function (id) {
-            BusyIndicator.show(0)
-            
+        navegandoParaDetalhes: function (id) {
+            BusyIndicator.show()
+
             let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("detail", {
+            oRouter.navTo("detalhesDoCliente", {
                 id: id
             });
             BusyIndicator.hide();
         },
 
-        aoLimparCampos() {
+        limpandoCampos() {
+            const vazio = "";
             let nome = this.byId("campoNome");
             let cpf = this.byId("campoCpf");
             let email = this.byId("campoEmail");
             let telefone = this.byId("campoTelefone");
             let data = this.byId("campoData");
 
-            nome.setValue("");
-            cpf.setValue("");
-            email.setValue("");
-            telefone.setValue("");
-            data.setValue("");
+            nome.setValue(vazio);
+            cpf.setValue(vazio);
+            email.setValue(vazio);
+            telefone.setValue(vazio);
+            data.setValue(vazio);
         },
     })
 });
