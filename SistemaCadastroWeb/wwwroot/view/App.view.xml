@@ -6,7 +6,7 @@
 		xmlns:tnt="sap.tnt">
 		<!-- <Shell> -->
 		<tnt:ToolHeader>
-			<Text text="MANITOM@RK - CINEMA">
+			<Text text="{i18n>TituloAplicativo}">
 				<layoutData>
 					<OverflowToolbarLayoutData priority="Disappear"  />
 				</layoutData>

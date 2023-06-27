@@ -1,11 +1,10 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/routing/History",
     "sap/m/MessageBox",
     "../validacoes/Validacoes",
     "sap/ui/core/BusyIndicator"
-], function (Controller, JSONModel, History, MessageBox, Validacoes, BusyIndicator) {
+], function (Controller, JSONModel, MessageBox, Validacoes, BusyIndicator) {
     'use strict';
 
     return Controller.extend("sap.ui.demo.cadastro.controller.Cadastrar", {
@@ -15,7 +14,7 @@ sap.ui.define([
             oRouter.getRoute("editarCliente").attachPatternMatched(this._aoCoincidirRotaDeEdicao, this);
         },
         
-        modeloClientes: function(JSONModel){
+        _modeloClientes: function(JSONModel){
             const nomeModelo = "cliente";
             
             if (!JSONModel){
@@ -25,8 +24,8 @@ sap.ui.define([
             }
         },
 
-        validarData: function (data, campoData) {
-            let cliente = this.modeloClientes().getData();
+        _validarData: function (data, campoData) {
+            let cliente = this._modeloClientes().getData();
             if (cliente.data == "" || cliente.data == null) {
                 delete cliente.data;
             } else {
@@ -44,7 +43,7 @@ sap.ui.define([
                 telefone: "",
                 imagemUsuario: ""
             }
-            this.modeloClientes(new JSONModel(modeloCliente));
+            this._modeloClientes(new JSONModel(modeloCliente));
         },
 
         _aoCoincidirRotaDeEdicao(oEvent) {
@@ -52,7 +51,7 @@ sap.ui.define([
             this.carregarCliente(id);
         },
         
-        pegandoBase64(file) {
+        _pegandoBase64(file) {
             return new Promise((resolve, reject) => {
                 let reader = new FileReader();
                 reader.readAsDataURL(file);
@@ -66,55 +65,55 @@ sap.ui.define([
         },
 
         aoCancelarCadastro: function () {
-            this.voltarAoMenu();
-            this.limpandoCampos();
-            this.devolvendoCamposVazios();
+            this.aoVoltarAoMenu();
+            this._limpandoCampos();
+            this._devolvendoCamposVazios();
         },
 
-        voltarAoMenu: function () {
-            this.limpandoCampos()
+        aoVoltarAoMenu: function () {
+            this._limpandoCampos()
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("listaDeclientes", {}, true);
-            this.devolvendoCamposVazios();
+            this._devolvendoCamposVazios();
         },
         
-        validarNomeInput: function () {
+        _validarNomeInput: function () {
             let nome = this.byId("campoNome");
             Validacoes.validarNome(nome.getValue(), nome);
             return nome.getValueState() === "None";
         },
         
-        validarCpf: function () {
+        _validarCpf: function () {
             let cpf = this.byId("campoCpf");
             Validacoes.validarCpf(cpf.getValue(), cpf);
             return cpf.getValueState() === "None";
         },
 
-        validarTelefone: function () {
+        _validarTelefone: function () {
             let telefone = this.byId("campoTelefone");
             Validacoes.validarTelefone(telefone.getValue(), telefone);
             return telefone.getValueState() === "None";
         },
         
-        validarEmail: function () {
+        _validarEmail: function () {
             let email = this.byId("campoEmail");
             Validacoes.validarEmail(email.getValue(), email);
             return email.getValueState() === "None";
         },
 
-        vaildarCampos: function () {
+        _validarCampos: function () {
             let data = this.byId("campoData");
             let lista = []
-            lista.push(this.validarNomeInput());
-            lista.push(this.validarCpf());
-            lista.push(this.validarEmail());
-            lista.push(this.validarTelefone());
-            lista.push(this.validarData(data.getValue(), data));
+            lista.push(this._validarNomeInput());
+            lista.push(this._validarCpf());
+            lista.push(this._validarEmail());
+            lista.push(this._validarTelefone());
+            lista.push(this._validarData(data.getValue(), data));
             
             return !lista.includes(false);
         },
         
-        devolvendoCamposVazios: function () {
+        _devolvendoCamposVazios: function () {
             const campoNulo = "None";
             this.byId("campoNome").setValueState(campoNulo);
             this.byId("campoCpf").setValueState(campoNulo);
@@ -129,21 +128,21 @@ sap.ui.define([
                     return response.json();
                 })
                 .then((data) => {
-                    let arquivo = this.converteCaminhoParaImagem(data.imagemUsuario, "imagem.jpeg");
-                    data.imagemUsuarioTraduzido = this.criandoArquivo(arquivo);
+                    let arquivo = this._converteCaminhoParaImagem(data.imagemUsuario, "imagem.jpeg");
+                    data.imagemUsuarioTraduzido = this._criandoArquivo(arquivo);
                     data.data = new Date(data.data);
-                    this.modeloClientes(new JSONModel(data));
+                    this._modeloClientes(new JSONModel(data));
                 })
                 .catch(function (error) {
                     console.error(error);
                 });
         },
 
-        criandoArquivo(file) {
+        _criandoArquivo(file) {
             return URL.createObjectURL(file);
         },
 
-        converteCaminhoParaImagem(bse64, filename) {
+        _converteCaminhoParaImagem(bse64, filename) {
             let bstr = atob(bse64)
             let n = bstr.length
             let u8arr = new Uint8Array(n)
@@ -153,11 +152,11 @@ sap.ui.define([
             return new File([u8arr], filename, { type: "image/jpeg" });
         },
         
-        aoCarregarImagem: async function () {
+        _aoCarregarImagem: async function () {
             let oFileUploader = this.byId("fileUploader");
             let arquivo = oFileUploader.oFileUpload.files[0];
             if (!!arquivo) {
-                let base64 = await this.pegandoBase64(arquivo);
+                let base64 = await this._pegandoBase64(arquivo);
                 let string64 = base64.split(",")[1];
                 return string64;
             };
@@ -165,29 +164,29 @@ sap.ui.define([
 
 
         aoSalvarCliente: async function () {
-            let cliente = this.modeloClientes().getData();
+            let cliente = this._modeloClientes().getData();
             if (cliente.id) {
-                this.vaildarCampos()
-                cliente.imagemUsuario = await this.aoCarregarImagem();
-                this.fetchEditar();
+                this._validarCampos()
+                cliente.imagemUsuario = await this._aoCarregarImagem();
+                this._fetchEditar();
             }
             else {
-                this.vaildarCampos()
-                cliente.imagemUsuario = await this.aoCarregarImagem();
-                this.fetchSalvar()
+                this._validarCampos()
+                cliente.imagemUsuario = await this._aoCarregarImagem();
+                this._fetchSalvar()
             }
         },
 
         aoLimparImagem: function () {
-            let cliente = this.modeloClientes().getData();
+            let cliente = this._modeloClientes().getData();
             cliente.imagemUsuario = null;
             this.byId("fileUploader").setValue("");
         },
 
-        fetchSalvar() {
+        _fetchSalvar() {
             const campoCpf = this.byId("campoCpf");
             let mensagemData = "";
-            let cliente = this.modeloClientes().getData();
+            let cliente = this._modeloClientes().getData();
             if (cliente.data == null || cliente.data == "") { mensagemData = "Data Inválida" }
             fetch("api/Cliente", {
                 method: 'POST',
@@ -209,7 +208,7 @@ sap.ui.define([
                             EmphasizedAction: MessageBox.Action.OK,
                             actions: [MessageBox.Action.OK], onClose: (acao) => {
                                 if (acao == MessageBox.Action.OK) {
-                                    this.navegandoParaDetalhes(response);
+                                    this._navegandoParaDetalhes(response);
                                 }
                             }
                         })
@@ -226,9 +225,9 @@ sap.ui.define([
                 });
         },
 
-        fetchEditar() {
+        _fetchEditar() {
             BusyIndicator.show()
-            let cliente = this.modeloClientes().getData();
+            let cliente = this._modeloClientes().getData();
             fetch(`api/Cliente/${cliente.id}`, {
                 method: 'PUT',
                 headers: {
@@ -249,7 +248,7 @@ sap.ui.define([
                         EmphasizedAction: MessageBox.Action.OK,
                         actions: [MessageBox.Action.OK], onClose: (acao) => {
                             if (acao == MessageBox.Action.OK) {
-                                this.navegandoParaDetalhes(cliente.id);
+                                this._navegandoParaDetalhes(cliente.id);
                             }
                         }
                     })
@@ -262,7 +261,7 @@ sap.ui.define([
             });
         },
 
-        navegandoParaDetalhes: function (id) {
+        _navegandoParaDetalhes: function (id) {
             BusyIndicator.show()
 
             let oRouter = this.getOwnerComponent().getRouter();
@@ -272,7 +271,7 @@ sap.ui.define([
             BusyIndicator.hide();
         },
 
-        limpandoCampos() {
+        _limpandoCampos() {
             const vazio = "";
             let nome = this.byId("campoNome");
             let cpf = this.byId("campoCpf");

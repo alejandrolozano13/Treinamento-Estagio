@@ -18,8 +18,8 @@ sap.ui.define([
             this._obterPorId(id);
         },
 
-        modeloClientes: function(modelo){
-            const nomeModelo = "clientes";
+        _modeloClientes: function(modelo){
+            const nomeModelo = "cliente";
             if (modelo){
                 return this.getView().setModel(modelo, nomeModelo);   
             } else{
@@ -28,7 +28,7 @@ sap.ui.define([
         },
 
         aoEditarCliente: function(){
-            let cliente = this.modeloClientes().getData();
+            let cliente = this._modeloClientes().getData();
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("editarCliente", {
                 id: cliente.id
@@ -36,7 +36,7 @@ sap.ui.define([
         },
         
         aoRemoverCliente: function(){
-            let cliente = this.modeloClientes().getData();
+            let cliente = this._modeloClientes().getData();
             MessageBox.warning("Deseja mesmo remover esse cliente?", {
                 EmphasizedAction: MessageBox.Action.OK,
                 actions: ["YES", MessageBox.Action.CANCEL], onClose: (acao) => {
@@ -66,10 +66,10 @@ sap.ui.define([
                     return response.json();
                 })
                 .then((data) => {
-                    let arquivo = this.converteCaminhoParaArquivo(data.imagemUsuario, "imagem.jpeg");
-                    data.imagemUsuarioTraduzido = this.criandoArquivo(arquivo)
+                    let arquivo = this._converteCaminhoParaArquivo(data.imagemUsuario, "imagem.jpeg");
+                    data.imagemUsuario = this._criandoArquivo(arquivo)
                     
-                    this.modeloClientes(new JSONModel(data))
+                    this._modeloClientes(new JSONModel(data))
                 })
                 .catch(function (error) {
                     console.error(error);
@@ -81,7 +81,7 @@ sap.ui.define([
             oRouter.navTo("listaDeclientes", {}, true);
         },
 
-        converteCaminhoParaArquivo(bse64, filename) {
+        _converteCaminhoParaArquivo(bse64, filename) {
             let bstr = atob(bse64)
             let n = bstr.length
             let u8arr = new Uint8Array(n)
@@ -91,7 +91,7 @@ sap.ui.define([
             return new File([u8arr], filename, { type: "image/jpeg" });
         },
 
-        criandoArquivo(file){
+        _criandoArquivo(file){
             return URL.createObjectURL(file);
         }
     });

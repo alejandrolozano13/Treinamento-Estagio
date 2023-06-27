@@ -5,8 +5,8 @@ xmlns:mvc="sap.ui.core.mvc"
 xmlns="sap.m">
 <Shell>
 <App>
-<Page title="CATÁLOGO DE CLIENTES">
-<List id="ListaDeClientes" items="{path: 'clientes>/'}">
+<Page title="{i18n>TituloCatalogo}">
+<List id="ListaDeClientes" items="{path: 'cliente>/'}">
 <headerToolbar>
     <Toolbar>
         <Button text="{i18n>AdicionarCliente}" icon="sap-icon://add-employee" press=".aoAdicionarCliente"/>
@@ -15,11 +15,11 @@ xmlns="sap.m">
         <SearchField width= "60%" liveChange=".aoPesquisarClientes" placeholder="{i18n>PesquisaCliente}"/>
     </Toolbar>
 </headerToolbar>
-<CustomListItem class="sapUiTinyMargin" type="Navigation" press=".buscaDetalhes">
+<CustomListItem class="sapUiTinyMargin" type="Navigation" press=".aoBuscarDetalhes">
     <HBox>
-        <Image src="{clientes>imagemUsuarioTraduzido}" width="60px" height="60px" class="sapFAvatarCircle sapFAvatarImageHolder sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+        <Image src="{cliente>imagemUsuario}" width="60px" height="60px" class="sapFAvatarCircle sapFAvatarImageHolder sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
         <VBox class="sapUiMediumMargin">
-            <Link text="{clientes>nome}" class="sapUiLargeMarginBegin"/>
+            <Link text="{cliente>nome}" class="sapUiLargeMarginBegin"/>
         </VBox>            
     </HBox>
 </CustomListItem>

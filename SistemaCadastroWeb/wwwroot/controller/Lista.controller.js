@@ -1,20 +1,17 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
     "sap/ui/core/BusyIndicator"
-], function (Controller, JSONModel, FilterOperator, Filter, BusyIndicator) {
+], function (Controller, JSONModel, BusyIndicator) {
     "use strict";
     return Controller.extend("sap.ui.demo.cadastro.controller.Lista", {
         onInit: function () {
-            
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("listaDeclientes").attachPatternMatched(this._aoCoincidirRota, this);
-            
         },
-        modeloClientes: function(JSONModel){
-            const nomeModelo = "clientes";
+
+        _modeloClientes: function(JSONModel){
+            const nomeModelo = "cliente";
             
             if (!JSONModel){
                 return this.getView().getModel(nomeModelo);
@@ -34,11 +31,11 @@ sap.ui.define([
                 .then((dados) => {
                     dados.forEach(cliente=>{
                         if(cliente.imagemUsuario){
-                            let arquivo = this.dadosParaArquivo(cliente.imagemUsuario, "imagem.jpeg")
-                            cliente.imagemUsuarioTraduzido = this.criandoArquivo(arquivo)
+                            let arquivo = this._dadosParaArquivo(cliente.imagemUsuario, "imagem.jpeg")
+                            cliente.imagemUsuario = this._criandoArquivo(arquivo)
                         }
                     })
-                    this.modeloClientes(new JSONModel(dados));
+                    this._modeloClientes(new JSONModel(dados));
                 })
                 .catch(function (error) {
                     console.error(error);
@@ -55,20 +52,20 @@ sap.ui.define([
                 })
                 .then((dados) => {
                     dados.forEach(cliente=> {
-                        let arquivo = this.dadosParaArquivo(cliente.imagemUsuario, "imagem.jpeg");
-                        cliente.imagemUsuarioTraduzido = this.criandoArquivo(arquivo);
+                        let arquivo = this._dadosParaArquivo(cliente.imagemUsuario, "imagem.jpeg");
+                        cliente.imagemUsuario = this._criandoArquivo(arquivo);
                     })
-                    this.modeloClientes(new JSONModel(dados));
+                    this._modeloClientes(new JSONModel(dados));
                 })
                 .catch(function (error) {
                     console.error(error);
                 });
         },
         
-        buscaDetalhes : function(oEvent){
+        aoBuscarDetalhes : function(oEvent){
             let cliente = oEvent
                 .getSource()
-                .getBindingContext("clientes")
+                .getBindingContext("cliente")
                 .getObject();
             let oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("detalhesDoCliente",{
@@ -81,7 +78,7 @@ sap.ui.define([
             oRouter.navTo("cadastrarCliente");
         },
 
-        dadosParaArquivo(bse64, filename) {
+        _dadosParaArquivo(bse64, filename) {
             let bstr = atob(bse64)
             let n = bstr.length
             let u8arr = new Uint8Array(n)
@@ -91,7 +88,7 @@ sap.ui.define([
             return new File([u8arr], filename, { type: "image/jpeg" });
         },
 
-        criandoArquivo(file){
+        _criandoArquivo(file){
             return URL.createObjectURL(file);
         }
     });

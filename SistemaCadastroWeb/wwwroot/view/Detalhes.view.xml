@@ -3,7 +3,7 @@
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
     <Shell >
-    <Page title="{i18n>TituloDetalhes}" binding="{path: 'clientes>/'}"
+    <Page title="{i18n>TituloDetalhes}" binding="{path: 'cliente>/'}"
         showNavButton="true" navButtonPress=".aoRetroceder">
         <headerContent>
             <Button 
@@ -11,35 +11,35 @@
                 icon="sap-icon://edit"
                 press=".aoEditarCliente"/>
             <Button 
-                text="Remover Cliente"
+                text="{i18n>removerCliente}"
                 icon="sap-icon://delete"
                 press=".aoRemoverCliente"/>
         </headerContent>
         <VBox alignItems="Center">
             <HBox>
-                <Image src="{clientes>imagemUsuarioTraduzido}" width="1050px" height="450px" class="sapUiLargeMargin sapUiLargeMarginTop"/>
+                <Image src="{cliente>imagemUsuario}" width="1050px" height="450px" class="sapUiLargeMargin sapUiLargeMarginTop"/>
             </HBox>
         </VBox>
 
         <VBox alignItems="Center" alignContent="Center">
             <HBox alignContent="Center" alignItems="Center">
-                <ObjectAttribute text="Nome: {clientes>nome}" class="sapUiTinyMargin sapUiLargeFont"/>
+                <ObjectAttribute text="{i18n>nomeCliente} {cliente>nome}" class="sapUiTinyMargin sapUiLargeFont"/>
             </HBox>
             <HBox alignContent="Center" alignItems="Center">
-                <ObjectAttribute text="{i18n>Telefone} {clientes>telefone}" class="sapUiTinyMargin sapUiLargeFont"/>
+                <ObjectAttribute text="{i18n>Telefone} {cliente>telefone}" class="sapUiTinyMargin sapUiLargeFont"/>
             </HBox>
             <HBox alignContent="Center" alignItems="Center">
-                <ObjectAttribute text="{i18n>email} {clientes>email}" class="sapUiTinyMargin sapUiLargeFont"/>
+                <ObjectAttribute text="{i18n>email} {cliente>email}" class="sapUiTinyMargin sapUiLargeFont"/>
             </HBox>
             <HBox alignContent="Center" alignItems="Center">
-                <ObjectAttribute text="{i18n>cpf} {clientes>cpf}" class="sapUiTinyMargin sapUiLargeFont"/>
+                <ObjectAttribute text="{i18n>cpf} {cliente>cpf}" class="sapUiTinyMargin sapUiLargeFont"/>
            </HBox>
            <HBox alignContent="Center" alignItems="Center">
                 <ObjectAttribute text="{
-                    path: 'clientes>data',
+                    path: 'cliente>data',
                     type: 'sap.ui.model.type.Date',
                     formatOptions:  
-                    {source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}"/>
+                    {source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}" class="sapUiTinyMargin sapUiLargeFont"/>
             </HBox>
         </VBox>
     </Page>

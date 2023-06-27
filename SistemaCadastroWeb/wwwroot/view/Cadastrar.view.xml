@@ -6,7 +6,7 @@
     <Shell >
     <Page
         title="{i18n>tituloCadastro}"
-        navButtonPress=".voltarAoMenu"
+        navButtonPress=".aoVoltarAoMenu"
         showNavButton="true">
         <headerContent>
             <Button text="{i18n>btnSalvar}" icon="sap-icon://save" press=".aoSalvarCliente"/>
