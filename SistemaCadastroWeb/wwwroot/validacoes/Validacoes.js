@@ -85,7 +85,12 @@ sap.ui.define([
         validarEmail: function(email, campoEmail){
             let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             let emailInvalido = "E-mail inválido";
+            let emailVazio = "Por gentileza, preencha o E-mail, não pode ser vazio";
             
+            if(email == ""){
+                return campoEmail.setValueState(sap.ui.core.ValueState.Error), campoEmail.setValueStateText(emailVazio);
+            }
+
             if(email.match(validRegex)){
                 return campoEmail.setValueState(sap.ui.core.ValueState.None);
             } else{
@@ -93,7 +98,6 @@ sap.ui.define([
             }
         },
         validarData: function(datavalida, campoData){
-            debugger
             let dataAtual = new Date(Date.now()).getFullYear()
            
             if( dataAtual - datavalida < 18 ) 
@@ -101,7 +105,7 @@ sap.ui.define([
                 return campoData.setValueState(sap.ui.core.ValueState.Error), campoData.setValueStateText("Precisa ter mais de 18 anos.");
             }
             else{
-                if(!!datavalida || isNaN(datavalida)){
+                if(isNaN(datavalida)){
                     return campoData.setValueState(sap.ui.core.ValueState.Error), campoData.setValueStateText("Preencha a data.");
                 } else{
                     return campoData.setValueState(sap.ui.core.ValueState.None);

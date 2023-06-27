@@ -13,23 +13,26 @@
         </headerContent>
 
        <layout:VerticalLayout class="sapUiContentPadding" width="70%">
-            <Label text="{i18n>cpfCadatro}" labelFor="campoCpf" design="Bold"/>
-            <MaskInput mask="999,999,999-99" id="campoCpf" required="true" value="{cliente>/cpf}" placeholderSymbol="_"/>
-
             <Label text="{i18n>nomeCadastro}" labelFor="campoNome" design="Bold"/>
-            <Input id="campoNome" required="true" value="{cliente>/nome}" placeholder="{i18n>NomeCliente}" valueState="None"/>
+            <Input id="campoNome" required="true" value="{cliente>/nome}" placeholder="{i18n>NomeCliente}" submit="aoSalvarCliente" valueState="None" liveChange="validarNomeInput" valueLiveUpdate="true"
+                width="345px"/>
 
             <Label text="{i18n>emailCadastro}" labelFor="campoEmail" design="Bold"/>
-            <Input id="campoEmail" required="true" value="{cliente>/email}" placeholder="{i18n>EmailCliente}"/>
-
-            <Label text="{i18n>telefoneCadastro}" labelFor="campoTelefone" design="Bold"/>
-            <MaskInput mask="99 9 9999-9999" id="campoTelefone" required="true" value="{cliente>/telefone}" placeholder="{i18n>TelefoneCliente}"/>
+            <Input id="campoEmail" required="true" value="{cliente>/email}" placeholder="{i18n>EmailCliente}" submit="aoSalvarCliente" liveChange="validarEmail" valueLiveUpdate="true"
+                width="345px"/>
 
             <Label text="{i18n>dataCadastro}" labelFor="campoData" design="Bold"/>
             <DatePicker id="campoData" change="handleChange" placeholder="{i18n>DataCliente}" class="sapUiSmallMarginBottom" required="true"
-                value="{path: 'cliente>/data', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}"/>
+                value="{path: 'cliente>/data', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}" width="345px"/>
+
+            <Label text="{i18n>cpfCadatro}" labelFor="campoCpf" design="Bold"/>
+            <MaskInput mask="999,999,999-99" id="campoCpf" required="true" value="{cliente>/cpf}" placeholderSymbol="_"/>
+
+            <Label text="{i18n>telefoneCadastro}" labelFor="campoTelefone" design="Bold"/>
+            <MaskInput mask="99 9 9999-9999" id="campoTelefone" required="true" value="{cliente>/telefone}" placeholder="{i18n>TelefoneCliente}"/>
     
             <Label text="Foto de Perfil" labelFor="fileUploader"/>
+            <HBox >
             <unified:FileUploader
                 id="fileUploader"
                 name="myFileUpload"
@@ -37,9 +40,11 @@
                 tooltip="Upload your file to the local server"
                 uploadComplete="handleUploadComplete"
                 value="{cliente>/imagemUsuario}"/>
-            <!-- <Button 
-                text="Upload file"
-                press="handleUploadPress"/> -->
+                
+                <ToolbarSpacer />
+                <Button icon="sap-icon://delete" type="Reject" class="sapUiTinyMarginBegin" press=".aoLimparImagem"/>
+                <ToolbarSpacer />
+            </HBox>
             
             <Label text="{i18n>requisicoes}" design="Bold"/>
        </layout:VerticalLayout>
