@@ -41,36 +41,36 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "listaclientes",
-					"target": "ListaClientes"
+					"name": "listaDeclientes",
+					"target": "ListaDeClientes"
 				},
 				{
-					"pattern": "detail/{id}",
-					"name": "detail",
-					"target": "detail"
+					"pattern": "detalhesDoCliente/{id}",
+					"name": "detalhesDoCliente",
+					"target": "DetalhesDoCliente"
 				},
 				{
-					"pattern": "cadastrar",
-					"name": "cadastrar",
-					"target": "cadastrar"
+					"pattern": "cadastrarCliente",
+					"name": "cadastrarCliente",
+					"target": "CadastrarCliente"
 				},
 				{
 					"pattern":"editarCliente/{id}",
 					"name":"editarCliente",
-					"target":"cadastrar"
+					"target":"CadastrarCliente"
 				}
 			],
 			"targets": {
-				"ListaClientes": {
-					"id": "ListaClientes",
-					"name": "List"
+				"ListaDeClientes": {
+					"id": "ListaDeClientes",
+					"name": "Lista"
 				},
-				"detail": {
-					"id": "detail",
-					"name": "Detail"
+				"DetalhesDoCliente": {
+					"id": "",
+					"name": "Detalhes"
 				},
-				"cadastrar": {
-					"id": "cadastrar",
+				"CadastrarCliente": {
+					"id": "",
 					"name": "Cadastrar"
 				}
 			}

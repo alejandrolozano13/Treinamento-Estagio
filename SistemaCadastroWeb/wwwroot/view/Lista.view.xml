@@ -1,0 +1,30 @@
+<mvc:View 
+controllerName="sap.ui.demo.cadastro.controller.Lista"
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns="sap.m">
+<Shell>
+<App>
+<Page title="{i18n>TituloCatalogo}">
+<List id="ListaDeClientes" items="{path: 'cliente>/'}">
+<headerToolbar>
+    <Toolbar>
+        <Button text="{i18n>AdicionarCliente}" icon="sap-icon://add-employee" press=".aoAdicionarCliente"/>
+        <ToolbarSpacer/>
+        <ToolbarSpacer/>
+        <SearchField width= "60%" liveChange=".aoPesquisarClientes" placeholder="{i18n>PesquisaCliente}"/>
+    </Toolbar>
+</headerToolbar>
+<CustomListItem class="sapUiTinyMargin" type="Navigation" press=".aoBuscarDetalhes">
+    <HBox>
+        <Image src="{cliente>imagemUsuario}" width="60px" height="60px" class="sapFAvatarCircle sapFAvatarImageHolder sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+        <VBox class="sapUiMediumMargin">
+            <Link text="{cliente>nome}" class="sapUiLargeMarginBegin"/>
+        </VBox>            
+    </HBox>
+</CustomListItem>
+</List>
+</Page>
+</App>
+</Shell>
+</mvc:View>

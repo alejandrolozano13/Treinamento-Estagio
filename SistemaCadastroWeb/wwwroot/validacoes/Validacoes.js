@@ -4,6 +4,14 @@ sap.ui.define([
     'use strict';
 
     return {
+        validandoCpfExistente: function(campoCpf){
+            let erro = "CPF já existe...";
+            return campoCpf.setValueState(sap.ui.core.ValueState.Error), campoCpf.setValueStateText(erro);
+        },
+        validarCpfValido: function(campoCpf){
+            let erro = "CPF é inválido...";
+            return campoCpf.setValueState(sap.ui.core.ValueState.Error), campoCpf.setValueStateText(erro);
+        },
         validarNome: function (nome, campoNome) {
             const regex = /^[a-záàâãéèêíïóôõöúçñA-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+$/
             let erro = "Erro, nome não pode ser nulo";
@@ -105,7 +113,7 @@ sap.ui.define([
                 return campoData.setValueState(sap.ui.core.ValueState.Error), campoData.setValueStateText("Precisa ter mais de 18 anos.");
             }
             else{
-                if(isNaN(datavalida)){
+                if(isNaN(datavalida) || datavalida == "" || datavalida == null){
                     return campoData.setValueState(sap.ui.core.ValueState.Error), campoData.setValueStateText("Preencha a data.");
                 } else{
                     return campoData.setValueState(sap.ui.core.ValueState.None);

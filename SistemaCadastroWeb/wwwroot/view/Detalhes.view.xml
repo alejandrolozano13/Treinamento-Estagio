@@ -1,0 +1,47 @@
+<mvc:View xmlns:core="sap.ui.core"
+    controllerName="sap.ui.demo.cadastro.controller.Detalhes"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Shell >
+    <Page title="{i18n>TituloDetalhes}" binding="{path: 'cliente>/'}"
+        showNavButton="true" navButtonPress=".aoRetroceder">
+        <headerContent>
+            <Button 
+                text="{i18n>editar}"
+                icon="sap-icon://edit"
+                press=".aoEditarCliente"/>
+            <Button 
+                text="{i18n>removerCliente}"
+                icon="sap-icon://delete"
+                press=".aoRemoverCliente"/>
+        </headerContent>
+        <VBox alignItems="Center">
+            <HBox>
+                <Image src="{cliente>imagemUsuario}" width="1050px" height="450px" class="sapUiLargeMargin sapUiLargeMarginTop"/>
+            </HBox>
+        </VBox>
+
+        <VBox alignItems="Center" alignContent="Center">
+            <HBox alignContent="Center" alignItems="Center">
+                <ObjectAttribute text="{i18n>nomeCliente} {cliente>nome}" class="sapUiTinyMargin sapUiLargeFont"/>
+            </HBox>
+            <HBox alignContent="Center" alignItems="Center">
+                <ObjectAttribute text="{i18n>Telefone} {cliente>telefone}" class="sapUiTinyMargin sapUiLargeFont"/>
+            </HBox>
+            <HBox alignContent="Center" alignItems="Center">
+                <ObjectAttribute text="{i18n>email} {cliente>email}" class="sapUiTinyMargin sapUiLargeFont"/>
+            </HBox>
+            <HBox alignContent="Center" alignItems="Center">
+                <ObjectAttribute text="{i18n>cpf} {cliente>cpf}" class="sapUiTinyMargin sapUiLargeFont"/>
+           </HBox>
+           <HBox alignContent="Center" alignItems="Center">
+                <ObjectAttribute text="{
+                    path: 'cliente>data',
+                    type: 'sap.ui.model.type.Date',
+                    formatOptions:  
+                    {source: {pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'}}}" class="sapUiTinyMargin sapUiLargeFont"/>
+            </HBox>
+        </VBox>
+    </Page>
+    </Shell>
+</mvc:View>

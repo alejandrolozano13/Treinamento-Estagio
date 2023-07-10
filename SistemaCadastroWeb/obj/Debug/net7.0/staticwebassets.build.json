@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CHoakAhuzf8BU7ab3lyOX6zINt5pZ4n2zaEVyonEA58=",
+  "Hash": "eTlX/BHs1hxxUVYDfnyumWkPOW9RNjK/tYIQ9GxTxhA=",
   "Source": "SistemaCadastroWeb",
   "BasePath": "_content/SistemaCadastroWeb",
   "Mode": "Default",
@@ -170,6 +170,23 @@
       "OriginalItemSpec": "wwwroot\\Imagens\\haaland.jpeg"
     },
     {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\haalandddd.jpg",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/haalandddd.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\haalandddd.jpg"
+    },
+    {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Ibra.jpg",
       "SourceId": "SistemaCadastroWeb",
       "SourceType": "Discovered",
@@ -238,6 +255,23 @@
       "OriginalItemSpec": "wwwroot\\Imagens\\messi.webp"
     },
     {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\Messi-barnca-psg.webp",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/Messi-barnca-psg.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\Messi-barnca-psg.webp"
+    },
+    {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\messi-fcb.jpeg",
       "SourceId": "SistemaCadastroWeb",
       "SourceType": "Discovered",
@@ -304,6 +338,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\ney.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\pele.jpg",
+      "SourceId": "SistemaCadastroWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\",
+      "BasePath": "_content/SistemaCadastroWeb",
+      "RelativePath": "Imagens/pele.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\pele.jpg"
     },
     {
       "Identity": "C:\\Users\\aleja\\OneDrive\\Área de Trabalho\\Sap-Ui5-Treinamento\\SistemaCadastroWeb\\wwwroot\\Imagens\\vjr.webp",

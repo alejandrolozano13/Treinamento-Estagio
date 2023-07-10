@@ -3,9 +3,10 @@
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
+    <Shell >
     <Page
         title="{i18n>tituloCadastro}"
-        navButtonPress=".voltarAoMenu"
+        navButtonPress=".aoVoltarAoMenu"
         showNavButton="true">
         <headerContent>
             <Button text="{i18n>btnSalvar}" icon="sap-icon://save" press=".aoSalvarCliente"/>
@@ -49,4 +50,5 @@
             <Label text="{i18n>requisicoes}" design="Bold"/>
        </layout:VerticalLayout>
     </Page>
+    </Shell>
 </mvc:View>
